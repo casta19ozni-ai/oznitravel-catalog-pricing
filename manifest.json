@@ -1,0 +1,22 @@
+{
+  "short_name": "OZNITRAVEL",
+  "name": "OZNITRAVEL - Membresía & Viajes",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3125/3125848.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3125/3125848.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0A2342",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#0A2342",
+  "orientation": "portrait"
+}
