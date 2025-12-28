@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -6,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OZNITRAVEL | Revelamos el viaje que mereces</title>
     
-    <!-- PWA Settings -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0A2342">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +66,6 @@
       .custom-scrollbar::-webkit-scrollbar-thumb {
         background: #D4AF37;
       }
-      /* AI Studio Blur Effect */
       .backdrop-blur-2xl {
         backdrop-filter: blur(40px) saturate(180%);
         -webkit-backdrop-filter: blur(40px) saturate(180%);
@@ -87,5 +84,42 @@
 </head>
   <body>
     <div id="root"></div>
+
+    <script type="module">
+      import React, { useState } from 'react';
+      import { createRoot } from 'react-dom/client';
+
+      function App() {
+        return (
+          <div className="min-h-screen flex flex-col items-center justify-center bg-ozni-cream p-4">
+            <header className="text-center animate-scale-in">
+              <h1 className="font-serif text-5xl md:text-7xl text-ozni-navy mb-4">
+                OZNITRAVEL
+              </h1>
+              <p className="font-sans text-ozni-gold tracking-[0.3em] uppercase text-sm mb-8">
+                Revelamos el viaje que mereces
+              </p>
+              <div className="h-px w-24 bg-ozni-gold mx-auto mb-8"></div>
+            </header>
+            
+            <main className="max-w-2xl w-full bg-white p-8 rounded-lg shadow-2xl border border-ozni-gold/20 animate-fade-in">
+              <p className="text-ozni-dark font-sans text-center leading-relaxed">
+                Estamos preparando una experiencia de viaje inigualable. 
+                Nuestra plataforma de IA está conectando los destinos más exclusivos para ti.
+              </p>
+              
+              <div className="mt-8 flex justify-center">
+                <button className="bg-ozni-navy text-ozni-gold px-8 py-3 rounded-full font-bold hover:bg-ozni-dark transition-all duration-300 border border-ozni-gold">
+                  PRÓXIMAMENTE
+                </button>
+              </div>
+            </main>
+          </div>
+        );
+      }
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
   </body>
 </html>
