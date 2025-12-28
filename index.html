@@ -14,6 +14,10 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -35,10 +39,7 @@
               'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             },
             keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
               scaleIn: {
                 '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
                 '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
@@ -49,69 +50,38 @@
       }
     </script>
     <style>
-      body {
-        background-color: #F5F5F0;
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-      }
-      .luxury-gradient {
-        background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%);
-      }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: #1A1A1A;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #D4AF37;
-      }
-      /* AI Studio Blur Effect */
-      .backdrop-blur-2xl {
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
-      }
+      body { background-color: #F5F5F0; scroll-behavior: smooth; overflow-x: hidden; }
+      .luxury-gradient { background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%); }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0"
-  }
-}
-</script>
-</head>
+  </head>
   <body>
     <div id="root"></div>
 
-    <script type="module">
-      import React from 'react';
-      import { createRoot } from 'react-dom/client';
-
-      // Usamos createElement para que funcione directo en el navegador sin romper nada
+    <script>
+      // Usamos React sin JSX para que Vercel no de error de pantalla en blanco
       const e = React.createElement;
 
       function App() {
-        return e('div', { className: "min-h-screen flex flex-col items-center justify-center p-6 bg-ozni-cream" },
-          e('header', { className: "text-center mb-12 animate-scale-in" },
-            e('h1', { className: "font-serif text-6xl md:text-8xl text-ozni-navy tracking-tight mb-2" }, "OZNITRAVEL"),
-            e('p', { className: "font-sans text-ozni-gold tracking-[0.4em] uppercase text-xs md:text-sm font-semibold" }, "Revelamos el viaje que mereces"),
-            e('div', { className: "h-[1px] w-32 bg-ozni-gold/50 mx-auto mt-8" })
+        return e('div', { className: "min-h-screen flex flex-col items-center justify-center bg-[#F5F5F0] p-4 font-sans" },
+          // Encabezado
+          e('header', { className: "text-center mb-8 animate-scale-in" },
+            e('h1', { className: "font-serif text-[60px] md:text-[100px] leading-none text-[#0A2342] mb-4 uppercase" }, "OZNITRAVEL"),
+            e('p', { className: "text-[#D4AF37] tracking-[0.4em] uppercase text-xs md:text-sm font-bold" }, "Revelamos el viaje que mereces"),
+            e('div', { className: "h-[1.5px] w-24 bg-[#D4AF37] mx-auto mt-8" })
           ),
-          e('main', { className: "max-w-2xl w-full bg-white p-12 md:p-20 rounded shadow-2xl border border-ozni-gold/10 text-center animate-fade-in" },
-            e('p', { className: "text-ozni-dark font-sans text-lg md:text-xl leading-relaxed font-light mb-12" }, 
+          // Cuadro de texto (Copia exacta de tu imagen)
+          e('main', { className: "max-w-[700px] w-full bg-white p-12 md:p-16 rounded-lg shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 text-center animate-fade-in" },
+            e('p', { className: "text-[#1A1A1A] text-lg md:text-xl leading-relaxed mb-10 font-normal px-4" }, 
               "Estamos preparando una experiencia de viaje inigualable. Nuestra plataforma de IA está conectando los destinos más exclusivos para ti."
             ),
-            e('button', { className: "bg-ozni-navy text-ozni-gold px-12 py-4 rounded-full font-bold tracking-widest text-xs hover:bg-ozni-dark transition-all duration-500 border border-ozni-gold" }, 
-              "PRÓXIMAMENTE"
+            e('button', { className: "bg-[#0A2342] text-[#D4AF37] px-14 py-4 rounded-full font-bold tracking-widest text-sm hover:brightness-110 transition-all border border-[#D4AF37] uppercase" }, 
+              "Próximamente"
             )
           )
         );
       }
 
-      const root = createRoot(document.getElementById('root'));
+      const root = ReactDOM.createRoot(document.getElementById('root'));
       root.render(e(App));
     </script>
   </body>
