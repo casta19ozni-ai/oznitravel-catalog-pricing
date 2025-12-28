@@ -1,132 +1,94 @@
-<!DOCTYPE html>
+FUNCIONO PERO NO SALEN BIEN LAS INTERACCIONES DEL CODIGO CREADO ORIGINAL CON ESTE CODIGO <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OZNITRAVEL | Revelamos el viaje que mereces</title>
-    
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0A2342">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-            colors: { ozni: { gold: '#D4AF37', dark: '#1A1A1A', navy: '#0A2342', cream: '#F5F5F0' } },
-            animation: { 'fade-in': 'fadeIn 0.6s ease-out forwards', 'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' },
-            keyframes: { 
-              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-              scaleIn: { '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' }, '100%': { opacity: '1', transform: 'scale(1) translateY(0)' } }
-            }
-          }
-        }
-      }
-    </script>
-    
-    <style>
-      body { background-color: #0A2342; color: white; margin: 0; }
-      .hero-bg {
-        background: linear-gradient(rgba(10,35,66,0.7), rgba(26,26,26,0.8)), 
-                    url('https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1920&q=80');
-        background-size: cover; background-position: center; min-height: 100vh;
-      }
-      .backdrop-blur-2xl { backdrop-filter: blur(40px) saturate(180%); -webkit-backdrop-filter: blur(40px) saturate(180%); }
-    </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OZNITRAVEL | Revelamos el viaje que mereces</title>
+    
+    <!-- PWA Settings -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0A2342">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="OZNITRAVEL">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
 
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@^19.2.3",
-        "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client"
-      }
-    }
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              ozni: {
+                gold: '#D4AF37',
+                dark: '#1A1A1A',
+                navy: '#0A2342',
+                cream: '#F5F5F0',
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #F5F5F0;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      .luxury-gradient {
+        background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1A1A1A;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+      }
+      /* AI Studio Blur Effect */
+      .backdrop-blur-2xl {
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
 </head>
-<body>
-    <div id="root"></div>
-
-    <script type="module">
-      import React, { useState } from 'react';
-      import { createRoot } from 'react-dom/client';
-
-      const h = React.createElement;
-
-      function App() {
-        const [activeModal, setActiveModal] = useState(null); // 'vip' | 'catalog' | null
-
-        // --- COMPONENTE: VENTANA EMERGENTE VIP ---
-        const VIPModal = () => h('div', { className: "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in" },
-          h('div', { className: "bg-ozni-navy border border-ozni-gold/30 w-full max-w-2xl p-8 md:p-12 relative overflow-hidden" },
-            h('button', { onClick: () => setActiveModal(null), className: "absolute top-4 right-6 text-ozni-gold text-2xl font-light" }, "✕"),
-            h('div', { className: "text-ozni-gold text-[10px] font-black tracking-[0.3em] mb-4 uppercase" }, "Configuración de Experiencia"),
-            h('h2', { className: "font-serif text-4xl mb-6 italic" }, "Elite Membership"),
-            h('div', { className: "space-y-6 mb-10" },
-              h('div', { className: "border-l-2 border-ozni-gold pl-6" },
-                h('p', { className: "text-white/60 text-xs mb-1" }, "INVERSIÓN INICIAL"),
-                h('p', { className: "text-3xl font-bold" }, "$269.95 USD")
-              ),
-              h('p', { className: "text-white/80 leading-relaxed italic" }, 
-                "Acceso exclusivo a tarifas mayoristas, concierge privado y beneficios en más de 1 millón de hoteles a nivel global."
-              )
-            ),
-            h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black tracking-widest text-xs uppercase hover:bg-white transition-all" }, 
-              "INICIAR REGISTRO VIP"
-            )
-          )
-        );
-
-        // --- COMPONENTE: VENTANA EMERGENTE CATÁLOGO ---
-        const CatalogModal = () => h('div', { className: "fixed inset-0 z-[100] bg-ozni-navy overflow-y-auto p-6 md:p-12 animate-fade-in" },
-          h('div', { className: "max-w-6xl mx-auto" },
-            h('button', { onClick: () => setActiveModal(null), className: "text-ozni-gold mb-10 font-bold" }, "← CERRAR CATÁLOGO"),
-            h('h2', { className: "font-serif text-5xl mb-12" }, "Membresía Global Travorium"),
-            h('div', { className: "grid md:grid-cols-3 gap-6" },
-              ['Membresía Elite', 'Grupos VIP', 'Crew Shore'].map(item => h('div', { 
-                key: item,
-                className: "bg-white/5 border border-white/10 p-10 text-center hover:border-ozni-gold transition-all"
-              },
-                h('div', { className: "text-ozni-gold text-[10px] font-black tracking-widest mb-4" }, "BENEFICIO EXCLUSIVO"),
-                h('h3', { className: "font-serif text-2xl mb-6" }, item),
-                h('button', { onClick: () => setActiveModal('vip'), className: "text-xs border border-ozni-gold text-ozni-gold px-6 py-2" }, "VER DETALLES")
-              ))
-            )
-          )
-        );
-
-        // --- PANTALLA PRINCIPAL ---
-        return h('div', { className: "hero-bg flex flex-col" },
-          h('nav', { className: "flex justify-between items-center p-8 z-10" },
-            h('div', { className: "font-serif text-2xl font-bold tracking-tighter" }, "OZNITRAVEL"),
-            h('button', { className: "bg-ozni-gold text-ozni-navy px-6 py-2 font-black text-[10px] tracking-widest" }, "RESERVAR AHORA")
-          ),
-          h('main', { className: "flex-grow flex flex-col items-center justify-center text-center px-6 z-10" },
-            h('h1', { className: "font-serif text-7xl md:text-[140px] leading-none mb-4 tracking-tighter animate-scale-in" }, "OZNITRAVEL"),
-            h('p', { className: "font-serif italic text-xl md:text-3xl opacity-90 mb-12" }, "\"Revelamos el viaje que mereces.\""),
-            h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-2xl" },
-              h('button', { 
-                onClick: () => setActiveModal('vip'),
-                className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-xs uppercase" 
-              }, "CONFIGURAR EXPERIENCIA VIP"),
-              h('button', { 
-                onClick: () => setActiveModal('catalog'),
-                className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black tracking-widest text-xs uppercase hover:bg-white/10" 
-              }, "EXPLORAR SERVICIOS")
-            )
-          ),
-          
-          // Renderizado de las ventanas emergentes (Modales)
-          activeModal === 'vip' && VIPModal(),
-          activeModal === 'catalog' && CatalogModal()
-        );
-      }
-
-      createRoot(document.getElementById('root')).render(h(App));
-    </script>
-</body>
-</html>
+  <body>
+    <div id="root"></div>
+    <!-- Script de entrada para Vite -->
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html> ES EL ORIGINAL 
