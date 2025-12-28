@@ -1,27 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OZNITRAVEL | Revelamos el viaje que mereces</title>
-
-    <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-      (function (w, d, n, s, e) {
-        w[n] = w[n] || function () { (w[n].q = w[n].q || []).push(arguments); };
-        e = d.createElement(s); e.async = 1; e.src = 'https://static.travelpayouts.com/widgets/v1/widgets.js?v=2025';
-        var x = d.getElementsByTagName(s)[0]; x.parentNode.insertBefore(e, x);
-      })(window, document, 'tp', 'script');
-    </script>
     
+    <!-- PWA Settings -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0A2342">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="OZNITRAVEL">
-    <link rel="apple-touch-icon" href="https://github.com/casta19ozni-ai/oznitravel-catalog-pricing/blob/main/icon-ozni-travel.png?raw=true">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -37,6 +31,20 @@
                 navy: '#0A2342',
                 cream: '#F5F5F0',
               }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              }
             }
           }
         }
@@ -46,9 +54,24 @@
       body {
         background-color: #F5F5F0;
         scroll-behavior: smooth;
+        overflow-x: hidden;
       }
       .luxury-gradient {
         background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1A1A1A;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+      }
+      /* AI Studio Blur Effect */
+      .backdrop-blur-2xl {
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
       }
     </style>
   <script type="importmap">
@@ -63,19 +86,6 @@
 </script>
 </head>
   <body>
-    <div style="background:#FFF4C1; border:1px solid #E6DB55; padding:10px; border-radius:6px; margin:16px 0; color:#5C4A00;">
-  Aviso: Los precios fluctúan. Cotiza el precio vigente antes de confirmar.
-</div>
-
-<a
-  href="https://wa.me/593983977320?text=Hola,%20quiero%20cotizar%20el%20precio%20vigente%20de%20esta%20oferta.%20%C2%BFMe%20ayudas%3F"
-  target="_blank"
-  style="display:inline-block; padding:12px 16px; background:#25D366; color:white; text-decoration:none; border-radius:8px; font-weight:600;"
->
-  Cotizar precio actual
-</a>
-
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
   </body>
 </html>
