@@ -6,26 +6,19 @@
   <title>OZNITRAVEL | Revelamos el viaje que mereces</title>
 
   <!-- PWA -->
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#0A2342" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="OZNITRAVEL" />
-  <link
-    rel="apple-touch-icon"
-    href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png"
-  />
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0A2342">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="OZNITRAVEL">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
 
-  <!-- Tailwind CDN (válido con Vite) -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind config -->
   <script>
     tailwind.config = {
       theme: {
@@ -40,11 +33,25 @@
               dark: '#1A1A1A',
               navy: '#0A2342',
               cream: '#F5F5F0',
-            },
+            }
           },
-        },
-      },
-    };
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+              '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+            }
+          }
+        }
+      }
+    }
   </script>
 
   <style>
@@ -62,7 +69,7 @@
 <body>
   <div id="root"></div>
 
-  <!-- ✅ ÚNICO punto de entrada válido para Vite + React -->
+  <!-- ✅ ÚNICO entry point válido en Vite -->
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
