@@ -17,29 +17,40 @@
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-            colors: { ozni: { gold: '#D4AF37', dark: '#1A1A1A', navy: '#0A2342', cream: '#F5F5F0' } },
-            animation: { 'fade-in': 'fadeIn 0.6s ease-out forwards' },
-            keyframes: { fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } } }
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              ozni: { gold: '#D4AF37', dark: '#1A1A1A', navy: '#0A2342', cream: '#F5F5F0' }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            },
+            keyframes: {
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              scaleIn: { '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' }, '100%': { opacity: '1', transform: 'scale(1) translateY(0)' } }
+            }
           }
         }
       }
     </script>
     <style>
-      body { background-color: #0A2342; overflow-x: hidden; color: white; }
+      body { background-color: #0A2342; scroll-behavior: smooth; overflow-x: hidden; color: white; }
       .hero-bg {
-        background: linear-gradient(rgba(10,35,66,0.7), rgba(26,26,26,0.8)), 
-                    url('https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1920');
+        background: linear-gradient(rgba(10,35,66,0.7), rgba(10,35,66,0.8)), 
+                    url('https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1920&q=80');
         background-size: cover; background-position: center;
       }
-      .backdrop-blur-2xl { backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; }
     </style>
     <script type="importmap">
     {
       "imports": {
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "react/": "https://esm.sh/react@^19.2.3/",
-        "react": "https://esm.sh/react@^19.2.3"
+        "react": "https://esm.sh/react@19.0.0",
+        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client"
       }
     }
     </script>
@@ -51,78 +62,88 @@
       import React, { useState } from 'react';
       import { createRoot } from 'react-dom/client';
 
-      const h = React.createElement;
+      const e = React.createElement;
 
       function App() {
         const [view, setView] = useState('home');
 
-        // VISTA: CATÁLOGO (Lo que aparece en tus fotos de AI Studio)
-        if (view === 'catalog') {
-          return h('div', { className: "min-h-screen bg-ozni-navy p-6 md:p-12 animate-fade-in" },
-            h('button', { onClick: () => setView('home'), className: "text-ozni-gold mb-8 flex items-center gap-2" }, "← VOLVER AL INICIO"),
-            h('h2', { className: "font-serif text-4xl md:text-6xl mb-4" }, "Membresía Global Travorium"),
-            h('p', { className: "text-white/70 mb-12 text-lg" }, "Acceso mayorista con ahorros de hasta el 70%."),
-            
-            h('div', { className: "grid md:grid-cols-3 gap-8" },
-              [
-                { title: 'Membresía', icon: '🌐', label: 'AHORRO MAYORISTA' },
-                { title: 'Grupos VIP', icon: '🎓', label: 'GRADUACIONES 2025' },
-                { title: 'Crew Shore', icon: '⚓', label: 'RUTA GUAYAQUIL' }
-              ].map(item => h('div', { 
-                key: item.title,
-                className: "bg-white/5 border border-white/10 p-10 text-center hover:border-ozni-gold transition-all cursor-pointer",
-                onClick: () => setView('elite')
-              },
-                h('div', { className: "text-4xl mb-4" }, item.icon),
-                h('div', { className: "text-ozni-gold text-[10px] font-black tracking-widest mb-2" }, item.label),
-                h('h3', { className: "font-serif text-2xl mb-4" }, item.title),
-                h('button', { className: "text-xs border border-ozni-gold text-ozni-gold px-4 py-2" }, "REVELAR BENEFICIOS")
-              ))
-            )
-          );
-        }
+        // Función para manejar las interacciones que antes no hacían nada
+        const handleNavigation = (targetView) => {
+          console.log("Navegando a:", targetView);
+          setView(targetView);
+        };
 
-        // VISTA: ELITE ($269.95)
-        if (view === 'elite') {
-          return h('div', { className: "min-h-screen flex flex-col md:flex-row animate-fade-in" },
-            h('div', { className: "md:w-1/2 bg-cover bg-center h-64 md:h-auto", style: { backgroundImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000')" } }),
-            h('div', { className: "md:w-1/2 p-12 flex flex-col justify-center bg-ozni-navy" },
-              h('button', { onClick: () => setView('catalog'), className: "text-ozni-gold mb-8 self-start" }, "← VOLVER AL CATÁLOGO"),
-              h('h2', { className: "font-serif text-6xl mb-6 italic" }, "Elite"),
-              h('div', { className: "bg-white/5 p-8 border-l-4 border-ozni-gold mb-8" },
-                h('p', { className: "text-ozni-gold text-xs font-black mb-2" }, "DETALLE DE INVERSIÓN:"),
-                h('p', { className: "text-4xl font-bold mb-1" }, "REGISTRO: $269.95"),
-                h('p', { className: "text-xl opacity-60" }, "| CUOTA MES: $135")
-              ),
-              h('p', { className: "italic text-white/80 leading-relaxed mb-10 text-lg" }, 
-                "\"El nivel máximo de membresía diseñado para viajeros que buscan el mayor retorno de inversión.\""
-              ),
-              h('button', { className: "bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-sm hover:bg-white transition-all" }, "ACTIVAR MI MEMBRESÍA ELITE")
-            )
-          );
-        }
-
-        // VISTA: HOME (Hero)
-        return h('div', { className: "min-h-screen hero-bg flex flex-col relative" },
-          h('nav', { className: "flex justify-between items-center p-8 z-10" },
-            h('div', { className: "font-serif text-2xl font-bold tracking-tighter" }, "OZNITRAVEL"),
-            h('button', { className: "bg-ozni-gold text-ozni-navy px-6 py-2 font-black text-[10px] tracking-tighter" }, "RESERVAR AHORA")
+        // --- COMPONENTE: HOME ---
+        const HomeView = () => e('div', { className: "min-h-screen hero-bg flex flex-col animate-fade-in" },
+          e('nav', { className: "flex justify-between items-center p-8" },
+            e('div', { className: "text-2xl font-serif font-bold tracking-tighter" }, "OZNITRAVEL"),
+            e('button', { 
+              className: "bg-ozni-gold text-ozni-navy px-6 py-2 font-black text-[10px] tracking-widest",
+              onClick: () => handleNavigation('catalog') 
+            }, "RESERVAR AHORA")
           ),
-          h('main', { className: "flex-grow flex flex-col items-center justify-center text-center px-6 z-10" },
-            h('h1', { className: "font-serif text-7xl md:text-[140px] leading-none mb-4 tracking-tighter" }, "OZNITRAVEL"),
-            h('p', { className: "font-serif italic text-xl md:text-3xl opacity-90 mb-12" }, "\"Revelamos el viaje que mereces.\""),
-            h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-2xl" },
-              h('button', { 
-                onClick: () => setView('catalog'),
-                className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-xs" 
+          e('main', { className: "flex-grow flex flex-col items-center justify-center text-center px-6" },
+            e('h1', { className: "font-serif text-7xl md:text-[120px] mb-4 tracking-tighter animate-scale-in" }, "OZNITRAVEL"),
+            e('p', { className: "font-serif italic text-xl md:text-3xl mb-12 opacity-90" }, "\"Revelamos el viaje que mereces.\""),
+            e('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-2xl" },
+              e('button', { 
+                onClick: () => handleNavigation('catalog'),
+                className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-xs transition-transform active:scale-95" 
               }, "CONFIGURAR EXPERIENCIA VIP"),
-              h('button', { className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black tracking-widest text-xs hover:bg-white/10" }, "EXPLORAR SERVICIOS")
+              e('button', { 
+                className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black tracking-widest text-xs hover:bg-white/10" 
+              }, "EXPLORAR SERVICIOS")
             )
           )
         );
+
+        // --- COMPONENTE: CATÁLOGO ---
+        const CatalogView = () => e('div', { className: "min-h-screen bg-ozni-navy p-8 animate-fade-in custom-scrollbar overflow-y-auto" },
+          e('button', { onClick: () => setView('home'), className: "text-ozni-gold mb-8 flex items-center gap-2 font-bold" }, "← VOLVER"),
+          e('h2', { className: "font-serif text-5xl mb-4" }, "Membresía Global Travorium"),
+          e('p', { className: "text-white/60 mb-12 max-w-2xl" }, "Ahorros de hasta el 70% en hoteles. Inversión inteligente en estilo de vida."),
+          
+          e('div', { className: "grid md:grid-cols-3 gap-6" },
+            [
+              { title: 'Membresía', label: 'AHORRO MAYORISTA', icon: '🌐' },
+              { title: 'Grupos VIP', label: 'GRADUACIONES 2025', icon: '🎓' },
+              { title: 'Crew Shore', label: 'RUTA GUAYAQUIL', icon: '⚓' }
+            ].map((item) => e('div', { 
+              key: item.title,
+              className: "bg-white/5 border border-white/10 p-10 text-center hover:border-ozni-gold transition-all group cursor-pointer",
+              onClick: () => setView('elite')
+            },
+              e('div', { className: "text-4xl mb-4" }, item.icon),
+              e('div', { className: "text-ozni-gold text-[10px] font-black tracking-widest mb-2" }, item.label),
+              e('h3', { className: "font-serif text-2xl mb-6" }, item.title),
+              e('button', { className: "text-xs border border-ozni-gold text-ozni-gold px-6 py-2 group-hover:bg-ozni-gold group-hover:text-ozni-navy transition-colors" }, "VER DETALLES")
+            ))
+          )
+        );
+
+        // --- COMPONENTE: DETALLE ELITE ---
+        const EliteView = () => e('div', { className: "min-h-screen flex flex-col md:flex-row animate-fade-in" },
+           e('div', { className: "md:w-1/2 bg-cover bg-center h-64 md:h-auto", style: { backgroundImage: "url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000')" } }),
+           e('div', { className: "md:w-1/2 p-12 flex flex-col justify-center bg-ozni-navy" },
+              e('button', { onClick: () => setView('catalog'), className: "text-ozni-gold mb-8 self-start" }, "← VOLVER AL CATÁLOGO"),
+              e('h2', { className: "font-serif text-7xl mb-6 italic" }, "Elite"),
+              e('div', { className: "bg-white/5 p-8 border-l-4 border-ozni-gold mb-8" },
+                e('p', { className: "text-ozni-gold text-xs font-black tracking-widest mb-2" }, "DETALLE DE INVERSIÓN:"),
+                e('p', { className: "text-4xl font-bold" }, "REGISTRO: $269.95"),
+                e('p', { className: "text-xl opacity-50" }, "| CUOTA MES: $135")
+              ),
+              e('button', { className: "bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-sm" }, "ACTIVAR MI MEMBRESÍA ELITE")
+           )
+        );
+
+        // Renderizado condicional basado en el estado
+        if (view === 'catalog') return CatalogView();
+        if (view === 'elite') return EliteView();
+        return HomeView();
       }
 
-      createRoot(document.getElementById('root')).render(h(App));
+      const root = createRoot(document.getElementById('root'));
+      root.render(e(App));
     </script>
 </body>
 </html>
