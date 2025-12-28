@@ -14,6 +14,9 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -35,7 +38,10 @@
               'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             },
             keyframes: {
-              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
               scaleIn: {
                 '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
                 '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
@@ -46,55 +52,33 @@
       }
     </script>
     <style>
-      body { background-color: #F5F5F0; scroll-behavior: smooth; overflow-x: hidden; }
-      .luxury-gradient { background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%); }
-      .backdrop-blur-2xl { backdrop-filter: blur(40px) saturate(180%); -webkit-backdrop-filter: blur(40px) saturate(180%); }
+      body {
+        background-color: #F5F5F0;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      .luxury-gradient {
+        background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1A1A1A;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+      }
+      /* AI Studio Blur Effect */
+      .backdrop-blur-2xl {
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+      }
     </style>
-
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@19.0.0?dev",
-        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?dev"
-      }
-    }
-    </script>
-  </head>
-  <body>
-    <div id="root">
-      <div class="flex items-center justify-center min-h-screen">
-        <p class="font-serif text-ozni-navy animate-pulse">Cargando OZNITRAVEL...</p>
-      </div>
-    </div>
-
-    <script type="module">
-      import React from 'react';
-      import { createRoot } from 'react-dom/client';
-
-      // Usamos React.createElement para máxima compatibilidad sin compiladores externos
-      function App() {
-        return React.createElement('div', { className: "min-h-screen flex flex-col items-center justify-center bg-ozni-cream p-4" },
-          React.createElement('header', { className: "text-center animate-scale-in" },
-            React.createElement('h1', { className: "font-serif text-5xl md:text-7xl text-ozni-navy mb-4" }, "OZNITRAVEL"),
-            React.createElement('p', { className: "font-sans text-ozni-gold tracking-[0.3em] uppercase text-sm mb-8" }, "Revelamos el viaje que mereces"),
-            React.createElement('div', { className: "h-px w-24 bg-ozni-gold mx-auto mb-8" })
-          ),
-          React.createElement('main', { className: "max-w-2xl w-full bg-white p-8 rounded-lg shadow-2xl border border-ozni-gold/20 animate-fade-in" },
-            React.createElement('p', { className: "text-ozni-dark font-sans text-center leading-relaxed" }, 
-              "Estamos preparando una experiencia de viaje inigualable. Nuestra plataforma de IA está conectando los destinos más exclusivos para ti."
-            ),
-            React.createElement('div', { className: "mt-8 flex justify-center" },
-              React.createElement('button', { className: "bg-ozni-navy text-ozni-gold px-8 py-3 rounded-full font-bold hover:bg-ozni-dark transition-all duration-300 border border-ozni-gold" }, 
-                "PRÓXIMAMENTE"
-              )
-            )
-          )
-        );
-      }
-
-      const container = document.getElementById('root');
-      const root = createRoot(container);
-      root.render(React.createElement(App));
-    </script>
-  </body>
-</html>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "@google/genai": "https://
