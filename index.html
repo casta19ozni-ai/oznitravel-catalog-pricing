@@ -29,60 +29,32 @@
                 navy: '#0A2342',
                 cream: '#F5F5F0',
               }
-            },
-            animation: {
-              'fade-in': 'fadeIn 0.6s ease-out forwards',
-              'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              scaleIn: {
-                '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
-                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
-              }
             }
           }
         }
       }
     </script>
     <style>
-      body {
-        background-color: #F5F5F0;
-        scroll-behavior: smooth;
-        overflow-x: hidden;
+      body, html { margin: 0; padding: 0; height: 100%; }
+      .hero-overlay {
+        background: linear-gradient(rgba(10, 35, 66, 0.7), rgba(26, 26, 26, 0.8));
       }
-      .luxury-gradient {
-        background: linear-gradient(135deg, #0A2342 0%, #1A1A1A 100%);
-      }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: #1A1A1A;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #D4AF37;
-      }
-      /* AI Studio Blur Effect */
-      .backdrop-blur-2xl {
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
+      .bg-image {
+        background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1920');
+        background-size: cover;
+        background-position: center;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+        "react/": "https://aistudiocdn.com/react@^19.2.1/",
+        "react": "https://aistudiocdn.com/react@^19.2.1"
+      }
+    }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
 
@@ -90,29 +62,43 @@
       import React from 'react';
       import { createRoot } from 'react-dom/client';
 
-      const e = React.createElement;
+      const h = React.createElement;
 
       function App() {
-        return e('div', { className: "min-h-screen flex flex-col items-center justify-center p-4 bg-ozni-cream" },
-          e('header', { className: "text-center mb-10 animate-scale-in" },
-            e('h1', { className: "font-serif text-6xl md:text-8xl text-ozni-navy mb-2 tracking-tight" }, "OZNITRAVEL"),
-            e('p', { className: "font-sans text-ozni-gold tracking-[0.4em] uppercase text-xs md:text-sm font-semibold" }, "Revelamos el viaje que mereces"),
-            e('div', { className: "h-px w-24 bg-ozni-gold/60 mx-auto mt-8" })
-          ),
-          e('main', { className: "max-w-xl w-full bg-white p-10 md:p-16 rounded shadow-2xl border border-ozni-gold/10 text-center animate-fade-in" },
-            e('p', { className: "text-ozni-dark font-sans text-lg leading-relaxed mb-10" }, 
-              "Estamos preparando una experiencia de viaje inigualable. Nuestra plataforma de IA está conectando los destinos más exclusivos para ti."
+        return h('div', { className: "relative min-h-screen bg-image flex flex-col font-sans" },
+          h('div', { className: "absolute inset-0 hero-overlay" }),
+          
+          // Barra de Navegación
+          h('nav', { className: "relative z-10 flex justify-between items-center px-8 py-6" },
+            h('div', { className: "flex items-center gap-2" },
+              h('div', { className: "w-5 h-5 border border-ozni-gold rounded-full flex items-center justify-center" },
+                h('div', { className: "w-1 h-1 bg-ozni-gold rounded-full" })
+              ),
+              h('span', { className: "text-white font-serif text-xl tracking-tighter font-bold uppercase" }, "Oznitravel")
             ),
-            e('button', { className: "bg-ozni-navy text-ozni-gold px-10 py-3 rounded-full font-bold tracking-widest text-xs hover:bg-ozni-dark transition-all duration-300 border border-ozni-gold shadow-lg" }, 
-              "PRÓXIMAMENTE"
+            h('button', { className: "bg-ozni-gold text-ozni-navy px-5 py-2 text-[10px] font-black tracking-widest rounded-sm" }, "RESERVAR AHORA")
+          ),
+
+          // Contenido Central
+          h('main', { className: "relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4" },
+            h('h1', { className: "text-white font-serif text-6xl md:text-[140px] leading-none mb-4 tracking-tighter" }, "OZNITRAVEL"),
+            h('p', { className: "text-white font-serif italic text-lg md:text-3xl opacity-90 mb-12" }, "\"Revelamos el viaje que mereces.\""),
+            
+            // Botones de Acción
+            h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-2xl" },
+              h('button', { className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-bold tracking-[0.2em] text-xs" }, "CONFIGURAR EXPERIENCIA VIP"),
+              h('button', { className: "flex-1 border border-white/30 text-white backdrop-blur-md py-5 font-bold tracking-[0.2em] text-xs hover:bg-white/10 transition-all" }, "EXPLORAR SERVICIOS")
             )
+          ),
+
+          // Indicador de Scroll
+          h('div', { className: "relative z-10 pb-10 flex justify-center" },
+            h('div', { className: "w-[1px] h-12 bg-white/30" })
           )
         );
       }
 
-      const container = document.getElementById('root');
-      const root = createRoot(container);
-      root.render(e(App));
+      createRoot(document.getElementById('root')).render(h(App));
     </script>
   </body>
 </html>
