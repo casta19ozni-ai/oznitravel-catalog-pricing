@@ -14,9 +14,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
     <script>
       tailwind.config = {
         theme: {
@@ -81,4 +78,41 @@
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
     "react/": "https://aistudiocdn.com/react@^19.2.1/",
     "react": "https://aistudiocdn.com/react@^19.2.1",
-    "@google/genai": "https://
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+
+    <script type="module">
+      import React from 'react';
+      import { createRoot } from 'react-dom/client';
+
+      // Usamos createElement para que funcione directo en el navegador sin romper nada
+      const e = React.createElement;
+
+      function App() {
+        return e('div', { className: "min-h-screen flex flex-col items-center justify-center p-6 bg-ozni-cream" },
+          e('header', { className: "text-center mb-12 animate-scale-in" },
+            e('h1', { className: "font-serif text-6xl md:text-8xl text-ozni-navy tracking-tight mb-2" }, "OZNITRAVEL"),
+            e('p', { className: "font-sans text-ozni-gold tracking-[0.4em] uppercase text-xs md:text-sm font-semibold" }, "Revelamos el viaje que mereces"),
+            e('div', { className: "h-[1px] w-32 bg-ozni-gold/50 mx-auto mt-8" })
+          ),
+          e('main', { className: "max-w-2xl w-full bg-white p-12 md:p-20 rounded shadow-2xl border border-ozni-gold/10 text-center animate-fade-in" },
+            e('p', { className: "text-ozni-dark font-sans text-lg md:text-xl leading-relaxed font-light mb-12" }, 
+              "Estamos preparando una experiencia de viaje inigualable. Nuestra plataforma de IA está conectando los destinos más exclusivos para ti."
+            ),
+            e('button', { className: "bg-ozni-navy text-ozni-gold px-12 py-4 rounded-full font-bold tracking-widest text-xs hover:bg-ozni-dark transition-all duration-500 border border-ozni-gold" }, 
+              "PRÓXIMAMENTE"
+            )
+          )
+        );
+      }
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(e(App));
+    </script>
+  </body>
+</html>
