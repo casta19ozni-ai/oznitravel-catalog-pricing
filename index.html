@@ -81,7 +81,9 @@
   <!-- FILOSOFÍA -->
   <div class="bg-white py-20 text-center px-6 border-b border-gray-100">
     <h3 class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Filosofía</h3>
-    <p class="max-w-4xl mx-auto text-2xl md:text-3xl font-serif text-ozni-navy leading-relaxed italic">Diseñamos accesos privilegiados al mercado global del turismo.</p>
+    <p class="max-w-4xl mx-auto text-2xl md:text-3xl font-serif text-ozni-navy leading-relaxed italic">
+      Diseñamos accesos privilegiados al mercado global del turismo.
+    </p>
   </div>
 
   <!-- MEMBERSHIP SECTION -->
@@ -101,8 +103,16 @@
     <h2 class="text-2xl font-bold mb-4 text-center">Grupos & Experiencias VIP</h2>
     <p class="text-center">Viajes estratégicos y experiencias privadas con beneficios mayoristas.</p>
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="p-6 border rounded-xl hover:shadow-lg transition">VIP Feature 1</div>
-      <div class="p-6 border rounded-xl hover:shadow-lg transition">VIP Feature 2</div>
+      <div class="p-6 border rounded-xl hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=400&auto=format&fit=crop" class="rounded mb-2">
+        <h4 class="font-bold">Experiencia VIP 1</h4>
+        <p class="text-sm">Acceso exclusivo y atención personalizada.</p>
+      </div>
+      <div class="p-6 border rounded-xl hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=400&auto=format&fit=crop" class="rounded mb-2">
+        <h4 class="font-bold">Experiencia VIP 2</h4>
+        <p class="text-sm">Servicios premium con beneficios mayoristas.</p>
+      </div>
     </div>
   </section>
 
@@ -117,8 +127,16 @@
     <h2 class="text-2xl font-bold mb-4 text-center">Crew on Shore Security</h2>
     <p class="text-center">Protocolos privados de movilidad y seguridad para oficiales y tripulación.</p>
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="p-6 border rounded-xl hover:shadow-lg transition">Crew Feature 1</div>
-      <div class="p-6 border rounded-xl hover:shadow-lg transition">Crew Feature 2</div>
+      <div class="p-6 border rounded-xl hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=400&auto=format&fit=crop" class="rounded mb-2">
+        <h4 class="font-bold">Crew Feature 1</h4>
+        <p class="text-sm">Seguridad y movilidad privada para oficiales.</p>
+      </div>
+      <div class="p-6 border rounded-xl hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=400&auto=format&fit=crop" class="rounded mb-2">
+        <h4 class="font-bold">Crew Feature 2</h4>
+        <p class="text-sm">Protocolos de seguridad exclusivos.</p>
+      </div>
     </div>
   </section>
 
@@ -152,7 +170,6 @@ let deferredPrompt = null;
 const CONTACT_NUMBER = "0987654321";
 const BRAND_NAME = "OzniTravel";
 
-// beforeinstallprompt
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
 
 function scrollToTop() { window.scrollTo({ top:0, behavior:'smooth' }); }
