@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>OZNITRAVEL | Diseñamos el viaje que te mereces</title>
 
     <!-- PWA -->
@@ -16,14 +17,15 @@
       href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png"
     />
 
+    <!-- Tailwind CDN (solo para estilos, Vite no lo rompe) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -42,18 +44,18 @@
             },
           },
         },
-      }
+      };
     </script>
 
     <style>
       body {
-        background-color: #F5F5F0;
+        background-color: #f5f5f0;
         scroll-behavior: smooth;
         overflow-x: hidden;
       }
       ::selection {
-        background: #D4AF37;
-        color: #0A2342;
+        background: #d4af37;
+        color: #0a2342;
       }
     </style>
   </head>
@@ -61,7 +63,7 @@
   <body>
     <div id="root"></div>
 
-    <!-- 🔥 ENTRY REAL DE VITE -->
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- ✅ ENTRY POINT CORRECTO PARA TU PROYECTO -->
+    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
