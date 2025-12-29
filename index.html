@@ -1,128 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OzniTravel</title>
-  <link rel="icon" href="icon-ozni-travel.png">
+  <link rel="icon" href="icon-ozni-travel.png" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: sans-serif; margin:0; background:#f9fafb; color:#1a1a1a; }
-    nav { position:fixed; top:0; width:100%; background:rgba(31,41,55,0.95); color:white; padding:1rem; z-index:50; display:flex; justify-content:space-between; align-items:center; }
-    nav button { margin-left:0.5rem; padding:0.4rem 0.8rem; background:#fbbf24; color:#1f2937; border:none; cursor:pointer; }
-    section { padding:6rem 1rem; border-bottom:1px solid #e5e7eb; }
-    .section-title { font-weight:bold; margin-bottom:1rem; font-size:1.2rem; }
-    .service-card { border:1px solid #e5e7eb; border-radius:1rem; padding:1rem; text-align:center; margin:1rem 0; transition:0.3s; }
-    .service-card:hover { box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-    #configuratorModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; }
-    #configuratorModalContent { background:white; padding:2rem; border-radius:1rem; max-width:400px; text-align:center; }
-    button.closeModal { margin-top:1rem; background:#f87171; color:white; }
+    /* Colores personalizados de tu app */
+    .text-ozni-dark { color: #1f2937; }
+    .bg-ozni-navy { background-color: #0f172a; }
+    .text-ozni-gold { color: #fbbf24; }
   </style>
 </head>
-<body>
+<body class="min-h-screen font-sans bg-gray-50 text-ozni-dark">
 
-  <nav>
-    <div id="brand">OzniTravel</div>
-    <div>
-      <button onclick="scrollToSection('services')">Servicios</button>
-      <button onclick="scrollToSection('vip')">VIP</button>
-      <button onclick="scrollToSection('crew')">Shore</button>
-      <button onclick="scrollToSection('concierge')">Concierge</button>
-      <button onclick="openWhatsApp()">WhatsApp</button>
-      <button onclick="openConfigurator()">Configurar viaje</button>
-    </div>
-  </nav>
-
-  <!-- Modal Configurador -->
-  <div id="configuratorModal">
-    <div id="configuratorModalContent">
-      <h2>Selecciona tipo de viaje</h2>
-      <button onclick="selectConfigurator('vip')">VIP</button>
-      <button onclick="selectConfigurator('crew')">Shore</button>
-      <button onclick="selectConfigurator('concierge')">Concierge</button>
-      <button class="closeModal" onclick="closeConfigurator()">Cerrar</button>
+  <!-- Configurator Modal -->
+  <div id="configuratorModal" class="fixed inset-0 bg-black/50 hidden justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-xl max-w-md w-full">
+      <h2 class="text-xl font-bold mb-4">Selecciona tipo de viaje</h2>
+      <div class="flex flex-col gap-2">
+        <button onclick="handleConfiguratorSelect('vip')" class="px-4 py-2 bg-ozni-gold text-ozni-navy font-bold rounded">VIP</button>
+        <button onclick="handleConfiguratorSelect('crew')" class="px-4 py-2 bg-ozni-gold text-ozni-navy font-bold rounded">Crew</button>
+        <button onclick="handleConfiguratorSelect('concierge')" class="px-4 py-2 bg-ozni-gold text-ozni-navy font-bold rounded">Concierge</button>
+        <button onclick="closeConfigurator()" class="px-4 py-2 bg-red-500 text-white font-bold rounded">Cerrar</button>
+      </div>
     </div>
   </div>
 
-  <!-- Hero -->
-  <section id="hero" style="background:#e0f2fe; text-align:center;">
-    <h1>Bienvenido a OzniTravel</h1>
-    <p>Diseñamos experiencias únicas de viaje.</p>
-  </section>
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-ozni-navy/95 backdrop-blur-sm text-white py-4 border-b border-white/10 shadow-lg">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="text-xl md:text-2xl font-serif font-bold tracking-wider cursor-pointer" onclick="scrollToTop()">
+        <span class="text-ozni-gold">O</span>zniTravel
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="hidden lg:flex gap-8 text-xs uppercase tracking-widest font-medium">
+          <button onclick="handleScroll('services')" class="hover:text-ozni-gold">Servicios</button>
+          <button onclick="handleScroll('vip')" class="hover:text-ozni-gold">VIP</button>
+          <button onclick="handleScroll('crew')" class="hover:text-ozni-gold">Shore</button>
+          <button onclick="handleScroll('concierge')" class="hover:text-ozni-gold">Concierge</button>
+        </div>
+        <button onclick="handleWhatsAppNav()" class="bg-ozni-gold text-ozni-navy px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors">Consultar</button>
+      </div>
+    </div>
+  </nav>
 
-  <!-- Servicios -->
-  <section id="services">
-    <h2 class="section-title">Servicios</h2>
-    <div class="service-card">✈️ Vuelos (Kiwi)<br>Garantía de conexión y precios netos.</div>
-    <div class="service-card">🚗 Movilidad (Localrent)<br>Coches sin depósitos abusivos.</div>
-    <div class="service-card">📶 Conectividad (Yesim)<br>eSIM global para seguridad digital.</div>
-    <div class="service-card">🎟️ Tickets & Accesos<br>Entradas oficiales y experiencias exclusivas.</div>
-  </section>
+  <!-- MAIN -->
+  <main class="pt-20">
 
-  <!-- Filosofía -->
-  <section id="philosophy" style="text-align:center; background:#fff8e1;">
-    <h3>Filosofía</h3>
-    <p>Diseñamos accesos privilegiados al mercado global del turismo.</p>
-  </section>
+    <!-- Hero -->
+    <section id="hero" class="h-96 flex flex-col justify-center items-center bg-blue-100">
+      <h1 class="text-4xl font-serif font-bold mb-4">Bienvenido a OzniTravel</h1>
+      <div class="flex gap-4">
+        <button onclick="openConfigurator()" class="px-4 py-2 bg-ozni-gold text-ozni-navy font-bold rounded">Configurar viaje</button>
+        <button onclick="handleScroll('services')" class="px-4 py-2 bg-gray-800 text-white font-bold rounded">Explorar servicios</button>
+      </div>
+    </section>
 
-  <!-- VIP -->
-  <section id="vip">
-    <h2 class="section-title">Grupos & Experiencias VIP</h2>
-    <p>Viajes estratégicos y experiencias privadas con beneficios mayoristas.</p>
-    <div class="service-card">VIP Feature 1</div>
-    <div class="service-card">VIP Feature 2</div>
-  </section>
+    <!-- SERVICIOS -->
+    <section id="services" class="bg-white py-16 border-b border-gray-100">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 border rounded-xl hover:shadow-lg transition">✈️
+          <h4 class="font-bold mt-2">Vuelos (Kiwi)</h4>
+          <p class="text-sm mt-1">Garantía de conexión y precios netos.</p>
+        </div>
+        <div class="p-6 border rounded-xl hover:shadow-lg transition">🚗
+          <h4 class="font-bold mt-2">Movilidad (Localrent)</h4>
+          <p class="text-sm mt-1">Coches sin depósitos abusivos.</p>
+        </div>
+        <div class="p-6 border rounded-xl hover:shadow-lg transition">📶
+          <h4 class="font-bold mt-2">Conectividad (Yesim)</h4>
+          <p class="text-sm mt-1">eSIM global para seguridad digital.</p>
+        </div>
+        <div class="p-6 border rounded-xl hover:shadow-lg transition">🎟️
+          <h4 class="font-bold mt-2">Tickets & Accesos</h4>
+          <p class="text-sm mt-1">Entradas oficiales y experiencias exclusivas.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- Crew -->
-  <section id="crew">
-    <h2 class="section-title">Crew on Shore Security</h2>
-    <p>Protocolos privados de movilidad y seguridad para oficiales y tripulación.</p>
-    <div class="service-card">Crew Feature 1</div>
-    <div class="service-card">Crew Feature 2</div>
-  </section>
+    <!-- FILOSOFÍA -->
+    <div class="bg-white py-20 text-center px-6 border-b border-gray-100">
+      <h3 class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Filosofía</h3>
+      <p class="max-w-4xl mx-auto text-2xl md:text-3xl font-serif text-ozni-navy leading-relaxed italic">
+        Diseñamos accesos privilegiados al mercado global del turismo.
+      </p>
+    </div>
 
-  <!-- Concierge -->
-  <section id="concierge">
-    <h2 class="section-title">Concierge</h2>
-    <p>Planificación personalizada de viajes VIP.</p>
-  </section>
+    <!-- Membership / Editorial / VIP / Crew / AIPlanner / Registration placeholders -->
+    <section id="membership" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">Membership Section</h2>
+      <p>Placeholder para MembershipSection</p>
+    </section>
+
+    <section id="editorial" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">Editorial Guides</h2>
+      <p>Placeholder para EditorialGuides</p>
+    </section>
+
+    <section id="vip" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">Grupos & Experiencias VIP</h2>
+      <p>Viajes estratégicos y experiencias privadas con beneficios mayoristas.</p>
+    </section>
+
+    <section id="affiliate" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">Affiliate Toolkit</h2>
+      <p>Placeholder para AffiliateToolkit</p>
+    </section>
+
+    <section id="crew" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">Crew on Shore Security</h2>
+      <p>Protocolos privados de movilidad y seguridad para oficiales y tripulación.</p>
+    </section>
+
+    <section id="aiplanner" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">AI Planner</h2>
+      <p>Placeholder para AIPlanner</p>
+    </section>
+
+    <section id="registration" class="py-16 text-center border-b border-gray-100">
+      <h2 class="text-2xl font-bold mb-4">Registration Form</h2>
+      <p>Placeholder para RegistrationForm</p>
+    </section>
+
+  </main>
 
   <!-- Footer -->
-  <footer style="text-align:center; padding:2rem; background:#1f2937; color:white;">
+  <footer class="bg-ozni-navy text-white py-8 text-center">
     <p>© 2025 OzniTravel</p>
   </footer>
 
   <script>
-    const CONTACT_NUMBER = '0987654321';
-    const BRAND_NAME = 'OzniTravel';
+    const CONTACT_NUMBER = "0987654321";
+    const BRAND_NAME = "OzniTravel";
 
-    function scrollToSection(id) {
+    function scrollToTop() { window.scrollTo({ top:0, behavior:'smooth' }); }
+
+    function handleScroll(id){
       const element = document.getElementById(id);
       if(element){
         const yOffset = -80;
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({top: y, behavior:'smooth'});
+        window.scrollTo({top:y, behavior:'smooth'});
       }
     }
 
-    function openWhatsApp() {
+    function handleWhatsAppNav(){
       const cleanNumber = CONTACT_NUMBER.startsWith('0') ? CONTACT_NUMBER.substring(1) : CONTACT_NUMBER;
-      const phoneNumber = '593' + cleanNumber;
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent('Hola '+BRAND_NAME+', deseo diseñar una experiencia de viaje VIP.')}`, '_blank');
+      const phoneNumber = '593'+cleanNumber;
+      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(`Hola ${BRAND_NAME}, deseo diseñar una experiencia de viaje VIP.`)}`, '_blank');
     }
 
-    function openConfigurator() {
-      document.getElementById('configuratorModal').style.display = 'flex';
-    }
-
-    function closeConfigurator() {
-      document.getElementById('configuratorModal').style.display = 'none';
-    }
-
-    function selectConfigurator(type) {
+    function openConfigurator(){ document.getElementById('configuratorModal').classList.remove('hidden'); }
+    function closeConfigurator(){ document.getElementById('configuratorModal').classList.add('hidden'); }
+    function handleConfiguratorSelect(type){
       closeConfigurator();
-      scrollToSection('concierge');
-      alert('Seleccionaste: ' + type);
+      handleScroll('concierge');
+      alert(`Seleccionaste: ${type}`);
     }
   </script>
+
 </body>
 </html>
