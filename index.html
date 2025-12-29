@@ -19,13 +19,13 @@
       }
     </script>
     <style>
+        html { scroll-behavior: smooth; }
         .hero-bg {
-            background: linear-gradient(rgba(10,35,66,0.7), rgba(10,35,66,0.8)), 
+            background: linear-gradient(rgba(10,35,66,0.75), rgba(10,35,66,0.9)), 
                         url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1920');
             background-size: cover; background-position: center; min-height: 100vh;
         }
         .modal-blur { backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
-        html { scroll-behavior: smooth; }
     </style>
     <script type="importmap">
     { "imports": { "react": "https://esm.sh/react@19", "react-dom/client": "https://esm.sh/react-dom@19/client" } }
@@ -41,9 +41,9 @@
         const h = React.createElement;
 
         function App() {
-            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [isConfigOpen, setIsConfigOpen] = useState(false);
 
-            // --- HEADER ---
+            // --- NAVEGACIÓN ---
             const Nav = () => h('nav', { className: "fixed top-0 left-0 w-full z-50 bg-ozni-navy/95 backdrop-blur-sm text-white py-4 border-b border-white/10 shadow-lg" },
                 h('div', { className: "container mx-auto px-6 flex justify-between items-center" },
                     h('div', { className: "text-xl md:text-2xl font-serif font-bold tracking-wider cursor-pointer" }, 
@@ -54,7 +54,7 @@
                             h('a', { href: "#services", className: "hover:text-ozni-gold" }, "Servicios"),
                             h('a', { href: "#vip", className: "hover:text-ozni-gold" }, "VIP"),
                             h('a', { href: "#crew", className: "hover:text-ozni-gold" }, "Shore"),
-                            h('a', { href: "#footer", className: "hover:text-ozni-gold" }, "Concierge")
+                            h('a', { href: "#concierge", className: "hover:text-ozni-gold" }, "Concierge")
                         ),
                         h('button', { className: "bg-ozni-gold text-ozni-navy px-4 py-2 text-[10px] font-black uppercase tracking-wider hover:bg-white transition-colors" }, "CONSULTAR")
                     )
@@ -66,28 +66,28 @@
                 h('h1', { className: "font-serif text-6xl md:text-9xl mb-4 tracking-tighter" }, "OZNITRAVEL"),
                 h('p', { className: "font-serif italic text-xl md:text-3xl opacity-90 mb-12" }, "\"Diseñamos el viaje que te mereces.\""),
                 h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-lg" },
-                    h('button', { onClick: () => setIsModalOpen(true), className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black text-xs uppercase shadow-xl hover:scale-105 transition-all" }, "CONFIGURAR VIP"),
+                    h('button', { onClick: () => setIsConfigOpen(true), className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black text-xs uppercase shadow-xl hover:scale-105 transition-all" }, "CONFIGURAR VIP"),
                     h('a', { href: "#services", className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black text-xs uppercase hover:bg-white/10 text-center" }, "EXPLORAR")
                 )
             );
 
-            // --- SECCIÓN SERVICIOS (Kiwi, Yesim, etc) ---
+            // --- SERVICIOS TÉCNICOS ---
             const Services = () => h('section', { id: "services", className: "bg-white py-20 border-b border-gray-100" },
-                h('div', { className: "container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" },
+                h('div', { className: "container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" },
                     [
                         { icon: '✈️', title: 'Vuelos (Kiwi)', desc: 'Garantía de conexión y precios netos.' },
                         { icon: '🚗', title: 'Movilidad (Localrent)', desc: 'Coches sin depósitos abusivos.' },
                         { icon: '📶', title: 'Conectividad (Yesim)', desc: 'eSIM global para seguridad digital.' },
                         { icon: '🎟️', title: 'Tickets & Accesos', desc: 'Entradas oficiales y experiencias exclusivas.' }
-                    ].map(s => h('div', { key: s.title, className: "p-8 border rounded-xl hover:shadow-2xl transition-all border-gray-100 group hover:border-ozni-gold" },
-                        h('div', { className: "text-4xl mb-4" }, s.icon),
-                        h('h4', { className: "font-bold text-lg text-ozni-navy mb-2" }, s.title),
-                        h('p', { className: "text-sm text-gray-500" }, s.desc)
+                    ].map(s => h('div', { key: s.title, className: "p-8 border rounded-xl hover:shadow-lg transition-all group" },
+                        h('div', { className: "text-3xl mb-4" }, s.icon),
+                        h('h4', { className: "font-bold text-ozni-navy" }, s.title),
+                        h('p', { className: "text-sm text-gray-500 mt-2" }, s.desc)
                     ))
                 )
             );
 
-            // --- SECCIÓN FILOSOFÍA ---
+            // --- FILOSOFÍA ---
             const Philosophy = () => h('div', { className: "bg-white py-24 text-center px-6 border-b border-gray-100" },
                 h('h3', { className: "text-ozni-gold text-[10px] font-black uppercase tracking-[0.4em] mb-6" }, "Filosofía"),
                 h('p', { className: "max-w-4xl mx-auto text-2xl md:text-4xl font-serif text-ozni-navy leading-relaxed italic" }, 
@@ -95,16 +95,34 @@
                 )
             );
 
-            // --- MODAL DE MEMBRESÍA ---
-            const Modal = () => isModalOpen && h('div', { className: "fixed inset-0 z-[100] flex items-center justify-center p-4 modal-blur bg-black/60 shadow-inner" },
-                h('div', { className: "bg-ozni-navy border border-ozni-gold/30 w-full max-w-xl p-12 relative text-white" },
-                    h('button', { onClick: () => setIsModalOpen(false), className: "absolute top-4 right-6 text-ozni-gold text-2xl" }, "✕"),
-                    h('h2', { className: "font-serif text-5xl mb-6 italic text-ozni-gold" }, "Membresía Elite"),
-                    h('div', { className: "space-y-4 border-l-2 border-ozni-gold pl-6 mb-10" },
-                        h('p', { className: "text-4xl font-bold" }, "$269.95"),
-                        h('p', { className: "opacity-60 italic" }, "Acceso mayorista ilimitado y Concierge 24/7.")
+            // --- CREW ON SHORE ---
+            const CrewShore = () => h('section', { id: "crew", className: "bg-ozni-dark text-white py-24" },
+                h('div', { className: "container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center" },
+                    h('div', null,
+                        h('h2', { className: "font-serif text-5xl mb-6" }, "Crew on Shore Security"),
+                        h('p', { className: "text-gray-400 mb-8 leading-relaxed" }, "Protocolos privados de movilidad y seguridad para oficiales y tripulación."),
+                        h('ul', { className: "space-y-4" },
+                            ['Transferencias Blindadas', 'Extracción Rápida', 'Seguridad en Puerto'].map(item => 
+                                h('li', { key: item, className: "flex items-center gap-3 text-sm" }, 
+                                    h('span', { className: "text-ozni-gold" }, "✓"), item
+                                )
+                            )
+                        )
                     ),
-                    h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black text-xs uppercase hover:bg-white transition-all" }, "COMENZAR REGISTRO")
+                    h('img', { src: "https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=800", className: "rounded-2xl shadow-2xl" })
+                )
+            );
+
+            // --- MODAL CONFIGURADOR ---
+            const Modal = () => isConfigOpen && h('div', { className: "fixed inset-0 z-[100] flex items-center justify-center p-4 modal-blur bg-black/70 animate-fade-in" },
+                h('div', { className: "bg-ozni-navy border border-ozni-gold/30 w-full max-w-xl p-10 relative text-white text-center" },
+                    h('button', { onClick: () => setIsConfigOpen(false), className: "absolute top-4 right-6 text-ozni-gold text-2xl" }, "✕"),
+                    h('h2', { className: "font-serif text-4xl mb-4 italic text-ozni-gold" }, "Configurador VIP"),
+                    h('div', { className: "bg-white/5 p-8 border-y border-ozni-gold/20 my-8" },
+                        h('p', { className: "text-3xl font-bold mb-2" }, "$269.95"),
+                        h('p', { className: "text-ozni-gold text-xs tracking-widest uppercase" }, "Registro Membresía Elite")
+                    ),
+                    h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black text-xs uppercase hover:bg-white transition-all shadow-lg" }, "DISEÑAR MI EXPERIENCIA")
                 )
             );
 
@@ -113,8 +131,10 @@
                 Hero(),
                 Services(),
                 Philosophy(),
-                h('footer', { id: "footer", className: "bg-ozni-dark text-white py-20 text-center" },
-                    h('p', { className: "opacity-40 text-[10px] tracking-widest uppercase" }, "© 2025 OZNITRAVEL - Luxury Travel Broker")
+                CrewShore(),
+                h('footer', { id: "concierge", className: "bg-ozni-navy py-20 text-center text-white border-t border-white/5" },
+                    h('div', { className: "font-serif text-2xl mb-4" }, "OZNITRAVEL"),
+                    h('p', { className: "opacity-40 text-[10px] tracking-widest uppercase" }, "© 2025 Luxury Travel Brokerage")
                 ),
                 Modal()
             );
