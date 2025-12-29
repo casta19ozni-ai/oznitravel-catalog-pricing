@@ -5,65 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OZNITRAVEL | Diseñamos el viaje que te mereces</title>
     
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0A2342">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="OZNITRAVEL">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: {
-              sans: ['Montserrat', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
-            },
-            colors: {
-              ozni: {
-                gold: '#D4AF37',
-                dark: '#1A1A1A',
-                navy: '#0A2342',
-                cream: '#F5F5F0',
-              }
-            },
-            animation: {
-              'fade-in': 'fadeIn 0.6s ease-out forwards',
-              'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            },
-            keyframes: {
-              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-              scaleIn: {
-                '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
-                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
-              }
-            }
+            fontFamily: { sans: ['Montserrat'], serif: ['Playfair Display'] },
+            colors: { ozni: { gold: '#D4AF37', navy: '#0A2342', dark: '#1A1A1A' } }
           }
         }
       }
     </script>
     <style>
-      body { background-color: #0A2342; scroll-behavior: smooth; overflow-x: hidden; color: white; }
-      .luxury-bg {
-        background: linear-gradient(rgba(10,35,66,0.85), rgba(26,26,26,0.95)), 
-                    url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1920');
-        background-size: cover; background-position: center; min-height: 100vh;
-      }
-      .modal-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .hero-bg {
+            background: linear-gradient(rgba(10,35,66,0.7), rgba(10,35,66,0.8)), 
+                        url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1920');
+            background-size: cover; background-position: center; min-height: 100vh;
+        }
+        .modal-blur { backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        html { scroll-behavior: smooth; }
     </style>
     <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@19",
-        "react-dom/client": "https://esm.sh/react-dom@19/client"
-      }
-    }
+    { "imports": { "react": "https://esm.sh/react@19", "react-dom/client": "https://esm.sh/react-dom@19/client" } }
     </script>
 </head>
-<body>
+<body class="bg-gray-50 text-ozni-dark">
     <div id="root"></div>
 
     <script type="module">
@@ -73,35 +41,82 @@
         const h = React.createElement;
 
         function App() {
-            const [modal, setModal] = useState(null);
+            const [isModalOpen, setIsModalOpen] = useState(false);
 
-            const VIPModal = () => h('div', { className: "fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur bg-black/70 animate-fade-in" },
-                h('div', { className: "bg-ozni-navy border border-ozni-gold/40 w-full max-w-2xl p-8 md:p-12 shadow-2xl relative animate-scale-in text-center" },
-                    h('button', { onClick: () => setModal(null), className: "absolute top-4 right-6 text-ozni-gold text-2xl hover:scale-110" }, "✕"),
-                    h('h2', { className: "font-serif text-5xl mb-4 italic text-ozni-gold" }, "Membresía Elite"),
-                    h('p', { className: "text-[10px] font-black tracking-[0.4em] mb-8 text-white/50" }, "TRAVORIUM GLOBAL"),
-                    h('div', { className: "bg-white/5 p-8 border-y border-ozni-gold/20 mb-8" },
-                        h('p', { className: "text-4xl font-bold mb-2" }, "$269.95"),
-                        h('p', { className: "text-ozni-gold text-sm italic" }, "Mantenimiento: $135 / mes")
+            // --- HEADER ---
+            const Nav = () => h('nav', { className: "fixed top-0 left-0 w-full z-50 bg-ozni-navy/95 backdrop-blur-sm text-white py-4 border-b border-white/10 shadow-lg" },
+                h('div', { className: "container mx-auto px-6 flex justify-between items-center" },
+                    h('div', { className: "text-xl md:text-2xl font-serif font-bold tracking-wider cursor-pointer" }, 
+                        h('span', { className: "text-ozni-gold" }, "O"), "ZNITRAVEL"
                     ),
-                    h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black text-xs uppercase hover:bg-white transition-all shadow-lg" }, "RESERVAR ASESORÍA VIP")
+                    h('div', { className: "flex items-center gap-6" },
+                        h('div', { className: "hidden lg:flex gap-8 text-[10px] uppercase tracking-widest font-medium" },
+                            h('a', { href: "#services", className: "hover:text-ozni-gold" }, "Servicios"),
+                            h('a', { href: "#vip", className: "hover:text-ozni-gold" }, "VIP"),
+                            h('a', { href: "#crew", className: "hover:text-ozni-gold" }, "Shore"),
+                            h('a', { href: "#footer", className: "hover:text-ozni-gold" }, "Concierge")
+                        ),
+                        h('button', { className: "bg-ozni-gold text-ozni-navy px-4 py-2 text-[10px] font-black uppercase tracking-wider hover:bg-white transition-colors" }, "CONSULTAR")
+                    )
                 )
             );
 
-            return h('div', { className: "luxury-bg flex flex-col" },
-                h('nav', { className: "flex justify-between items-center p-8 z-10" },
-                    h('div', { className: "font-serif text-2xl font-bold italic tracking-tighter" }, "OZNITRAVEL"),
-                    h('button', { onClick: () => setModal('vip'), className: "bg-ozni-gold text-ozni-navy px-6 py-2 font-black text-[10px] tracking-tighter" }, "CATÁLOGO")
+            // --- HERO ---
+            const Hero = () => h('section', { className: "hero-bg flex flex-col items-center justify-center text-center text-white px-6 pt-20" },
+                h('h1', { className: "font-serif text-6xl md:text-9xl mb-4 tracking-tighter" }, "OZNITRAVEL"),
+                h('p', { className: "font-serif italic text-xl md:text-3xl opacity-90 mb-12" }, "\"Diseñamos el viaje que te mereces.\""),
+                h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-lg" },
+                    h('button', { onClick: () => setIsModalOpen(true), className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black text-xs uppercase shadow-xl hover:scale-105 transition-all" }, "CONFIGURAR VIP"),
+                    h('a', { href: "#services", className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black text-xs uppercase hover:bg-white/10 text-center" }, "EXPLORAR")
+                )
+            );
+
+            // --- SECCIÓN SERVICIOS (Kiwi, Yesim, etc) ---
+            const Services = () => h('section', { id: "services", className: "bg-white py-20 border-b border-gray-100" },
+                h('div', { className: "container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" },
+                    [
+                        { icon: '✈️', title: 'Vuelos (Kiwi)', desc: 'Garantía de conexión y precios netos.' },
+                        { icon: '🚗', title: 'Movilidad (Localrent)', desc: 'Coches sin depósitos abusivos.' },
+                        { icon: '📶', title: 'Conectividad (Yesim)', desc: 'eSIM global para seguridad digital.' },
+                        { icon: '🎟️', title: 'Tickets & Accesos', desc: 'Entradas oficiales y experiencias exclusivas.' }
+                    ].map(s => h('div', { key: s.title, className: "p-8 border rounded-xl hover:shadow-2xl transition-all border-gray-100 group hover:border-ozni-gold" },
+                        h('div', { className: "text-4xl mb-4" }, s.icon),
+                        h('h4', { className: "font-bold text-lg text-ozni-navy mb-2" }, s.title),
+                        h('p', { className: "text-sm text-gray-500" }, s.desc)
+                    ))
+                )
+            );
+
+            // --- SECCIÓN FILOSOFÍA ---
+            const Philosophy = () => h('div', { className: "bg-white py-24 text-center px-6 border-b border-gray-100" },
+                h('h3', { className: "text-ozni-gold text-[10px] font-black uppercase tracking-[0.4em] mb-6" }, "Filosofía"),
+                h('p', { className: "max-w-4xl mx-auto text-2xl md:text-4xl font-serif text-ozni-navy leading-relaxed italic" }, 
+                    "Diseñamos accesos privilegiados al mercado global del turismo."
+                )
+            );
+
+            // --- MODAL DE MEMBRESÍA ---
+            const Modal = () => isModalOpen && h('div', { className: "fixed inset-0 z-[100] flex items-center justify-center p-4 modal-blur bg-black/60 shadow-inner" },
+                h('div', { className: "bg-ozni-navy border border-ozni-gold/30 w-full max-w-xl p-12 relative text-white" },
+                    h('button', { onClick: () => setIsModalOpen(false), className: "absolute top-4 right-6 text-ozni-gold text-2xl" }, "✕"),
+                    h('h2', { className: "font-serif text-5xl mb-6 italic text-ozni-gold" }, "Membresía Elite"),
+                    h('div', { className: "space-y-4 border-l-2 border-ozni-gold pl-6 mb-10" },
+                        h('p', { className: "text-4xl font-bold" }, "$269.95"),
+                        h('p', { className: "opacity-60 italic" }, "Acceso mayorista ilimitado y Concierge 24/7.")
+                    ),
+                    h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black text-xs uppercase hover:bg-white transition-all" }, "COMENZAR REGISTRO")
+                )
+            );
+
+            return h('div', { className: "relative" },
+                Nav(),
+                Hero(),
+                Services(),
+                Philosophy(),
+                h('footer', { id: "footer", className: "bg-ozni-dark text-white py-20 text-center" },
+                    h('p', { className: "opacity-40 text-[10px] tracking-widest uppercase" }, "© 2025 OZNITRAVEL - Luxury Travel Broker")
                 ),
-                h('main', { className: "flex-grow flex flex-col items-center justify-center text-center px-6 z-10" },
-                    h('h1', { className: "font-serif text-6xl md:text-9xl leading-none mb-6 tracking-tighter animate-fade-in" }, "OZNITRAVEL"),
-                    h('p', { className: "font-serif italic text-xl md:text-3xl opacity-90 mb-12 animate-fade-in" }, "\"Diseñamos el viaje que te mereces.\""),
-                    h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-lg animate-fade-in" },
-                        h('button', { onClick: () => setModal('vip'), className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-xs uppercase shadow-xl hover:scale-105 transition-transform" }, "CONFIGURAR VIP"),
-                        h('button', { onClick: () => setModal('vip'), className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black tracking-widest text-xs uppercase hover:bg-white/10" }, "VER PRECIOS")
-                    )
-                ),
-                modal === 'vip' && VIPModal()
+                Modal()
             );
         }
 
