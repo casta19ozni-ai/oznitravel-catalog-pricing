@@ -37,22 +37,50 @@
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
             },
             keyframes: {
-              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-              fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-              scaleIn: { '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' }, '100%': { opacity: '1', transform: 'scale(1) translateY(0)' } }
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              }
             }
           }
         }
       }
     </script>
     <style>
-      body { background-color: #F5F5F0; scroll-behavior: smooth; overflow-x: hidden; }
-      .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-      .custom-scrollbar::-webkit-scrollbar-track { background: #1A1A1A; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; }
-      ::selection { background: #D4AF37; color: #0A2342; }
-      .animate-bounce { animation: bounce 2s infinite; }
-      @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+      body {
+        background-color: #F5F5F0;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1A1A1A;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+      }
+      ::selection {
+        background: #D4AF37;
+        color: #0A2342;
+      }
+      .animate-bounce {
+        animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-10px);}
+        60% {transform: translateY(-5px);}
+      }
     </style>
 </head>
 <body class="min-h-screen font-sans selection:bg-ozni-gold selection:text-ozni-navy">
@@ -65,9 +93,9 @@
         <div class="flex items-center gap-6">
           <div class="hidden lg:flex gap-8 text-xs uppercase tracking-widest font-medium">
             <button onclick="scrollToSection('services')" class="hover:text-ozni-gold transition-colors">Servicios</button>
-            <button onclick="scrollToSection('membership')" class="hover:text-ozni-gold transition-colors">Membresía</button>
             <button onclick="scrollToSection('vip')" class="hover:text-ozni-gold transition-colors">VIP</button>
             <button onclick="scrollToSection('crew')" class="hover:text-ozni-gold transition-colors">Shore</button>
+            <button onclick="scrollToSection('concierge')" class="hover:text-ozni-gold transition-colors">Concierge</button>
           </div>
           <button onclick="handleWhatsAppNav()" class="bg-ozni-gold text-ozni-navy px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors">
             Consultar
@@ -77,6 +105,7 @@
     </nav>
 
     <main>
+      
       <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?q=80&w=2070&auto=format&fit=crop" alt="Luxury Flight" class="w-full h-full object-cover" />
@@ -96,184 +125,605 @@
               EXPLORA
             </button>
           </div>
+          <div class="mt-20 animate-bounce opacity-40">
+             <span class="text-white text-2xl">↓</span>
+          </div>
         </div>
       </section>
 
       <section id="services" class="bg-white py-16 border-b border-gray-100">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="quick-services-grid"></div>
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 border rounded-xl hover:shadow-lg transition-all group cursor-pointer" onclick="window.open('https://www.kiwi.com/es/', '_blank')">
+            <span class="text-3xl block mb-2 transition-transform group-hover:scale-110">✈️</span>
+            <h4 class="font-bold mt-2">Vuelos (Kiwi)</h4>
+            <p class="text-sm mt-1 text-gray-500">Garantía de conexión y precios netos.</p>
+          </div>
+          <div class="p-6 border rounded-xl hover:shadow-lg transition-all group cursor-pointer" onclick="window.open('https://localrent.com/', '_blank')">
+            <span class="text-3xl block mb-2 transition-transform group-hover:scale-110">🚗</span>
+            <h4 class="font-bold mt-2">Movilidad (Localrent)</h4>
+            <p class="text-sm mt-1 text-gray-500">Coches sin depósitos abusivos.</p>
+          </div>
+          <div class="p-6 border rounded-xl hover:shadow-lg transition-all group cursor-pointer" onclick="window.open('https://yesim.app/', '_blank')">
+            <span class="text-3xl block mb-2 transition-transform group-hover:scale-110">📶</span>
+            <h4 class="font-bold mt-2">Conectividad (Yesim)</h4>
+            <p class="text-sm mt-1 text-gray-500">eSIM global para seguridad digital.</p>
+          </div>
+          <div class="p-6 border rounded-xl hover:shadow-lg transition-all group cursor-pointer" onclick="window.open('https://www.tiqets.com/', '_blank')">
+            <span class="text-3xl block mb-2 transition-transform group-hover:scale-110">🎟️</span>
+            <h4 class="font-bold mt-2">Tickets & Accesos</h4>
+            <p class="text-sm mt-1 text-gray-500">Entradas oficiales y experiencias exclusivas.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="membership" class="py-24 bg-ozni-dark text-white relative">
-        <div class="container mx-auto px-4">
+      <div class="bg-white py-20 text-center px-6 border-b border-gray-100">
+        <h3 class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Filosofía</h3>
+        <p class="max-w-4xl mx-auto text-2xl md:text-3xl font-serif text-ozni-navy leading-relaxed italic">
+          Diseñamos accesos privilegiados al mercado global del turismo.
+        </p>
+      </div>
+
+      <section class="py-24 bg-ozni-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-ozni-gold/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="container mx-auto px-4 relative z-10">
           <div class="text-center mb-16 max-w-4xl mx-auto">
             <span class="text-ozni-gold font-bold tracking-[0.2em] uppercase text-sm">El Poder de la Membresía</span>
             <h2 class="text-4xl md:text-5xl font-serif mt-4 mb-6">Acceso Global Privilegiado</h2>
+            <p class="text-gray-300 text-lg leading-relaxed">Desbloqueamos el verdadero costo del turismo. No pagues publicidad ni intermediarios; paga solo por tu experiencia.</p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24" id="membership-grid"></div>
-          
-          <div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-white/10 pb-6">
-            <h3 class="text-3xl font-serif">Destinos Trending</h3>
-            <button onclick="openModal('modal-catalog')" class="text-ozni-gold text-sm font-medium hover:text-white transition-colors">Explora más destinos &rarr;</button>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24" id="membership-grid">
+            </div>
+          <div class="mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-white/10 pb-6 gap-4">
+              <div>
+                <h3 class="text-3xl font-serif mb-2 text-white">Destinos Trending</h3>
+                <p class="text-gray-400 text-sm">Selecciona un destino para cotizar tu experiencia vía WhatsApp.</p>
+              </div>
+              <button onclick="openModal('modal-catalog')" class="text-ozni-gold text-sm font-medium hover:text-white transition-colors flex items-center gap-2 group">
+                Explora más de 2,000 destinos <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="destinations-grid">
+              </div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="destinations-grid"></div>
+          <div class="text-center">
+            <button onclick="handleWhatsAppNav('Hola OZNITRAVEL, quisiera información detallada sobre la Membresía.')" class="px-10 py-4 bg-ozni-gold text-ozni-navy font-bold uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105 active:scale-95">
+              Solicitar Información de Membresía
+            </button>
+          </div>
         </div>
       </section>
 
-      <section id="vip" class="bg-ozni-cream py-24">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2">
-                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1000" class="shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="VIP" />
+      <section class="py-24 bg-ozni-cream border-t border-gray-200">
+        <div class="container mx-auto px-6">
+          <div class="mb-16 text-center md:text-left">
+            <span class="text-ozni-gold font-bold tracking-[0.4em] uppercase text-[10px]">Autoridad & Insights</span>
+            <h2 class="text-4xl md:text-5xl font-serif text-ozni-navy mt-4">Perspectiva Estratégica</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10" id="editorial-grid">
             </div>
-            <div class="md:w-1/2">
-                <h2 class="text-4xl font-serif mb-6 text-ozni-navy">Experiencias VIP & Grupos</h2>
-                <div id="vip-features" class="space-y-6 mb-8"></div>
-                <button onclick="handleWhatsAppNav('Cotización Grupos VIP')" class="bg-ozni-navy text-white px-8 py-3 uppercase font-bold text-sm tracking-widest">Cotizar</button>
+          <div class="mt-20 p-10 bg-ozni-navy text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-ozni-gold/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <div class="max-w-2xl text-center md:text-left relative z-10">
+              <h4 class="text-2xl font-serif mb-3 italic">Optimización Logística de Partners</h4>
+              <p class="text-xs text-gray-400 font-light leading-relaxed">Utilizamos partners como Kiwi y Yesim para resolver tu logística inmediata mientras nuestra membresía optimiza tu estancia estructural.</p>
             </div>
+            <a href="https://www.kiwi.com/es/" target="_blank" class="px-12 py-4 bg-ozni-gold text-ozni-navy text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:scale-105 transition-all relative z-10 shadow-2xl">
+              Comparador Partner
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="concierge" class="py-24 bg-white">
-        <div class="container mx-auto px-4 max-w-4xl text-center">
-            <h2 class="text-4xl font-serif text-ozni-navy mb-8">Concierge Digital Elite</h2>
-            <div class="bg-ozni-cream p-8 rounded border border-gray-200 shadow-xl">
-                <div class="flex flex-col md:flex-row gap-4 mb-6">
-                    <input type="text" id="ai-input" placeholder="Ej: Quiero un resort de lujo en Maldivas..." class="flex-grow p-4 border focus:outline-ozni-gold" />
-                    <button onclick="generateAI()" id="ai-btn" class="bg-ozni-navy text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-ozni-dark">Consultar IA</button>
+      <section id="vip" class="bg-ozni-cream py-20 md:py-32 overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div class="w-full md:w-1/2 relative group">
+              <div class="absolute inset-0 transform translate-x-4 translate-y-4 border-2 border-ozni-navy z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+              <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=2000&auto=format&fit=crop" class="relative z-10 w-full h-[500px] object-cover shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700" alt="VIP" />
+            </div>
+            <div class="w-full md:w-1/2">
+              <h3 class="text-ozni-gold text-sm font-bold tracking-widest uppercase mb-2">Servicio Exclusivo</h3>
+              <h2 class="text-4xl md:text-5xl font-serif mb-6 text-ozni-dark">Grupos & Experiencias VIP</h2>
+              <p class="text-lg mb-10 leading-relaxed text-gray-600">Viajes estratégicos y experiencias privadas con beneficios mayoristas.</p>
+              <div class="space-y-8 mb-10" id="vip-features">
                 </div>
-                <div id="ai-result" class="hidden text-left p-6 bg-white border-l-4 border-ozni-gold animate-fade-in"></div>
+              <button onclick="handleWhatsAppNav('Hola OZNITRAVEL, deseo cotizar una experiencia VIP para grupos.')" class="px-8 py-3 bg-ozni-navy text-white uppercase text-sm font-bold tracking-widest hover:bg-ozni-dark transition-all">Cotizar esta Experiencia</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-24 bg-white border-y border-gray-100">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+            <div class="max-w-xl">
+              <span class="text-ozni-gold font-bold tracking-[0.3em] uppercase text-[10px]">Infraestructura de Viaje</span>
+              <h2 class="text-4xl font-serif text-ozni-navy mt-2">Partner Toolkit</h2>
+              <p class="text-gray-500 text-sm mt-4 leading-relaxed">Complementamos nuestros servicios con aliados estratégicos para máxima eficiencia.</p>
+            </div>
+            <div class="hidden md:block">
+              <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest italic">Curado por OZNITRAVEL</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="toolkit-grid">
             </div>
         </div>
       </section>
+
+      <section id="crew" class="bg-ozni-navy py-20 md:py-32 overflow-hidden text-white">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
+            <div class="w-full md:w-1/2 relative group">
+              <div class="absolute inset-0 transform translate-x-4 translate-y-4 border-2 border-ozni-gold z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+              <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=2000&auto=format&fit=crop" class="relative z-10 w-full h-[500px] object-cover shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700" alt="Crew" />
+            </div>
+            <div class="w-full md:w-1/2">
+              <h3 class="text-ozni-gold text-sm font-bold tracking-widest uppercase mb-2">Servicio Exclusivo</h3>
+              <h2 class="text-4xl md:text-5xl font-serif mb-6 text-white">Crew on Shore Security</h2>
+              <p class="text-lg mb-10 leading-relaxed text-gray-300">Protocolos privados de movilidad y seguridad para oficiales y tripulación.</p>
+              <div class="space-y-8 mb-10" id="crew-features">
+                </div>
+              <button onclick="handleWhatsAppNav('Hola OZNITRAVEL, deseo contratar el servicio Crew on Shore Security.')" class="px-8 py-3 bg-ozni-gold text-ozni-navy uppercase text-sm font-bold tracking-widest hover:bg-white transition-all">Contratar Protocolo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="concierge" class="py-24 bg-white relative">
+        <div class="container mx-auto px-4 max-w-5xl">
+          <div class="text-center mb-16">
+            <span class="text-ozni-gold font-bold tracking-[0.2em] uppercase text-xs">Diagnóstico Estratégico</span>
+            <h2 class="text-4xl md:text-5xl font-serif text-ozni-navy mt-4 mb-6">Concierge Digital Elite</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">Propuestas de valor generadas con inteligencia artificial en segundos.</p>
+          </div>
+          <div class="bg-white shadow-2xl border border-gray-100 p-8 md:p-12 rounded-sm relative">
+            <div class="flex flex-wrap justify-center gap-4 md:gap-10 mb-12 border-b border-gray-100 pb-4">
+              <button onclick="setTab('GLOBAL_MEMBERSHIP')" id="tab-MEM" class="planner-tab pb-4 text-xs font-bold uppercase tracking-widest border-b-2 border-ozni-gold text-ozni-navy">Membresía</button>
+              <button onclick="setTab('GROUPS_GRADUATIONS')" id="tab-GRP" class="planner-tab pb-4 text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-ozni-navy">Grupos</button>
+              <button onclick="setTab('CREW_ON_SHORE')" id="tab-SHORE" class="planner-tab pb-4 text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-ozni-navy">Crew Shore</button>
+            </div>
+            <div class="flex flex-col md:flex-row gap-4 mb-10">
+              <input type="text" id="ai-input" placeholder="Ej: Quiero ahorrar en un resort de lujo en Cancún..." class="flex-grow p-5 bg-gray-50 border border-gray-200 focus:outline-none focus:border-ozni-navy transition-all font-medium" />
+              <button id="ai-btn" onclick="generateAI()" class="md:w-72 bg-ozni-navy text-white px-8 py-5 text-sm font-bold uppercase tracking-widest hover:bg-ozni-dark disabled:opacity-50">REVELAR PROPUESTA VIP</button>
+            </div>
+            <div id="ai-result" class="hidden animate-fade-in bg-ozni-cream/50 p-8 border-l-4 border-ozni-gold">
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
+            <div class="lg:w-1/3">
+              <h2 class="text-ozni-gold font-bold tracking-widest uppercase mb-4 text-sm">Registro</h2>
+              <h3 class="text-4xl font-serif text-ozni-navy font-bold mb-6">Inicia tu Viaje</h3>
+              <p class="text-gray-600 mb-8 leading-relaxed">Déjanos tus datos y te contactaremos de inmediato para coordinar tu experiencia.</p>
+              <div class="space-y-6 text-sm text-gray-600">
+                <p>📞 0983977320</p>
+                <p>✉️ crewonshore@gmail.com</p>
+              </div>
+            </div>
+            <div class="lg:w-2/3 bg-white p-8 md:p-12 shadow-xl border-t-4 border-ozni-gold" id="form-box">
+              <form onsubmit="handleForm(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input type="text" id="fname" placeholder="Nombre Completo" required class="w-full bg-gray-50 border p-3 focus:outline-none focus:border-ozni-gold" />
+                  <input type="email" id="femail" placeholder="Email" required class="w-full bg-gray-50 border p-3 focus:outline-none focus:border-ozni-gold" />
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input type="tel" id="fphone" placeholder="Teléfono" required class="w-full bg-gray-50 border p-3 focus:outline-none focus:border-ozni-gold" />
+                  <select id="ftype" class="w-full bg-gray-50 border p-3 focus:outline-none focus:border-ozni-gold">
+                    <option value="VIP">Viajes VIP</option>
+                    <option value="Shore">Crew Shore</option>
+                  </select>
+                </div>
+                <textarea id="fmsg" rows="4" placeholder="Mensaje" class="w-full bg-gray-50 border p-3 focus:outline-none focus:border-ozni-gold"></textarea>
+                <button type="submit" class="w-full md:w-auto px-10 py-4 bg-ozni-navy text-white uppercase text-sm font-bold tracking-widest hover:bg-ozni-dark">Enviar Solicitud</button>
+              </form>
+            </div>
+            <div id="form-success" class="hidden lg:w-2/3 bg-ozni-navy text-white p-12 text-center animate-fade-in-up">
+              <div class="text-5xl mb-6">✓</div>
+              <h2 class="text-3xl font-serif font-bold mb-4">Solicitud Iniciada</h2>
+              <p>Hemos abierto un chat de WhatsApp con tu solicitud.</p>
+              <button onclick="resetForm()" class="mt-8 text-ozni-gold underline">Enviar otra</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
-    <footer class="bg-ozni-dark text-white py-12 text-center">
-        <p class="text-sm opacity-50">&copy; 2025 OZNITRAVEL. Todos los derechos reservados.</p>
+    <footer class="bg-ozni-dark text-white pt-20 pb-10">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          <div>
+            <h2 class="text-3xl font-serif font-bold mb-6">OZNITRAVEL</h2>
+            <p class="text-gray-400 text-sm leading-relaxed max-w-xs mb-6">Líder en turismo exclusivo y personalizado. Para quienes navegan el mundo y para quienes disfrutan de él.</p>
+          </div>
+          <div>
+            <h3 class="text-ozni-gold font-bold uppercase tracking-widest mb-6 text-sm">Explorar</h3>
+            <ul class="space-y-4 text-sm text-gray-300">
+              <li><button onclick="scrollToSection('vip')" class="hover:text-white">Viajes VIP</button></li>
+              <li><button onclick="scrollToSection('crew')" class="hover:text-white">Crew Shore</button></li>
+              <li><button onclick="scrollToSection('concierge')" class="hover:text-white">Conserje IA</button></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-ozni-gold font-bold uppercase tracking-widest mb-6 text-sm">Conecta</h3>
+            <a href="https://www.instagram.com/crewonshore" target="_blank" class="text-white border-b border-ozni-gold pb-1 hover:text-ozni-gold transition-colors">@crewonshore</a>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500">
+          <p>&copy; 2025 OZNITRAVEL. Todos los derechos reservados.</p>
+        </div>
+      </div>
     </footer>
 
-    <div id="modal-config" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-ozni-dark/95 backdrop-blur-md" onclick="closeModal('modal-config')"></div>
-        <div class="relative bg-ozni-navy border border-ozni-gold/30 p-10 max-w-4xl w-full text-center">
-            <h3 class="text-3xl font-serif text-white mb-8 italic">¿Qué viaje mereces hoy?</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div onclick="handleWhatsAppNav('Membresía')" class="p-8 border border-white/10 hover:border-ozni-gold cursor-pointer transition-all bg-white/5">
-                    <span class="text-4xl block mb-2">🌐</span>
-                    <h4 class="text-white font-bold">Membresía</h4>
-                </div>
-                <div onclick="handleWhatsAppNav('Grupos')" class="p-8 border border-white/10 hover:border-ozni-gold cursor-pointer transition-all bg-white/5">
-                    <span class="text-4xl block mb-2">🎓</span>
-                    <h4 class="text-white font-bold">Grupos VIP</h4>
-                </div>
-                <div onclick="handleWhatsAppNav('Crew')" class="p-8 border border-white/10 hover:border-ozni-gold cursor-pointer transition-all bg-white/5">
-                    <span class="text-4xl block mb-2">⚓</span>
-                    <h4 class="text-white font-bold">Crew Shore</h4>
-                </div>
-            </div>
+    <div id="modal-config" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-2 md:p-4">
+      <div class="absolute inset-0 bg-ozni-dark/95 backdrop-blur-xl" onclick="closeModal('modal-config')"></div>
+      <div class="relative w-full max-w-6xl bg-ozni-navy/40 border border-white/10 backdrop-blur-2xl p-8 md:p-12 overflow-y-auto max-h-[90vh]">
+        <button onclick="closeModal('modal-config')" class="absolute top-6 right-6 text-white/50 hover:text-ozni-gold">✕</button>
+        <div id="modal-config-content">
+          <div class="text-center mb-12">
+            <h2 class="text-ozni-gold tracking-[0.6em] uppercase text-[10px] font-bold mb-4">OZNITRAVEL CONCIERGE</h2>
+            <h3 class="text-3xl font-serif text-white italic">¿Qué viaje mereces hoy?</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <button onclick="configSelect('GLOBAL_MEMBERSHIP')" class="group p-10 bg-white/5 border border-white/10 text-left hover:border-ozni-gold transition-all">
+              <span class="text-5xl block mb-4">🌐</span>
+              <h4 class="text-2xl font-serif text-white">Membresía</h4>
+            </button>
+            <button onclick="configSelect('GROUPS_GRADUATIONS')" class="group p-10 bg-white/5 border border-white/10 text-left hover:border-ozni-gold transition-all">
+              <span class="text-5xl block mb-4">🎓</span>
+              <h4 class="text-2xl font-serif text-white">Grupos VIP</h4>
+            </button>
+            <button onclick="configSelect('CREW_ON_SHORE')" class="group p-10 bg-white/5 border border-white/10 text-left hover:border-ozni-gold transition-all">
+              <span class="text-5xl block mb-4">⚓</span>
+              <h4 class="text-2xl font-serif text-white">Crew Shore</h4>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-catalog" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-2 md:p-4">
+      <div class="absolute inset-0 bg-black/90 backdrop-blur-xl" onclick="closeModal('modal-catalog')"></div>
+      <div class="relative w-full max-w-6xl bg-ozni-dark border border-white/20 h-[85vh] flex flex-col overflow-hidden">
+        <div class="p-6 border-b border-white/10 flex justify-between items-center sticky top-0 bg-ozni-dark z-20">
+          <h3 class="text-2xl font-serif text-ozni-gold">Catálogo Exclusivo</h3>
+          <button onclick="closeModal('modal-catalog')" class="text-gray-400 hover:text-white">✕</button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-10 custom-scrollbar" id="catalog-grid">
+           </div>
+      </div>
+    </div>
+
+    <div id="detail-overlay" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-ozni-dark/95 backdrop-blur-xl" onclick="closeModal('detail-overlay')"></div>
+      <div id="detail-box" class="relative w-full max-w-5xl bg-ozni-navy border border-white/10 flex flex-col md:flex-row overflow-hidden animate-scale-in">
         </div>
     </div>
 
     <script>
-        // DATA
-        const SERVICES = [
-            { n: "Vuelos", u: "https://www.kiwi.com/es/", i: "✈️", d: "Precios netos." },
-            { n: "Movilidad", u: "https://localrent.com/", i: "🚗", d: "Sin depósitos." },
-            { n: "eSIM", u: "https://yesim.app/", i: "📶", d: "Global 5G." },
-            { n: "Tickets", u: "https://www.tiqets.com/", i: "🎟️", d: "Accesos VIP." }
-        ];
+        // CONFIG & DATA
+        const CONTACT = "593983977320";
+        let activeTab = 'GLOBAL_MEMBERSHIP';
 
         const MEM_BENEFITS = [
             { title: "Platinum Equity", desc: "Inversión: $269.95. Puntos: 270/mes.", price: "Elite" },
             { title: "Titanium Flex", desc: "Inversión: $149.95. Puntos: 150/mes.", price: "Preferido" },
-            { title: "Tarifas Netas", desc: "Sin comisiones.", price: "Directo" },
-            { title: "Escapadas $1", desc: "Canje de puntos.", price: "VIP" }
+            { title: "Tarifas Netas", desc: "Acceso mayorista sin comisiones.", price: "Directo" },
+            { title: "Escapadas $1", desc: "Canje de puntos por estancias.", price: "VIP" }
         ];
 
         const DESTINATIONS = [
-            { name: "Cancún, MEX", img: "https://images.unsplash.com/photo-1552074284-5e88ef1aef18?q=80&w=400" },
-            { name: "Dubai, UAE", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=400" },
-            { name: "Punta Cana, RD", img: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=400" },
-            { name: "Guayaquil, ECU", img: "https://images.unsplash.com/photo-1590059530490-6743f1104e13?q=80&w=400" }
+            { name: "Cancún, MEX", img: "https://images.unsplash.com/photo-1552074284-5e88ef1aef18?q=80&w=600", tag: "Equity", desc: "Optimiza con Membresía." },
+            { name: "Guayaquil, ECU", img: "https://images.unsplash.com/photo-1590059530490-6743f1104e13?q=80&w=600", tag: "Shore", desc: "Protocolo de seguridad." },
+            { name: "Dubai, UAE", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=600", tag: "Lujo", desc: "Estancias canjeables." },
+            { name: "Punta Cana, RD", img: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=600", tag: "Grupos", desc: "Logística total." }
         ];
 
-        // RENDER FUNCTIONS
-        function init() {
-            // Render Services
-            const sGrid = document.getElementById('quick-services-grid');
-            SERVICES.forEach(s => {
-                sGrid.innerHTML += `
-                    <div onclick="window.open('${s.u}', '_blank')" class="p-6 border rounded-xl hover:shadow-lg transition-all cursor-pointer group bg-white">
-                        <span class="text-3xl block mb-2 group-hover:scale-110 transition-transform">${s.i}</span>
-                        <h4 class="font-bold">${s.n}</h4>
-                        <p class="text-sm text-gray-500">${s.d}</p>
-                    </div>`;
-            });
+        const EDITORIAL = [
+            { title: "El Fin de las OTAs", excerpt: "Análisis de ahorro directo 2025.", cat: "Mercado" },
+            { title: "Guía de Seguridad Shore", excerpt: "Protocolos privados en Guayaquil.", cat: "Elite" }
+        ];
 
-            // Render Membership
-            const mGrid = document.getElementById('membership-grid');
-            MEM_BENEFITS.forEach(m => {
-                mGrid.innerHTML += `
-                    <div class="p-8 border border-white/10 hover:bg-white/5 transition-all">
-                        <span class="text-ozni-gold text-xs font-bold uppercase tracking-widest">${m.price}</span>
-                        <h4 class="text-xl font-serif my-2">${m.title}</h4>
-                        <p class="text-sm text-gray-400">${m.desc}</p>
-                    </div>`;
-            });
+        const FEATURES_VIP = [
+            { title: "Ahorro Travorium", desc: "Precio neto sin publicidad.", icon: "💎" },
+            { title: "Grupal 2025", desc: "Logística llave en mano.", icon: "🎓" }
+        ];
 
-            // Render Destinations
-            const dGrid = document.getElementById('destinations-grid');
-            DESTINATIONS.forEach(d => {
-                dGrid.innerHTML += `
-                    <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="handleWhatsAppNav('Cotizar ${d.name}')">
-                        <img src="${d.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                        <div class="absolute inset-0 bg-black/40 flex items-end p-6">
-                            <span class="text-white font-bold">${d.name}</span>
-                        </div>
-                    </div>`;
-            });
+        const FEATURES_CREW = [
+            { title: "Shore Protocol", desc: "Traslado blindado Guayaquil.", icon: "🛡️" },
+            { title: "Connectivity", desc: "eSIM global y shopping.", icon: "📱" }
+        ];
 
-            // Render VIP Features
-            const vFeatures = document.getElementById('vip-features');
-            [ {t: "Logística 2025", d: "Llave en mano."}, {t: "Membresía Travorium", d: "Ahorro directo."} ].forEach(f => {
-                vFeatures.innerHTML += `<div><h4 class="font-bold text-ozni-navy">${f.t}</h4><p class="text-sm text-gray-500">${f.d}</p></div>`;
-            });
-        }
+        const TOOLKIT = [
+            { n: "Vuelos", u: "https://www.kiwi.com/es/", i: "✈️" },
+            { n: "Movilidad", u: "https://localrent.com/", i: "🚗" },
+            { n: "eSIM", u: "https://yesim.app/", i: "📶" },
+            { n: "Tickets", u: "https://www.tiqets.com/", i: "🎟️" }
+        ];
 
-        // ACTIONS
+        const CONFIG_DETAILS = {
+            GLOBAL_MEMBERSHIP: {
+                title: "Membresía Travorium",
+                items: [
+                    { label: "Platinum Elite", detail: "$269.95 / $135", benefit: "270 Puntos", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800", desc: "El nivel máximo de membresía." },
+                    { label: "Titanium Flex", detail: "$149.95 / $75", benefit: "150 Puntos", img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800", desc: "La llave familiar premium." }
+                ],
+                msg: "Deseo activar mi Membresía Elite."
+            },
+            GROUPS_GRADUATIONS: {
+                title: "Grupos VIP",
+                items: [
+                    { label: "Graduaciones", detail: "Logística Total", benefit: "2025", img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800", desc: "Experiencias llave en mano." }
+                ],
+                msg: "Deseo cotizar un viaje de graduación VIP."
+            },
+            CREW_ON_SHORE: {
+                title: "Ruta Guayaquil",
+                items: [
+                    { label: "Faro Santa Ana", detail: "Vista 360", benefit: "Seguridad", img: "https://images.unsplash.com/photo-1598230106026-634399b6630a?q=80&w=800", desc: "Recorrido histórico y seguro." }
+                ],
+                msg: "Deseo reservar la Ruta Guayaquil Shore."
+            }
+        };
+
+        // UI HELPERS
         window.scrollToSection = (id) => {
             const el = document.getElementById(id);
-            if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+            if(el) {
+                const offset = 80;
+                const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: pos, behavior: 'smooth' });
+            }
         };
 
-        window.openModal = (id) => document.getElementById(id).classList.remove('hidden');
-        window.closeModal = (id) => document.getElementById(id).classList.add('hidden');
-
-        window.handleWhatsAppNav = (text = "Hola OZNITRAVEL, deseo información VIP.") => {
-            window.open(`https://wa.me/593983977320?text=${encodeURIComponent(text)}`, '_blank');
+        window.openModal = (id) => {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            if(id === 'modal-catalog') renderCatalog();
         };
 
+        window.closeModal = (id) => {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        };
+
+        window.handleWhatsAppNav = (msg = "Hola OZNITRAVEL, deseo información.") => {
+            window.open(`https://wa.me/${CONTACT}?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        // RENDERERS
+        function initApp() {
+            // Membresía
+            const memGrid = document.getElementById('membership-grid');
+            memGrid.innerHTML = MEM_BENEFITS.map(b => `
+                <div class="p-8 bg-white/5 border border-white/10 hover:border-ozni-gold transition-all group">
+                    <span class="text-ozni-gold text-xs font-bold uppercase tracking-widest">${b.price}</span>
+                    <h3 class="text-xl font-serif mt-2 mb-4">${b.title}</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">${b.desc}</p>
+                </div>
+            `).join('');
+
+            // Destinos
+            const destGrid = document.getElementById('destinations-grid');
+            destGrid.innerHTML = DESTINATIONS.map(d => `
+                <div onclick="handleWhatsAppNav('Hola, quiero cotizar a ${d.name}')" class="relative h-64 group overflow-hidden cursor-pointer">
+                    <img src="${d.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-dark to-transparent opacity-80"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-[10px] text-ozni-gold font-bold uppercase tracking-widest">${d.tag}</span>
+                        <h4 class="text-white font-serif text-lg">${d.name}</h4>
+                    </div>
+                </div>
+            `).join('');
+
+            // Editorial
+            const editGrid = document.getElementById('editorial-grid');
+            editGrid.innerHTML = EDITORIAL.map(e => `
+                <div class="p-8 bg-white border border-gray-100 hover:shadow-2xl transition-all">
+                    <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-widest">${e.cat}</span>
+                    <h3 class="text-2xl font-serif text-ozni-navy mt-2 mb-4">${e.title}</h3>
+                    <p class="text-gray-500 text-sm">${e.excerpt}</p>
+                    <button onclick="handleWhatsAppNav('Hola, quiero leer: ${e.title}')" class="mt-6 text-xs font-bold uppercase tracking-widest border-b border-ozni-gold pb-1">Leer Análisis</button>
+                </div>
+            `).join('');
+
+            // VIP Features
+            document.getElementById('vip-features').innerHTML = FEATURES_VIP.map(f => `
+                <div class="flex gap-6">
+                    <div class="w-12 h-12 bg-white flex items-center justify-center shadow-lg shrink-0 text-xl">${f.icon}</div>
+                    <div>
+                        <h4 class="font-bold text-ozni-dark">${f.title}</h4>
+                        <p class="text-sm text-gray-500">${f.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Crew Features
+            document.getElementById('crew-features').innerHTML = FEATURES_CREW.map(f => `
+                <div class="flex gap-6">
+                    <div class="w-12 h-12 bg-white/10 flex items-center justify-center backdrop-blur-md shrink-0 text-xl">${f.icon}</div>
+                    <div>
+                        <h4 class="font-bold text-white">${f.title}</h4>
+                        <p class="text-sm text-gray-400">${f.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Toolkit
+            document.getElementById('toolkit-grid').innerHTML = TOOLKIT.map(t => `
+                <a href="${t.u}" target="_blank" class="p-6 border border-gray-100 text-center hover:bg-ozni-navy hover:text-white transition-all group">
+                    <span class="text-2xl block mb-2">${t.i}</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest">${t.n}</span>
+                </a>
+            `).join('');
+        }
+
+        // TABS LOGIC
+        window.setTab = (tab) => {
+            activeTab = tab;
+            const tabs = {
+                'GLOBAL_MEMBERSHIP': 'tab-MEM',
+                'GROUPS_GRADUATIONS': 'tab-GRP',
+                'CREW_ON_SHORE': 'tab-SHORE'
+            };
+            
+            document.querySelectorAll('.planner-tab').forEach(btn => {
+                btn.classList.remove('border-b-2', 'border-ozni-gold', 'text-ozni-navy');
+                btn.classList.add('text-gray-300');
+            });
+
+            const activeBtn = document.getElementById(tabs[tab]);
+            activeBtn.classList.remove('text-gray-300');
+            activeBtn.classList.add('border-b-2', 'border-ozni-gold', 'text-ozni-navy');
+            
+            // Clear result if changing tab
+            document.getElementById('ai-result').classList.add('hidden');
+        };
+
+        // AI MOCK LOGIC (Replacing React Hooks)
         window.generateAI = () => {
-            const input = document.getElementById('ai-input').value;
             const btn = document.getElementById('ai-btn');
-            const res = document.getElementById('ai-result');
+            const result = document.getElementById('ai-result');
+            const input = document.getElementById('ai-input').value;
             
-            if(!input) return;
-            
-            btn.innerText = "PROCESANDO...";
             btn.disabled = true;
+            btn.innerText = "PROCESANDO ESTRATEGIA...";
 
-            // Simulación de lógica IA (ya que no hay backend para API Keys seguras en HTML estático)
             setTimeout(() => {
-                res.classList.remove('hidden');
-                res.innerHTML = `
-                    <h4 class="font-bold text-ozni-navy mb-2">ESTRATEGIA RECOMENDADA:</h4>
-                    <p class="text-sm text-gray-700 mb-4">Basado en "${input}", nuestra IA sugiere utilizar el nivel <strong>Platinum Equity</strong> de Travorium para reducir costos en un 40% y coordinar transporte privado vía Localrent.</p>
-                    <button onclick="handleWhatsAppNav('Consultar propuesta IA: ${input}')" class="text-xs font-bold text-ozni-gold underline">SOLICITAR ESTE PLAN</button>
-                `;
-                btn.innerText = "CONSULTAR IA";
                 btn.disabled = false;
-            }, 1500);
+                btn.innerText = "REVELAR PROPUESTA VIP";
+                result.classList.remove('hidden');
+                
+                let content = "";
+                if(activeTab === 'GLOBAL_MEMBERSHIP') {
+                    content = `
+                        <h4 class="text-xl font-serif text-ozni-navy mb-4 font-bold">Optimización de Membresía Elite</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-6 italic">"Analizando: ${input || 'Ahorro general'}"</p>
+                        <ul class="space-y-3 mb-6 text-sm">
+                            <li class="flex items-center gap-2">✅ Acceso a Tarifas Netas (Sin el 30% de las OTAs)</li>
+                            <li class="flex items-center gap-2">✅ Sistema de Puntos Equity: 2:1 en valor real.</li>
+                            <li class="flex items-center gap-2">✅ Concierge 24/7 para ajustes logísticos.</li>
+                        </ul>
+                        <button onclick="handleWhatsAppNav('Deseo activar la estrategia de ahorro IA.')" class="bg-ozni-navy text-white px-6 py-3 text-xs font-bold uppercase">Activar Plan Elite</button>
+                    `;
+                } else {
+                    content = `
+                        <h4 class="text-xl font-serif text-ozni-navy mb-4 font-bold">Protocolo OZNITRAVEL</h4>
+                        <p class="text-sm text-gray-700 mb-4 italic">Estrategia diseñada para: ${input || 'Requerimiento estándar'}</p>
+                        <p class="text-sm mb-6">Hemos optimizado la logística para garantizar eficiencia y costo directo del partner.</p>
+                        <button onclick="handleWhatsAppNav('Deseo ejecutar la propuesta IA personalizada.')" class="bg-ozni-navy text-white px-6 py-3 text-xs font-bold uppercase">Contactar Especialista</button>
+                    `;
+                }
+                result.innerHTML = content;
+            }, 1200);
         };
 
-        init();
+        // CONFIG MODAL LOGIC
+        window.configSelect = (type) => {
+            const data = CONFIG_DETAILS[type];
+            const container = document.getElementById('modal-config-content');
+            
+            container.innerHTML = `
+                <div class="mb-10 flex items-center gap-4">
+                    <button onclick="location.reload()" class="text-ozni-gold text-sm font-bold">← VOLVER</button>
+                    <h3 class="text-3xl font-serif text-white">${data.title}</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    ${data.items.map(item => `
+                        <div class="bg-white/5 border border-white/10 overflow-hidden group hover:border-ozni-gold transition-all">
+                            <img src="${item.img}" class="w-full h-48 object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                            <div class="p-8">
+                                <span class="text-ozni-gold text-xs font-bold uppercase tracking-widest">${item.benefit}</span>
+                                <h4 class="text-2xl font-serif text-white mt-2 mb-2">${item.label}</h4>
+                                <p class="text-gray-400 text-sm mb-4">${item.detail}</p>
+                                <p class="text-gray-500 text-xs mb-8">${item.desc}</p>
+                                <button onclick="handleWhatsAppNav('${data.msg} (${item.label})')" class="w-full py-4 bg-ozni-gold text-ozni-navy font-black text-xs uppercase tracking-widest">Reservar Acceso</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        };
+
+        // CATALOG LOGIC
+        function renderCatalog() {
+            const grid = document.getElementById('catalog-grid');
+            const placeholderItems = Array.from({length: 12}).map((_, i) => ({
+                id: i,
+                name: `Destino Premium ${i+1}`,
+                img: `https://images.unsplash.com/photo-${1500000000000 + (i*1000)}?auto=format&fit=crop&w=600&q=80`
+            }));
+
+            grid.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    ${placeholderItems.map(item => `
+                        <div onclick="showDetail(${item.id})" class="group cursor-pointer">
+                            <div class="aspect-video overflow-hidden bg-white/5">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                            </div>
+                            <h4 class="text-white font-serif mt-4 group-hover:text-ozni-gold transition-colors">${item.name}</h4>
+                            <p class="text-gray-500 text-xs uppercase tracking-widest">Consultar Disponibilidad</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        window.showDetail = (id) => {
+            const overlay = document.getElementById('detail-overlay');
+            const box = document.getElementById('detail-box');
+            
+            box.innerHTML = `
+                <div class="w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" class="w-full h-full object-cover" />
+                </div>
+                <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+                    <span class="text-ozni-gold text-xs font-bold tracking-[0.3em] uppercase mb-2">Detalle de Destino</span>
+                    <h3 class="text-4xl font-serif text-white mb-6 italic">Experiencia Curada 2025</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8">Esta ubicación ofrece beneficios exclusivos mediante nuestra membresía, incluyendo tarifas de industria y mejoras de categoría sujetas a disponibilidad.</p>
+                    <div class="flex flex-col gap-4">
+                        <button onclick="handleWhatsAppNav('Deseo cotizar este destino del catálogo.')" class="py-4 bg-ozni-gold text-ozni-navy font-bold uppercase text-xs">Consultar vía WhatsApp</button>
+                        <button onclick="closeModal('detail-overlay')" class="py-4 border border-white/20 text-white font-bold uppercase text-xs">Cerrar</button>
+                    </div>
+                </div>
+            `;
+            overlay.classList.remove('hidden');
+        };
+
+        // FORM HANDLING
+        window.handleForm = (e) => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('fname').value,
+                email: document.getElementById('femail').value,
+                phone: document.getElementById('fphone').value,
+                type: document.getElementById('ftype').value,
+                msg: document.getElementById('fmsg').value
+            };
+            
+            const waMsg = `SOLICITUD WEB OZNITRAVEL\nNombre: ${data.name}\nTipo: ${data.type}\nMensaje: ${data.msg}`;
+            
+            document.getElementById('form-box').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+            
+            setTimeout(() => {
+                handleWhatsAppNav(waMsg);
+            }, 1000);
+        };
+
+        window.resetForm = () => {
+            document.getElementById('form-box').classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+            document.querySelector('form').reset();
+        };
+
+        // RUN APP
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
