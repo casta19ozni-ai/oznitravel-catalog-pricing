@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OZNITRAVEL | Diseñamos el viaje que te mereces</title>
     
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0A2342">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="OZNITRAVEL">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3125/3125848.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
     <script>
       tailwind.config = {
         theme: {
@@ -22,23 +23,37 @@
               serif: ['Playfair Display', 'serif'],
             },
             colors: {
-              ozni: { gold: '#D4AF37', dark: '#1A1A1A', navy: '#0A2342', cream: '#F5F5F0' }
+              ozni: {
+                gold: '#D4AF37',
+                dark: '#1A1A1A',
+                navy: '#0A2342',
+                cream: '#F5F5F0',
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            },
+            keyframes: {
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+                '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              }
             }
           }
         }
       }
     </script>
-
     <style>
-      body { background-color: #0A2342; color: white; overflow-x: hidden; }
+      body { background-color: #0A2342; scroll-behavior: smooth; overflow-x: hidden; color: white; }
       .luxury-bg {
-        background: linear-gradient(rgba(10,35,66,0.8), rgba(10,35,66,0.9)), 
+        background: linear-gradient(rgba(10,35,66,0.85), rgba(26,26,26,0.95)), 
                     url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1920');
         background-size: cover; background-position: center; min-height: 100vh;
       }
       .modal-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
     </style>
-
     <script type="importmap">
     {
       "imports": {
@@ -52,63 +67,45 @@
     <div id="root"></div>
 
     <script type="module">
-      import React, { useState } from 'react';
-      import { createRoot } from 'react-dom/client';
+        import React, { useState } from 'react';
+        import { createRoot } from 'react-dom/client';
 
-      const h = React.createElement;
+        const h = React.createElement;
 
-      function App() {
-        const [view, setView] = useState('home');
+        function App() {
+            const [modal, setModal] = useState(null);
 
-        // --- COMPONENTE: MODAL VIP ---
-        const VIPModal = () => h('div', { className: "fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur bg-black/60" },
-          h('div', { className: "bg-ozni-navy border border-ozni-gold/50 w-full max-w-2xl p-10 relative shadow-2xl" },
-            h('button', { onClick: () => setView('home'), className: "absolute top-4 right-6 text-ozni-gold text-2xl" }, "✕"),
-            h('h2', { className: "font-serif text-4xl mb-6 italic text-ozni-gold" }, "Elite Membership"),
-            h('div', { className: "space-y-4 border-l-2 border-ozni-gold pl-6 mb-8" },
-              h('p', { className: "text-3xl font-bold" }, "Inversión: $269.95"),
-              h('p', { className: "opacity-70" }, "Acceso a tarifas mayoristas en más de 1 millón de hoteles y cruceros.")
-            ),
-            h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black text-xs uppercase hover:bg-white transition-all" }, "CONTACTAR CON CONCIERGE")
-          )
-        );
+            const VIPModal = () => h('div', { className: "fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur bg-black/70 animate-fade-in" },
+                h('div', { className: "bg-ozni-navy border border-ozni-gold/40 w-full max-w-2xl p-8 md:p-12 shadow-2xl relative animate-scale-in text-center" },
+                    h('button', { onClick: () => setModal(null), className: "absolute top-4 right-6 text-ozni-gold text-2xl hover:scale-110" }, "✕"),
+                    h('h2', { className: "font-serif text-5xl mb-4 italic text-ozni-gold" }, "Membresía Elite"),
+                    h('p', { className: "text-[10px] font-black tracking-[0.4em] mb-8 text-white/50" }, "TRAVORIUM GLOBAL"),
+                    h('div', { className: "bg-white/5 p-8 border-y border-ozni-gold/20 mb-8" },
+                        h('p', { className: "text-4xl font-bold mb-2" }, "$269.95"),
+                        h('p', { className: "text-ozni-gold text-sm italic" }, "Mantenimiento: $135 / mes")
+                    ),
+                    h('button', { className: "w-full bg-ozni-gold text-ozni-navy py-4 font-black text-xs uppercase hover:bg-white transition-all shadow-lg" }, "RESERVAR ASESORÍA VIP")
+                )
+            );
 
-        // --- COMPONENTE: CATÁLOGO ---
-        const Catalog = () => h('div', { className: "min-h-screen bg-ozni-dark p-10" },
-          h('button', { onClick: () => setView('home'), className: "text-ozni-gold font-bold mb-10" }, "← VOLVER"),
-          h('h2', { className: "font-serif text-5xl mb-12" }, "Servicios Exclusivos"),
-          h('div', { className: "grid md:grid-cols-3 gap-8" },
-            ['Membresía Global', 'Grupos VIP', 'Crew Shore'].map(item => 
-              h('div', { key: item, className: "bg-white/5 border border-white/10 p-8 hover:border-ozni-gold transition-all" },
-                h('h3', { className: "font-serif text-2xl mb-4" }, item),
-                h('button', { onClick: () => setView('vip'), className: "text-ozni-gold text-xs border border-ozni-gold px-4 py-2" }, "REVELAR DETALLES")
-              )
-            )
-          )
-        );
+            return h('div', { className: "luxury-bg flex flex-col" },
+                h('nav', { className: "flex justify-between items-center p-8 z-10" },
+                    h('div', { className: "font-serif text-2xl font-bold italic tracking-tighter" }, "OZNITRAVEL"),
+                    h('button', { onClick: () => setModal('vip'), className: "bg-ozni-gold text-ozni-navy px-6 py-2 font-black text-[10px] tracking-tighter" }, "CATÁLOGO")
+                ),
+                h('main', { className: "flex-grow flex flex-col items-center justify-center text-center px-6 z-10" },
+                    h('h1', { className: "font-serif text-6xl md:text-9xl leading-none mb-6 tracking-tighter animate-fade-in" }, "OZNITRAVEL"),
+                    h('p', { className: "font-serif italic text-xl md:text-3xl opacity-90 mb-12 animate-fade-in" }, "\"Diseñamos el viaje que te mereces.\""),
+                    h('div', { className: "flex flex-col md:flex-row gap-4 w-full max-w-lg animate-fade-in" },
+                        h('button', { onClick: () => setModal('vip'), className: "flex-1 bg-ozni-gold text-ozni-navy py-5 font-black tracking-widest text-xs uppercase shadow-xl hover:scale-105 transition-transform" }, "CONFIGURAR VIP"),
+                        h('button', { onClick: () => setModal('vip'), className: "flex-1 border border-white/30 backdrop-blur-md py-5 font-black tracking-widest text-xs uppercase hover:bg-white/10" }, "VER PRECIOS")
+                    )
+                ),
+                modal === 'vip' && VIPModal()
+            );
+        }
 
-        // --- VISTA PRINCIPAL ---
-        const Home = () => h('div', { className: "luxury-bg flex flex-col p-8" },
-          h('nav', { className: "flex justify-between items-center" },
-            h('span', { className: "font-serif text-2xl font-bold italic tracking-tighter" }, "OZNITRAVEL"),
-            h('button', { onClick: () => setView('catalog'), className: "bg-ozni-gold text-ozni-navy px-6 py-2 text-[10px] font-black uppercase" }, "Catálogo")
-          ),
-          h('div', { className: "flex-grow flex flex-col items-center justify-center text-center" },
-            h('h1', { className: "font-serif text-6xl md:text-9xl mb-4 tracking-tighter" }, "OZNITRAVEL"),
-            h('p', { className: "font-serif italic text-xl mb-12 opacity-80" }, "\"Revelamos el viaje que mereces.\""),
-            h('div', { className: "flex gap-4 w-full max-w-md" },
-              h('button', { onClick: () => setView('vip'), className: "flex-1 bg-ozni-gold text-ozni-navy py-4 font-bold text-xs uppercase" }, "Configurar VIP"),
-              h('button', { onClick: () => setView('catalog'), className: "flex-1 border border-white/40 py-4 font-bold text-xs uppercase hover:bg-white/10" }, "Explorar")
-            )
-          )
-        );
-
-        if (view === 'catalog') return Catalog();
-        if (view === 'vip') return h('div', null, Home(), VIPModal());
-        return Home();
-      }
-
-      createRoot(document.getElementById('root')).render(h(App));
+        createRoot(document.getElementById('root')).render(h(App));
     </script>
 </body>
 </html>
