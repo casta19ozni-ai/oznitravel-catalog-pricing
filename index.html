@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <script>
-      tailwind.config = {
+      tailwing.config = {
         theme: {
           extend: {
             fontFamily: {
@@ -81,6 +81,13 @@
         40% {transform: translateY(-10px);}
         60% {transform: translateY(-5px);}
       }
+      /* Travorium Specific Shielded Styles */
+      #travorium .membership-card {
+        transition: transform 0.3s ease;
+      }
+      #travorium .membership-card:hover {
+        transform: translateY(-5px);
+      }
     </style>
 </head>
 <body class="min-h-screen font-sans selection:bg-ozni-gold selection:text-ozni-navy">
@@ -93,6 +100,7 @@
         <div class="flex items-center gap-6">
           <div class="hidden lg:flex gap-8 text-xs uppercase tracking-widest font-medium">
             <button onclick="scrollToSection('services')" class="hover:text-ozni-gold transition-colors">Servicios</button>
+            <button onclick="scrollToSection('travorium')" class="hover:text-ozni-gold transition-colors font-bold">Travorium VIP</button>
             <button onclick="scrollToSection('vip')" class="hover:text-ozni-gold transition-colors">VIP</button>
             <button onclick="scrollToSection('crew')" class="hover:text-ozni-gold transition-colors">Shore</button>
             <button onclick="scrollToSection('concierge')" class="hover:text-ozni-gold transition-colors">Concierge</button>
@@ -152,6 +160,40 @@
             <span class="text-3xl block mb-2 transition-transform group-hover:scale-110">🎟️</span>
             <h4 class="font-bold mt-2">Tickets & Accesos</h4>
             <p class="text-sm mt-1 text-gray-500">Entradas oficiales y experiencias exclusivas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="travorium" class="py-24 bg-ozni-navy text-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+              <span class="text-ozni-gold font-bold tracking-widest uppercase text-xs">Aliado Estratégico</span>
+              <h2 class="text-4xl md:text-5xl font-serif mt-4 mb-6">Membresía Travorium VIP</h2>
+              <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                Accede a tarifas de costo real en hoteles y resorts de lujo. Sin intermediarios, sin publicidad oculta. La inteligencia de viaje aplicada al ahorro masivo.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                <div class="p-4 bg-white/5 border border-white/10 rounded-lg">
+                  <h5 class="text-ozni-gold font-bold mb-1">Costos Actualizados</h5>
+                  <p class="text-xs text-gray-400">Consulta precios netos en tiempo real con nuestro bot.</p>
+                </div>
+                <div class="p-4 bg-white/5 border border-white/10 rounded-lg">
+                  <h5 class="text-ozni-gold font-bold mb-1">Membresías Elite</h5>
+                  <p class="text-xs text-gray-400">Beneficios Platinum y Titanium explicados.</p>
+                </div>
+              </div>
+              <button onclick="handleWhatsAppNav('Hola, quiero conocer los costos actualizados de Travorium')" class="bg-ozni-gold text-ozni-navy px-8 py-4 font-bold uppercase tracking-widest hover:bg-white transition-all">
+                Ver Beneficios Travorium
+              </button>
+            </div>
+            <div class="w-full md:w-1/2 relative">
+               <div class="aspect-video bg-ozni-dark border border-white/20 flex items-center justify-center relative group cursor-pointer overflow-hidden rounded-lg">
+                  <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" alt="Resort">
+                  <span class="relative z-10 text-6xl group-hover:scale-125 transition-transform">▶️</span>
+                  <p class="absolute bottom-4 text-[10px] tracking-widest uppercase text-white/60">Ver Video Corporativo</p>
+               </div>
+            </div>
           </div>
         </div>
       </section>
@@ -395,21 +437,39 @@
           <button onclick="closeModal('modal-catalog')" class="text-gray-400 hover:text-white">✕</button>
         </div>
         <div class="flex-1 overflow-y-auto p-10 custom-scrollbar" id="catalog-grid">
-           </div>
+            </div>
       </div>
     </div>
 
     <div id="detail-overlay" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4">
       <div class="absolute inset-0 bg-ozni-dark/95 backdrop-blur-xl" onclick="closeModal('detail-overlay')"></div>
-      <div id="detail-box" class="relative w-full max-w-5xl bg-ozni-navy border border-white/10 flex flex-col md:flex-row overflow-hidden animate-scale-in">
+      <div id="detail-box" class="relative w-full max-w-5xl bg-ozni-navy border border-white/10 flex flex-col md:flex-row overflow-hidden">
         </div>
     </div>
 
-    <script>
-        // CONFIG & DATA
-        const CONTACT = "593983977320";
-        let activeTab = 'GLOBAL_MEMBERSHIP';
+    <script type="module">
+        // Global variables and functions
+        window.scrollToSection = function(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        };
 
+        window.openModal = function(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeModal = function(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        };
+
+        const CONTACT = "593983977320";
+        window.handleWhatsAppNav = function(msg = "Hola OZNITRAVEL, deseo información de sus servicios.") {
+            window.open(`https://wa.me/${CONTACT}?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        // Data Mockups
         const MEM_BENEFITS = [
             { title: "Platinum Equity", desc: "Inversión: $269.95. Puntos: 270/mes.", price: "Elite" },
             { title: "Titanium Flex", desc: "Inversión: $149.95. Puntos: 150/mes.", price: "Preferido" },
@@ -417,313 +477,21 @@
             { title: "Escapadas $1", desc: "Canje de puntos por estancias.", price: "VIP" }
         ];
 
-        const DESTINATIONS = [
-            { name: "Cancún, MEX", img: "https://images.unsplash.com/photo-1552074284-5e88ef1aef18?q=80&w=600", tag: "Equity", desc: "Optimiza con Membresía." },
-            { name: "Guayaquil, ECU", img: "https://images.unsplash.com/photo-1590059530490-6743f1104e13?q=80&w=600", tag: "Shore", desc: "Protocolo de seguridad." },
-            { name: "Dubai, UAE", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=600", tag: "Lujo", desc: "Estancias canjeables." },
-            { name: "Punta Cana, RD", img: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=600", tag: "Grupos", desc: "Logística total." }
-        ];
-
-        const EDITORIAL = [
-            { title: "El Fin de las OTAs", excerpt: "Análisis de ahorro directo 2025.", cat: "Mercado" },
-            { title: "Guía de Seguridad Shore", excerpt: "Protocolos privados en Guayaquil.", cat: "Elite" }
-        ];
-
-        const FEATURES_VIP = [
-            { title: "Ahorro Travorium", desc: "Precio neto sin publicidad.", icon: "💎" },
-            { title: "Grupal 2025", desc: "Logística llave en mano.", icon: "🎓" }
-        ];
-
-        const FEATURES_CREW = [
-            { title: "Shore Protocol", desc: "Traslado blindado Guayaquil.", icon: "🛡️" },
-            { title: "Connectivity", desc: "eSIM global y shopping.", icon: "📱" }
-        ];
-
-        const TOOLKIT = [
-            { n: "Vuelos", u: "https://www.kiwi.com/es/", i: "✈️" },
-            { n: "Movilidad", u: "https://localrent.com/", i: "🚗" },
-            { n: "eSIM", u: "https://yesim.app/", i: "📶" },
-            { n: "Tickets", u: "https://www.tiqets.com/", i: "🎟️" }
-        ];
-
-        const CONFIG_DETAILS = {
-            GLOBAL_MEMBERSHIP: {
-                title: "Membresía Travorium",
-                items: [
-                    { label: "Platinum Elite", detail: "$269.95 / $135", benefit: "270 Puntos", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800", desc: "El nivel máximo de membresía." },
-                    { label: "Titanium Flex", detail: "$149.95 / $75", benefit: "150 Puntos", img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800", desc: "La llave familiar premium." }
-                ],
-                msg: "Deseo activar mi Membresía Elite."
-            },
-            GROUPS_GRADUATIONS: {
-                title: "Grupos VIP",
-                items: [
-                    { label: "Graduaciones", detail: "Logística Total", benefit: "2025", img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800", desc: "Experiencias llave en mano." }
-                ],
-                msg: "Deseo cotizar un viaje de graduación VIP."
-            },
-            CREW_ON_SHORE: {
-                title: "Ruta Guayaquil",
-                items: [
-                    { label: "Faro Santa Ana", detail: "Vista 360", benefit: "Seguridad", img: "https://images.unsplash.com/photo-1598230106026-634399b6630a?q=80&w=800", desc: "Recorrido histórico y seguro." }
-                ],
-                msg: "Deseo reservar la Ruta Guayaquil Shore."
-            }
-        };
-
-        // UI HELPERS
-        window.scrollToSection = (id) => {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 80;
-                const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                window.scrollTo({ top: pos, behavior: 'smooth' });
-            }
-        };
-
-        window.openModal = (id) => {
-            document.getElementById(id).classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            if(id === 'modal-catalog') renderCatalog();
-        };
-
-        window.closeModal = (id) => {
-            document.getElementById(id).classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        };
-
-        window.handleWhatsAppNav = (msg = "Hola OZNITRAVEL, deseo información.") => {
-            window.open(`https://wa.me/${CONTACT}?text=${encodeURIComponent(msg)}`, '_blank');
-        };
-
-        // RENDERERS
+        // Init Grids
         function initApp() {
-            // Membresía
             const memGrid = document.getElementById('membership-grid');
-            memGrid.innerHTML = MEM_BENEFITS.map(b => `
-                <div class="p-8 bg-white/5 border border-white/10 hover:border-ozni-gold transition-all group">
-                    <span class="text-ozni-gold text-xs font-bold uppercase tracking-widest">${b.price}</span>
-                    <h3 class="text-xl font-serif mt-2 mb-4">${b.title}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">${b.desc}</p>
-                </div>
-            `).join('');
-
-            // Destinos
-            const destGrid = document.getElementById('destinations-grid');
-            destGrid.innerHTML = DESTINATIONS.map(d => `
-                <div onclick="handleWhatsAppNav('Hola, quiero cotizar a ${d.name}')" class="relative h-64 group overflow-hidden cursor-pointer">
-                    <img src="${d.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-dark to-transparent opacity-80"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <span class="text-[10px] text-ozni-gold font-bold uppercase tracking-widest">${d.tag}</span>
-                        <h4 class="text-white font-serif text-lg">${d.name}</h4>
+            if (memGrid) {
+                memGrid.innerHTML = MEM_BENEFITS.map(b => `
+                    <div class="p-8 bg-white/5 border border-white/10 hover:border-ozni-gold transition-all">
+                        <span class="text-ozni-gold text-xs font-bold tracking-widest uppercase mb-4 block">${b.price}</span>
+                        <h4 class="text-xl font-serif mb-3">${b.title}</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">${b.desc}</p>
                     </div>
-                </div>
-            `).join('');
-
-            // Editorial
-            const editGrid = document.getElementById('editorial-grid');
-            editGrid.innerHTML = EDITORIAL.map(e => `
-                <div class="p-8 bg-white border border-gray-100 hover:shadow-2xl transition-all">
-                    <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-widest">${e.cat}</span>
-                    <h3 class="text-2xl font-serif text-ozni-navy mt-2 mb-4">${e.title}</h3>
-                    <p class="text-gray-500 text-sm">${e.excerpt}</p>
-                    <button onclick="handleWhatsAppNav('Hola, quiero leer: ${e.title}')" class="mt-6 text-xs font-bold uppercase tracking-widest border-b border-ozni-gold pb-1">Leer Análisis</button>
-                </div>
-            `).join('');
-
-            // VIP Features
-            document.getElementById('vip-features').innerHTML = FEATURES_VIP.map(f => `
-                <div class="flex gap-6">
-                    <div class="w-12 h-12 bg-white flex items-center justify-center shadow-lg shrink-0 text-xl">${f.icon}</div>
-                    <div>
-                        <h4 class="font-bold text-ozni-dark">${f.title}</h4>
-                        <p class="text-sm text-gray-500">${f.desc}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            // Crew Features
-            document.getElementById('crew-features').innerHTML = FEATURES_CREW.map(f => `
-                <div class="flex gap-6">
-                    <div class="w-12 h-12 bg-white/10 flex items-center justify-center backdrop-blur-md shrink-0 text-xl">${f.icon}</div>
-                    <div>
-                        <h4 class="font-bold text-white">${f.title}</h4>
-                        <p class="text-sm text-gray-400">${f.desc}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            // Toolkit
-            document.getElementById('toolkit-grid').innerHTML = TOOLKIT.map(t => `
-                <a href="${t.u}" target="_blank" class="p-6 border border-gray-100 text-center hover:bg-ozni-navy hover:text-white transition-all group">
-                    <span class="text-2xl block mb-2">${t.i}</span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">${t.n}</span>
-                </a>
-            `).join('');
+                `).join('');
+            }
         }
 
-        // TABS LOGIC
-        window.setTab = (tab) => {
-            activeTab = tab;
-            const tabs = {
-                'GLOBAL_MEMBERSHIP': 'tab-MEM',
-                'GROUPS_GRADUATIONS': 'tab-GRP',
-                'CREW_ON_SHORE': 'tab-SHORE'
-            };
-            
-            document.querySelectorAll('.planner-tab').forEach(btn => {
-                btn.classList.remove('border-b-2', 'border-ozni-gold', 'text-ozni-navy');
-                btn.classList.add('text-gray-300');
-            });
-
-            const activeBtn = document.getElementById(tabs[tab]);
-            activeBtn.classList.remove('text-gray-300');
-            activeBtn.classList.add('border-b-2', 'border-ozni-gold', 'text-ozni-navy');
-            
-            // Clear result if changing tab
-            document.getElementById('ai-result').classList.add('hidden');
-        };
-
-        // AI MOCK LOGIC (Replacing React Hooks)
-        window.generateAI = () => {
-            const btn = document.getElementById('ai-btn');
-            const result = document.getElementById('ai-result');
-            const input = document.getElementById('ai-input').value;
-            
-            btn.disabled = true;
-            btn.innerText = "PROCESANDO ESTRATEGIA...";
-
-            setTimeout(() => {
-                btn.disabled = false;
-                btn.innerText = "REVELAR PROPUESTA VIP";
-                result.classList.remove('hidden');
-                
-                let content = "";
-                if(activeTab === 'GLOBAL_MEMBERSHIP') {
-                    content = `
-                        <h4 class="text-xl font-serif text-ozni-navy mb-4 font-bold">Optimización de Membresía Elite</h4>
-                        <p class="text-sm text-gray-700 leading-relaxed mb-6 italic">"Analizando: ${input || 'Ahorro general'}"</p>
-                        <ul class="space-y-3 mb-6 text-sm">
-                            <li class="flex items-center gap-2">✅ Acceso a Tarifas Netas (Sin el 30% de las OTAs)</li>
-                            <li class="flex items-center gap-2">✅ Sistema de Puntos Equity: 2:1 en valor real.</li>
-                            <li class="flex items-center gap-2">✅ Concierge 24/7 para ajustes logísticos.</li>
-                        </ul>
-                        <button onclick="handleWhatsAppNav('Deseo activar la estrategia de ahorro IA.')" class="bg-ozni-navy text-white px-6 py-3 text-xs font-bold uppercase">Activar Plan Elite</button>
-                    `;
-                } else {
-                    content = `
-                        <h4 class="text-xl font-serif text-ozni-navy mb-4 font-bold">Protocolo OZNITRAVEL</h4>
-                        <p class="text-sm text-gray-700 mb-4 italic">Estrategia diseñada para: ${input || 'Requerimiento estándar'}</p>
-                        <p class="text-sm mb-6">Hemos optimizado la logística para garantizar eficiencia y costo directo del partner.</p>
-                        <button onclick="handleWhatsAppNav('Deseo ejecutar la propuesta IA personalizada.')" class="bg-ozni-navy text-white px-6 py-3 text-xs font-bold uppercase">Contactar Especialista</button>
-                    `;
-                }
-                result.innerHTML = content;
-            }, 1200);
-        };
-
-        // CONFIG MODAL LOGIC
-        window.configSelect = (type) => {
-            const data = CONFIG_DETAILS[type];
-            const container = document.getElementById('modal-config-content');
-            
-            container.innerHTML = `
-                <div class="mb-10 flex items-center gap-4">
-                    <button onclick="location.reload()" class="text-ozni-gold text-sm font-bold">← VOLVER</button>
-                    <h3 class="text-3xl font-serif text-white">${data.title}</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    ${data.items.map(item => `
-                        <div class="bg-white/5 border border-white/10 overflow-hidden group hover:border-ozni-gold transition-all">
-                            <img src="${item.img}" class="w-full h-48 object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
-                            <div class="p-8">
-                                <span class="text-ozni-gold text-xs font-bold uppercase tracking-widest">${item.benefit}</span>
-                                <h4 class="text-2xl font-serif text-white mt-2 mb-2">${item.label}</h4>
-                                <p class="text-gray-400 text-sm mb-4">${item.detail}</p>
-                                <p class="text-gray-500 text-xs mb-8">${item.desc}</p>
-                                <button onclick="handleWhatsAppNav('${data.msg} (${item.label})')" class="w-full py-4 bg-ozni-gold text-ozni-navy font-black text-xs uppercase tracking-widest">Reservar Acceso</button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        };
-
-        // CATALOG LOGIC
-        function renderCatalog() {
-            const grid = document.getElementById('catalog-grid');
-            const placeholderItems = Array.from({length: 12}).map((_, i) => ({
-                id: i,
-                name: `Destino Premium ${i+1}`,
-                img: `https://images.unsplash.com/photo-${1500000000000 + (i*1000)}?auto=format&fit=crop&w=600&q=80`
-            }));
-
-            grid.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    ${placeholderItems.map(item => `
-                        <div onclick="showDetail(${item.id})" class="group cursor-pointer">
-                            <div class="aspect-video overflow-hidden bg-white/5">
-                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-                            </div>
-                            <h4 class="text-white font-serif mt-4 group-hover:text-ozni-gold transition-colors">${item.name}</h4>
-                            <p class="text-gray-500 text-xs uppercase tracking-widest">Consultar Disponibilidad</p>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-
-        window.showDetail = (id) => {
-            const overlay = document.getElementById('detail-overlay');
-            const box = document.getElementById('detail-box');
-            
-            box.innerHTML = `
-                <div class="w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" class="w-full h-full object-cover" />
-                </div>
-                <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
-                    <span class="text-ozni-gold text-xs font-bold tracking-[0.3em] uppercase mb-2">Detalle de Destino</span>
-                    <h3 class="text-4xl font-serif text-white mb-6 italic">Experiencia Curada 2025</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-8">Esta ubicación ofrece beneficios exclusivos mediante nuestra membresía, incluyendo tarifas de industria y mejoras de categoría sujetas a disponibilidad.</p>
-                    <div class="flex flex-col gap-4">
-                        <button onclick="handleWhatsAppNav('Deseo cotizar este destino del catálogo.')" class="py-4 bg-ozni-gold text-ozni-navy font-bold uppercase text-xs">Consultar vía WhatsApp</button>
-                        <button onclick="closeModal('detail-overlay')" class="py-4 border border-white/20 text-white font-bold uppercase text-xs">Cerrar</button>
-                    </div>
-                </div>
-            `;
-            overlay.classList.remove('hidden');
-        };
-
-        // FORM HANDLING
-        window.handleForm = (e) => {
-            e.preventDefault();
-            const data = {
-                name: document.getElementById('fname').value,
-                email: document.getElementById('femail').value,
-                phone: document.getElementById('fphone').value,
-                type: document.getElementById('ftype').value,
-                msg: document.getElementById('fmsg').value
-            };
-            
-            const waMsg = `SOLICITUD WEB OZNITRAVEL\nNombre: ${data.name}\nTipo: ${data.type}\nMensaje: ${data.msg}`;
-            
-            document.getElementById('form-box').classList.add('hidden');
-            document.getElementById('form-success').classList.remove('hidden');
-            
-            setTimeout(() => {
-                handleWhatsAppNav(waMsg);
-            }, 1000);
-        };
-
-        window.resetForm = () => {
-            document.getElementById('form-box').classList.remove('hidden');
-            document.getElementById('form-success').classList.add('hidden');
-            document.querySelector('form').reset();
-        };
-
-        // RUN APP
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
-</body>
+    </body>
 </html>
