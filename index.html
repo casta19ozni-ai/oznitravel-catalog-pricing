@@ -28,20 +28,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
         html { scroll-behavior: smooth; }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
-  }
-}
-</script>
 </head>
 <body>
     <div id="root">
         <div class="min-h-screen font-sans bg-gray-50 text-ozni-dark">
+
+<div id="zona-header">
             <nav class="fixed w-full z-50 bg-ozni-navy/95 backdrop-blur-sm text-white py-4 border-b border-white/10 shadow-lg">
                 <div class="container mx-auto px-6 flex justify-between items-center">
                     <div class="text-xl font-serif font-bold tracking-wider cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
@@ -61,7 +53,9 @@
                     </div>
                 </div>
             </nav>
+</div>
 
+<div id="zona-hero">
             <section class="relative h-screen flex items-center justify-center bg-ozni-navy text-white overflow-hidden">
                 <div class="absolute inset-0 opacity-40">
                     <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80" class="w-full h-full object-cover" />
@@ -75,13 +69,17 @@
                     </div>
                 </div>
             </section>
+</div>
 
+<div id="zona-banner">
             <div class="bg-white py-16 text-center px-4">
                 <p class="max-w-3xl mx-auto text-xl md:text-2xl font-serif text-ozni-navy leading-relaxed">
                     "Transformamos la forma de viajar de quienes viven en el mar y de quienes sueñan con él."
                 </p>
             </div>
+</div>
 
+<div id="zona-membresias">
             <section id="services" class="py-20 bg-gray-50">
                 <div class="container mx-auto px-6 text-center">
                     <h2 class="text-4xl font-serif mb-12 text-ozni-navy">Membresías Exclusivas</h2>
@@ -116,7 +114,9 @@
                     </div>
                 </div>
             </section>
+</div>
 
+<div id="zona-vip">
             <section id="vip" class="py-24 bg-white">
                 <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
                     <div class="w-full md:w-1/2">
@@ -133,7 +133,9 @@
                     </div>
                 </div>
             </section>
+</div>
 
+<div id="zona-crew">
             <section id="crew" class="py-24 bg-ozni-dark text-white">
                 <div class="container mx-auto px-6 flex flex-col md:flex-row-reverse items-center gap-12">
                     <div class="w-full md:w-1/2">
@@ -150,7 +152,9 @@
                     </div>
                 </div>
             </section>
+</div>
 
+<div id="zona-concierge">
             <section id="concierge" class="py-24 bg-white text-center">
                 <div class="container mx-auto px-6 max-w-4xl">
                     <h2 class="text-4xl font-serif text-ozni-navy mb-8">Conserje Inteligente</h2>
@@ -163,32 +167,42 @@
                     </div>
                 </div>
             </section>
+</div>
 
+<div id="zona-contact">
             <section id="contact" class="py-24 bg-gray-50">
                 <div class="container mx-auto px-6 max-w-xl text-center">
                     <h2 class="text-3xl font-serif mb-8">Solicitar Registro</h2>
                     <form class="space-y-4 text-left">
                         <input type="text" placeholder="Nombre completo" class="w-full p-4 border rounded" />
                         <input type="email" placeholder="Correo electrónico" class="w-full p-4 border rounded" />
-                        <button class="w-full bg-ozni-navy text-white py-4 font-bold uppercase tracking-widest">Enviar Solicitud</button>
+                        <button type="button" class="w-full bg-ozni-navy text-white py-4 font-bold uppercase tracking-widest">Enviar Solicitud</button>
                     </form>
                 </div>
             </section>
+</div>
 
+<div id="zona-app">
             <div class="py-12 bg-ozni-gold text-ozni-navy text-center">
                 <p class="font-bold tracking-widest">DESCARGA NUESTRA APP DE RESERVAS DIRECTAS</p>
             </div>
+</div>
 
+<div id="zona-footer">
             <footer class="bg-ozni-navy text-white py-12">
                 <div class="container mx-auto px-6 text-center">
                     <p class="font-serif text-2xl mb-4">OZNITRAVEL</p>
                     <p class="text-sm text-gray-400">© 2026 OZNITRAVEL. Luxury & Smart Travel Authority.</p>
                 </div>
             </footer>
+</div>
 
+<div id="zona-whatsapp">
             <div onclick="handleWhatsAppNav()" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl cursor-pointer hover:scale-110 transition-transform z-50">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.522-2.961-2.638-.087-.117-.708-.941-.708-1.803 0-.863.453-1.287.614-1.463.161-.176.35-.22.467-.22s.233.001.335.006c.107.005.25-.04.391.302.144.35.493 1.203.535 1.29.043.086.07.187.013.302-.057.115-.087.187-.174.287-.087.101-.183.225-.262.302-.087.086-.177.18-.076.35.101.171.448.74.96 1.196.659.585 1.214.767 1.386.853.171.086.273.072.373-.043.101-.115.432-.504.548-.677.115-.173.231-.144.39-.086.158.058 1.008.475 1.18.562.173.086.287.129.33.201.043.072.043.418-.101.823z"/></svg>
             </div>
+</div>
+
         </div>
     </div>
 
