@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OZNITRAVEL - Viajes de lujo con ahorro inteligente. Membresías Travorium con descuentos de hasta 70% en hoteles y destinos premium.">
-    <meta name="keywords" content="viajes de lujo, membresías de viaje, Travorium, ahorro en hoteles, crew on shore, concierge de viajes">
+    <meta name="description" content="OZNITRAVEL - Conserjería de viajes de ultra lujo, membresías Travorium, y experiencias VIP Crew on Shore en Guayaquil">
     <meta name="theme-color" content="#0B1D3E">
-    <title>OZNITRAVEL - Diseñamos el Viaje que Te Mereces</title>
+    <title>OZNITRAVEL - Diseñamos Tu Viaje de Lujo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,30 +16,15 @@
                     colors: {
                         ozni: {
                             navy: '#0B1D3E',
-                            gold: '#C9A961',
-                            dark: '#1A1A1A',
-                            cream: '#F8F6F3',
+                            gold: '#D4AF37',
                             goldLight: '#E5D5A8',
-                            navyLight: '#1E3A5F'
+                            dark: '#1A1A1A',
+                            cream: '#F8F6F3'
                         }
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
                         serif: ['Playfair Display', 'serif']
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'slide-in': 'slideIn 0.6s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideIn: {
-                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        }
                     }
                 }
             }
@@ -48,649 +32,1090 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap');
-        html { scroll-behavior: smooth; }
-        .luxury-card {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .luxury-card:hover {
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F8F6F3;
+            color: #1A1A1A;
+        }
+
+        .luxury-heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .gold-text {
+            color: #D4AF37;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 29, 62, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-menu {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #D4AF37;
+        }
+
+        .btn-gold {
+            background: #D4AF37;
+            color: #0B1D3E;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+            border-radius: 0;
+        }
+
+        .btn-gold:hover {
+            background: #E5D5A8;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #D4AF37;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #D4AF37;
+            color: #0B1D3E;
+        }
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #0B1D3E 0%, #1E3A5F 100%);
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(11, 29, 62, 0.6);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: #E5D5A8;
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            overflow-y: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 0;
+            max-width: 900px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #D4AF37;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #0B1D3E;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            color: #0B1D3E;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #D4AF37;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .window-card {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #0B1D3E;
+            transition: all 0.3s;
+        }
+
+        .window-card:hover {
             transform: translateY(-10px);
         }
-        .gold-glow:hover {
-            box-shadow: 0 0 25px rgba(201, 169, 97, 0.4);
+
+        .window-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: opacity 0.3s;
         }
-        img {
-            image-rendering: -webkit-optimize-contrast;
+
+        .window-card:hover img {
+            opacity: 1;
         }
-        .gdpr-banner {
-            position: fixed;
+
+        .window-overlay {
+            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(11, 29, 62, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
+            background: linear-gradient(to top, rgba(11, 29, 62, 0.95), transparent);
+            padding: 2rem 1.5rem;
+            color: white;
         }
-        .gdpr-banner.show {
-            transform: translateY(0);
+
+        .window-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #D4AF37;
+        }
+
+        .window-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #E5D5A8;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-behavior: smooth;
+        }
+
+        .carousel-item {
+            flex: 0 0 calc(100% - 1rem);
+            height: 250px;
+            background: #0B1D3E;
+            border-radius: 0;
+            padding: 2rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 calc(33.333% - 1rem);
+            }
+        }
+
+        .carousel-item:hover {
+            transform: scale(1.05);
+            background: #D4AF37;
+            color: #0B1D3E;
+        }
+
+        .carousel-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-item p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-left: 4px solid #D4AF37;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0B1D3E;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0B1D3E;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #DDD;
+            border-bottom: 2px solid #D4AF37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-bottom: 2px solid #0B1D3E;
+        }
+
+        .footer {
+            background: #0B1D3E;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            font-size: 0.85rem;
+            color: #E5D5A8;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #D4AF37;
+        }
+
+        .affiliate-badge {
+            display: inline-block;
+            background: #D4AF37;
+            color: #0B1D3E;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .crm-section {
+            background: #0B1D3E;
+            color: white;
+        }
+
+        .crm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .crm-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .crm-box:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #D4AF37;
+        }
+
+        .crm-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #D4AF37;
+        }
+
+        .crm-box p {
+            font-size: 0.8rem;
+            color: #E5D5A8;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #0B1D3E, #1E3A5F);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 2rem;
+            border: 2px dashed #D4AF37;
+        }
+
+        .membership-badge {
+            display: inline-block;
+            background: #D4AF37;
+            color: #0B1D3E;
+            padding: 0.5rem 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .discount-label {
+            background: #D4AF37;
+            color: #0B1D3E;
+            padding: 0.5rem 1rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
-  }
-}
-</script>
 </head>
-<body class="bg-ozni-cream">
-    <div id="root">
-        <div class="min-h-screen font-sans bg-ozni-cream text-ozni-dark">
-            <!-- Navigation -->
-            <nav class="fixed w-full z-50 bg-ozni-navy/95 backdrop-blur-sm text-white py-4 border-b border-white/10 shadow-lg" role="navigation" aria-label="Navegación principal">
-                <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
-                    <button
-                        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-                        class="text-lg sm:text-xl font-serif font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-ozni-gold rounded"
-                        aria-label="Volver al inicio">
-                        OZNITRAVEL
-                    </button>
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="scrollToTop()">OZNITRAVEL</div>
+            <div class="nav-menu" id="navMenu">
+                <a class="nav-link" onclick="toggleModal('membershipModal')">Membresías</a>
+                <a class="nav-link" onclick="toggleModal('crewModal')">Crew on Shore</a>
+                <a class="nav-link" onclick="toggleModal('conciergeModal')">Conserje</a>
+                <a class="nav-link" onclick="scrollTo('contact')">Contacto</a>
+                <a class="nav-link" onclick="goToAbout()">Quiénes Somos</a>
+            </div>
+            <button class="btn-gold" onclick="toggleModal('membershipModal')">Membresía Travorium</button>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
 
-                    <div class="flex items-center gap-4 sm:gap-8">
-                        <div class="hidden md:flex gap-6 lg:gap-8 text-xs uppercase tracking-widest font-medium">
-                            <button onclick="handleScroll('services')" class="hover:text-ozni-gold transition-colors focus:outline-none focus:text-ozni-gold" aria-label="Ir a Membresías">Membresías</button>
-                            <button onclick="handleScroll('crew-windows')" class="hover:text-ozni-gold transition-colors focus:outline-none focus:text-ozni-gold" aria-label="Ir a Crew on Shore">Crew on Shore</button>
-                            <button onclick="handleScroll('concierge')" class="hover:text-ozni-gold transition-colors focus:outline-none focus:text-ozni-gold" aria-label="Ir a Conserje">Conserje</button>
-                            <button onclick="handleScroll('contact')" class="hover:text-ozni-gold transition-colors focus:outline-none focus:text-ozni-gold" aria-label="Ir a Contacto">Contacto</button>
-                        </div>
-                        <button
-                            onclick="handleWhatsAppNav(); trackEvent('cta_click', 'nav_reservar')"
-                            class="bg-ozni-gold text-ozni-navy px-3 py-2 sm:px-4 text-xs font-bold uppercase tracking-wider hover:bg-ozni-goldLight transition-colors focus:outline-none focus:ring-2 focus:ring-white rounded"
-                            aria-label="Reservar ahora por WhatsApp">
-                            Reservar Ahora
-                        </button>
-                    </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">OZNI<span style="color: #D4AF37;">TRAVEL</span></h1>
+            <p class="hero-subtitle">Diseñamos el viaje que te mereces</p>
+            <div class="hero-buttons">
+                <button class="btn-gold" onclick="toggleModal('membershipModal'); trackEvent('hero_membership_click')">Descubre Membresías</button>
+                <button class="btn-outline" onclick="toggleModal('crewModal'); trackEvent('hero_crew_click')">Crew on Shore</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL MEMBRESÍAS TRAVORIUM -->
+    <div id="membershipModal" class="modal" onclick="closeModalOnBgClick(event, 'membershipModal')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="toggleModal('membershipModal')">&times;</span>
+            <h2 class="section-title">Membresías Travorium</h2>
+            <p class="section-subtitle">Acceso global a viajes de lujo con ahorro de hasta 70%</p>
+
+            <div class="carousel">
+                <div class="carousel-item">
+                    <h3>PLATINUM</h3>
+                    <p>Ahorros del 70% en hoteles de 5 estrellas. Getaways incluidos. Asistente VIP personal 24/7.</p>
+                    <div class="membership-badge">ELITE</div>
                 </div>
-            </nav>
-
-            <!-- Hero Section -->
-            <section class="relative h-screen flex items-center justify-center bg-ozni-navy text-white overflow-hidden">
-                <div class="absolute inset-0 opacity-40">
-                    <img
-                        src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=1920"
-                        srcset="https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=60&w=640 640w,
-                                https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=70&w=1280 1280w,
-                                https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=1920 1920w"
-                        sizes="100vw"
-                        alt="Viajes de lujo por el mundo - Destinos exóticos"
-                        class="w-full h-full object-cover"
-                        loading="eager" />
+                <div class="carousel-item">
+                    <h3>TITANIUM</h3>
+                    <p>Ahorros del 60% + World Tours. Acumulación de puntos doble. Acceso VIP a destinos exclusivos.</p>
+                    <div class="membership-badge">POPULAR</div>
                 </div>
-                <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-serif font-bold mb-6 animate-fade-in-up">OZNITRAVEL</h1>
-                    <p class="text-lg sm:text-xl md:text-2xl mb-10 font-light italic">Diseñamos el viaje que te mereces</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button
-                            onclick="handleScroll('concierge'); trackEvent('hero_cta', 'diseña_experiencia')"
-                            class="bg-ozni-gold text-ozni-navy px-6 sm:px-8 py-4 font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-white"
-                            aria-label="Diseñar tu experiencia de viaje">
-                            Diseña tu Experiencia
-                        </button>
-                        <button
-                            onclick="handleScroll('crew-windows'); trackEvent('hero_cta', 'crew_shore')"
-                            class="bg-white text-ozni-navy px-6 sm:px-8 py-4 font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-ozni-gold"
-                            aria-label="Ver servicios Crew on Shore">
-                            Crew on Shore
-                        </button>
-                    </div>
+                <div class="carousel-item">
+                    <h3>SILVER</h3>
+                    <p>Ahorros del 40%. Tarifas mayoristas reales. Base perfecta para comenzar tu ecosistema de viaje.</p>
+                    <div class="membership-badge">INICIO</div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Value Proposition -->
-            <section class="bg-white py-12 sm:py-16 text-center px-4">
-                <p class="max-w-3xl mx-auto text-lg sm:text-xl md:text-2xl font-serif text-ozni-navy leading-relaxed">
-                    "Revelamos el verdadero costo de viajar: sin retail, sin intermediarios, solo experiencias de élite."
-                </p>
-            </section>
+            <h3 style="margin-top: 2rem; color: #0B1D3E; font-family: 'Playfair Display', serif; font-size: 1.5rem;">Video Promocional</h3>
+            <div class="video-placeholder">
+                🎬 Video Travorium - 30 segundos de experiencias de lujo
+            </div>
 
-            <!-- Services / Memberships Section -->
-            <section id="services" class="py-16 sm:py-24 bg-ozni-dark text-white">
-                <div class="container mx-auto px-4 sm:px-6 text-center">
-                    <span class="text-ozni-gold font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Ecosistema Travorium</span>
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-12 sm:mb-16 italic">Acceso Global Privilegiado</h2>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                        <!-- Platinum -->
-                        <article class="luxury-card bg-white/5 border border-white/10 p-0 overflow-hidden relative group">
-                            <div class="h-48 overflow-hidden relative">
-                                <img
-                                    src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800"
-                                    srcset="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=60&w=400 400w,
-                                            https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800 800w"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                    alt="Membresía Platinum - Hotel de lujo con piscina"
-                                    class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                    loading="lazy" />
-                                <div class="absolute top-4 right-4 bg-ozni-gold text-ozni-navy text-[10px] font-bold px-3 py-1 uppercase tracking-widest" aria-label="Descuento">Ahorro del 70%</div>
-                            </div>
-                            <div class="p-6 sm:p-8">
-                                <h3 class="text-xl sm:text-2xl font-serif font-bold mb-1">PLATINUM</h3>
-                                <p class="text-ozni-gold text-[10px] uppercase tracking-widest mb-6 italic">Viaja más, gasta menos, vive mejor</p>
-                                <ul class="text-sm space-y-3 text-gray-400 mb-8 text-left">
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Getaways de Lujo Incluidos</li>
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Tarifas Netas Mayoristas</li>
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Asistente VIP Personal 24/7</li>
-                                </ul>
-                                <button
-                                    onclick="handleWhatsAppNav('Platinum Membership'); trackEvent('membership_click', 'platinum')"
-                                    class="w-full py-3 bg-ozni-gold text-ozni-navy font-bold text-xs uppercase tracking-widest hover:bg-ozni-goldLight transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                                    aria-label="Consultar membresía Platinum">
-                                    Consultar Platinum
-                                </button>
-                            </div>
-                        </article>
-
-                        <!-- Titanium -->
-                        <article class="luxury-card bg-white/5 border border-ozni-gold p-0 overflow-hidden relative group md:scale-105 z-10">
-                            <div class="h-48 overflow-hidden relative">
-                                <img
-                                    src="https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=800"
-                                    srcset="https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=60&w=400 400w,
-                                            https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=800 800w"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                    alt="Membresía Titanium - Resort premium con vista al mar"
-                                    class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                    loading="lazy" />
-                                <div class="absolute top-4 right-4 bg-ozni-gold text-ozni-navy text-[10px] font-bold px-3 py-1 uppercase tracking-widest" aria-label="Etiqueta popular">Más Popular</div>
-                            </div>
-                            <div class="p-6 sm:p-8">
-                                <h3 class="text-xl sm:text-2xl font-serif font-bold mb-1">TITANIUM</h3>
-                                <p class="text-ozni-gold text-[10px] uppercase tracking-widest mb-6 italic">La Llave a los World Tours</p>
-                                <ul class="text-sm space-y-3 text-gray-400 mb-8 text-left">
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Acceso a World Tours Élite</li>
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Ahorros de hasta el 60%</li>
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Acumulación de Puntos Doble</li>
-                                </ul>
-                                <button
-                                    onclick="handleWhatsAppNav('Titanium Membership'); trackEvent('membership_click', 'titanium')"
-                                    class="w-full py-3 bg-ozni-gold text-ozni-navy font-bold text-xs uppercase tracking-wider hover:bg-ozni-goldLight transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                                    aria-label="Consultar membresía Titanium">
-                                    Consultar Titanium
-                                </button>
-                            </div>
-                        </article>
-
-                        <!-- Silver -->
-                        <article class="luxury-card bg-white/5 border border-white/10 p-0 overflow-hidden relative group">
-                            <div class="h-48 overflow-hidden relative">
-                                <img
-                                    src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=800"
-                                    srcset="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=60&w=400 400w,
-                                            https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=800 800w"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                    alt="Membresía Silver - Hotel elegante y moderno"
-                                    class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                    loading="lazy" />
-                                <div class="absolute top-4 right-4 bg-ozni-gold text-ozni-navy text-[10px] font-bold px-3 py-1 uppercase tracking-widest" aria-label="Llamado a la acción">Inicia tu Ahorro</div>
-                            </div>
-                            <div class="p-6 sm:p-8">
-                                <h3 class="text-xl sm:text-2xl font-serif font-bold mb-1">SILVER</h3>
-                                <p class="text-ozni-gold text-[10px] uppercase tracking-widest mb-6 italic">Elimina el retail de tu vida</p>
-                                <ul class="text-sm space-y-3 text-gray-400 mb-8 text-left">
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Tarifas Mayoristas Reales</li>
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Ahorros de hasta el 40%</li>
-                                    <li class="flex items-center gap-2"><span aria-hidden="true">✦</span> Soporte OZNITRAVEL App</li>
-                                </ul>
-                                <button
-                                    onclick="handleWhatsAppNav('Silver Membership'); trackEvent('membership_click', 'silver')"
-                                    class="w-full py-3 bg-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-ozni-gold hover:text-ozni-navy transition-colors border border-white/20 focus:outline-none focus:ring-2 focus:ring-ozni-gold"
-                                    aria-label="Consultar membresía Silver">
-                                    Consultar Silver
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Concierge Section -->
-            <section id="concierge" class="py-16 sm:py-24 bg-ozni-cream relative overflow-hidden">
-                <div class="container mx-auto px-4 sm:px-6 relative z-10">
-                    <div class="text-center mb-12 sm:mb-16">
-                        <span class="text-ozni-gold font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Conserje Travorium</span>
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif text-ozni-navy italic">Ventanas de Libertad</h2>
-                        <div class="w-24 h-1 bg-ozni-gold mx-auto mt-6"></div>
-                    </div>
-
-                    <div class="max-w-7xl mx-auto">
-                        <!-- Destination Windows -->
-                        <div class="mb-16 sm:mb-20">
-                            <p class="text-center text-ozni-navy uppercase tracking-widest text-[11px] font-bold mb-8 sm:mb-10">Optimiza tu Presupuesto: El Lujo es para Ti</p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                                <!-- Dubai -->
-                                <article
-                                    onclick="handleWhatsAppNav('Dubai'); trackEvent('destination_click', 'dubai')"
-                                    class="luxury-card group relative h-72 sm:h-80 overflow-hidden shadow-2xl gold-glow cursor-pointer"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 768px) 50vw, 25vw"
-                                        alt="Dubai Burj Al Arab - Hotel de lujo icónico"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Ahorro Platinum</span>
-                                        <h3 class="text-white text-lg sm:text-xl font-serif font-bold group-hover:text-ozni-gold transition-colors">Dubai: Burj Al Arab</h3>
-                                        <p class="text-gray-300 text-[11px] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Ahorra hasta $3,200 vs Expedia con el sistema de puntos Travorium.</p>
-                                    </div>
-                                </article>
-
-                                <!-- Santorini -->
-                                <article
-                                    onclick="handleWhatsAppNav('Santorini'); trackEvent('destination_click', 'santorini')"
-                                    class="luxury-card group relative h-72 sm:h-80 overflow-hidden shadow-2xl gold-glow cursor-pointer"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 768px) 50vw, 25vw"
-                                        alt="Santorini Grecia - Casas blancas con vista al mar Egeo"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">World Tour</span>
-                                        <h3 class="text-white text-lg sm:text-xl font-serif font-bold group-hover:text-ozni-gold transition-colors">Santorini, Grecia</h3>
-                                        <p class="text-gray-300 text-[11px] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Estancia de 5 estrellas pagada casi totalmente con tus puntos mensuales.</p>
-                                    </div>
-                                </article>
-
-                                <!-- Maldives -->
-                                <article
-                                    onclick="handleWhatsAppNav('Maldivas'); trackEvent('destination_click', 'maldivas')"
-                                    class="luxury-card group relative h-72 sm:h-80 overflow-hidden shadow-2xl gold-glow cursor-pointer"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 768px) 50vw, 25vw"
-                                        alt="Maldivas Overwater - Bungalows sobre el agua cristalina"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Tarifa Neta</span>
-                                        <h3 class="text-white text-lg sm:text-xl font-serif font-bold group-hover:text-ozni-gold transition-colors">Maldivas: Overwater</h3>
-                                        <p class="text-gray-300 text-[11px] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Eliminamos el 40% de comisiones que otras apps te cobran sin avisar.</p>
-                                    </div>
-                                </article>
-
-                                <!-- Swiss Alps -->
-                                <article
-                                    onclick="handleWhatsAppNav('Suiza'); trackEvent('destination_click', 'suiza')"
-                                    class="luxury-card group relative h-72 sm:h-80 overflow-hidden shadow-2xl gold-glow cursor-pointer"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 768px) 50vw, 25vw"
-                                        alt="Alpes Suizos - Montañas nevadas y resort de esquí"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Elite Escape</span>
-                                        <h3 class="text-white text-lg sm:text-xl font-serif font-bold group-hover:text-ozni-gold transition-colors">Alpes Suizos: Nieve</h3>
-                                        <p class="text-gray-300 text-[11px] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Acceso a resorts exclusivos donde tu membresía es tu pase VIP.</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-
-                        <!-- Crew on Shore Windows -->
-                        <div id="crew-windows" class="mb-16 sm:mb-20 animate-fade-in">
-                            <p class="text-center text-ozni-navy uppercase tracking-widest text-[11px] font-bold mb-8 sm:mb-10">Servicios Exclusivos para Tripulantes (Guayaquil)</p>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                                <article
-                                    onclick="handleWhatsAppNav('Tour Crew Express'); trackEvent('crew_service', 'express')"
-                                    class="luxury-card group relative h-64 sm:h-72 overflow-hidden shadow-2xl gold-glow cursor-pointer border-t-2 border-ozni-gold"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 640px) 100vw, 33vw"
-                                        alt="Tour Crew Express - Servicio rápido de tours para tripulantes"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Crew Express</span>
-                                        <h3 class="text-white text-base sm:text-lg font-serif font-bold group-hover:text-ozni-gold transition-colors">Optimización de Tiempo</h3>
-                                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Tours diseñados para ventanas cortas de desembarque.</p>
-                                    </div>
-                                </article>
-
-                                <article
-                                    onclick="handleWhatsAppNav('Crew Security'); trackEvent('crew_service', 'security')"
-                                    class="luxury-card group relative h-64 sm:h-72 overflow-hidden shadow-2xl gold-glow cursor-pointer border-t-2 border-ozni-gold"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 640px) 100vw, 33vw"
-                                        alt="Crew Security - Transporte seguro y guías verificados"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Seguridad VIP</span>
-                                        <h3 class="text-white text-base sm:text-lg font-serif font-bold group-hover:text-ozni-gold transition-colors">Seguridad Garantizada</h3>
-                                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Transporte verificado y guías expertos en la zona de Guayaquil.</p>
-                                    </div>
-                                </article>
-
-                                <article
-                                    onclick="handleWhatsAppNav('Crew Disconnect'); trackEvent('crew_service', 'disconnect')"
-                                    class="luxury-card group relative h-64 sm:h-72 overflow-hidden shadow-2xl gold-glow cursor-pointer border-t-2 border-ozni-gold"
-                                    role="button"
-                                    tabindex="0"
-                                    onkeypress="if(event.key==='Enter') this.click()">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=800"
-                                        srcset="https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=60&w=400 400w,
-                                                https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=800 800w"
-                                        sizes="(max-width: 640px) 100vw, 33vw"
-                                        alt="Crew Disconnect - Experiencias gastronómicas locales auténticas"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                        loading="lazy" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-ozni-navy/90 via-ozni-navy/30 to-transparent flex flex-col justify-end p-4 sm:p-6">
-                                        <span class="text-ozni-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Desconexión</span>
-                                        <h3 class="text-white text-base sm:text-lg font-serif font-bold group-hover:text-ozni-gold transition-colors">Desconexión Total</h3>
-                                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Gastronomía local seleccionada para un descanso auténtico fuera del barco.</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-
-                        <!-- Membership Selector -->
-                        <div class="bg-ozni-navy p-8 sm:p-12 shadow-2xl border border-ozni-gold/30 relative mb-12 sm:mb-16">
-                            <div class="text-center mb-8 sm:mb-10">
-                                <h3 class="text-white font-serif text-2xl sm:text-3xl italic">Membresías Travorium Disponibles</h3>
-                                <p class="text-ozni-gold uppercase tracking-[0.2em] text-[10px] mt-2 font-bold">Potencia tu presupuesto de viaje</p>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                                <div class="flex items-center gap-4 bg-white/5 p-4 border border-white/10 group hover:border-ozni-gold transition-colors">
-                                    <div class="text-ozni-gold" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M6 3h12l4 6-10 12L2 9z"></path><path d="M11 3l-4 6 5 12 5-12-4-6z"></path><path d="M2 9h20"></path></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-bold text-sm uppercase">Platinum</h4>
-                                        <p class="text-gray-400 text-[10px]">Ahorros del 70% + Getaways</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4 bg-white/5 p-4 border border-ozni-gold/50 group hover:bg-white/10 transition-colors">
-                                    <div class="text-ozni-gold" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-bold text-sm uppercase">Titanium</h4>
-                                        <p class="text-gray-400 text-[10px]">Ahorros del 60% + World Tours</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4 bg-white/5 p-4 border border-white/10 group hover:border-ozni-gold transition-colors">
-                                    <div class="text-ozni-gold" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M12 2l3 7h7l-6 5 2 7-6-5-6 5 2-7-6-5h7z"></path></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-bold text-sm uppercase">Silver</h4>
-                                        <p class="text-gray-400 text-[10px]">Ahorros del 40% + Tarifas Netas</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Custom Inquiry Panel -->
-                        <div class="bg-white p-8 sm:p-12 shadow-2xl border-t-4 border-ozni-gold relative">
-                            <div class="text-center mb-6 sm:mb-8">
-                                <p class="text-gray-400 uppercase tracking-widest text-[10px] font-bold italic mb-4">¿Tienes una idea específica o eres tripulante en Guayaquil?</p>
-                                <h3 class="text-ozni-navy font-serif text-xl sm:text-2xl mb-6 sm:mb-8">Cuéntale tus deseos al Conserje</h3>
-                            </div>
-                            <div class="flex flex-col md:flex-row gap-4">
-                                <label for="ai-input" class="sr-only">Describe tu viaje ideal</label>
-                                <input
-                                    type="text"
-                                    id="ai-input"
-                                    placeholder="Ej: Busco una villa en Bali para mi familia en Diciembre..."
-                                    class="flex-grow p-4 sm:p-6 border-b-2 border-gray-100 focus:border-ozni-gold outline-none text-lg sm:text-xl font-serif italic text-ozni-navy bg-transparent"
-                                    aria-label="Campo de texto para describir tu viaje ideal" />
-                                <button
-                                    onclick="handleCustomInquiry(); trackEvent('concierge_inquiry', 'custom')"
-                                    class="bg-ozni-navy text-white px-8 sm:px-12 py-4 sm:py-6 font-bold uppercase tracking-widest hover:bg-ozni-gold hover:text-ozni-navy transition-all shadow-xl group flex items-center justify-center gap-3 focus:outline-none focus:ring-2 focus:ring-ozni-gold"
-                                    aria-label="Enviar consulta al conserje">
-                                    Consultar Conserje
-                                    <span class="group-hover:translate-x-2 transition-transform" aria-hidden="true">→</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="py-16 sm:py-24 bg-white">
-                <div class="container mx-auto px-4 sm:px-6 max-w-xl text-center">
-                    <h2 class="text-2xl sm:text-3xl font-serif mb-8 text-ozni-navy">Solicitar Registro de Membresía</h2>
-                    <p class="text-gray-500 mb-10 italic">Inicia tu ahorro hoy y viaja con los beneficios de OZNITRAVEL.</p>
-                    <form class="space-y-4 text-left" onsubmit="handleFormSubmit(event)">
-                        <label for="fullname" class="sr-only">Nombre completo</label>
-                        <input
-                            type="text"
-                            id="fullname"
-                            name="fullname"
-                            placeholder="Nombre completo"
-                            required
-                            class="w-full p-4 bg-gray-50 border-b border-gray-200 outline-none focus:border-ozni-gold"
-                            aria-label="Nombre completo" />
-                        <label for="email" class="sr-only">Correo electrónico</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Correo electrónico"
-                            required
-                            class="w-full p-4 bg-gray-50 border-b border-gray-200 outline-none focus:border-ozni-gold"
-                            aria-label="Correo electrónico" />
-                        <button
-                            type="submit"
-                            class="w-full bg-ozni-navy text-white py-4 font-bold uppercase tracking-widest hover:bg-ozni-gold hover:text-ozni-navy transition-colors mt-6 shadow-lg focus:outline-none focus:ring-2 focus:ring-ozni-gold"
-                            aria-label="Enviar solicitud de membresía">
-                            Enviar Solicitud
-                        </button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="bg-ozni-navy text-white py-12" role="contentinfo">
-                <div class="container mx-auto px-4 sm:px-6 text-center">
-                    <p class="font-serif text-xl sm:text-2xl mb-4 tracking-widest">OZNITRAVEL</p>
-                    <p class="text-[10px] text-gray-400 uppercase tracking-[0.5em]">Luxury & Smart Travel Authority</p>
-                    <p class="text-xs text-gray-500 mt-8">© 2026 OZNITRAVEL. Revelamos el viaje que mereces.</p>
-                    <div class="mt-6 flex justify-center gap-6">
-                        <a href="#" class="text-xs text-gray-400 hover:text-ozni-gold transition-colors focus:outline-none focus:text-ozni-gold" onclick="showPrivacyPolicy(event)">Política de Privacidad</a>
-                        <a href="#" class="text-xs text-gray-400 hover:text-ozni-gold transition-colors focus:outline-none focus:text-ozni-gold" onclick="showTerms(event)">Términos de Servicio</a>
-                    </div>
-                </div>
-            </footer>
-
-            <!-- WhatsApp FAB -->
-            <button
-                onclick="handleWhatsAppNav(); trackEvent('whatsapp_fab', 'click')"
-                class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 focus:outline-none focus:ring-4 focus:ring-green-300"
-                aria-label="Contactar por WhatsApp">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.522-2.961-2.638-.087-.117-.708-.941-.708-1.803 0-.863.453-1.287.614-1.463.161-.176.35-.22.467-.22s.233.001.335.006c.107.005.25-.04.391.302.144.35.493 1.203.535 1.29.043.086.07.187.013.302-.057.115-.087.187-.174.287-.087.101-.183.225-.262.302-.087.086-.177.18-.076.35.101.171.448.74.96 1.196.659.585 1.214.767 1.386.853.171.086.273.072.373-.043.101-.115.432-.504.548-.677.115-.173.231-.144.39-.086.158.058 1.008.475 1.18.562.173.086.287.129.33.201.043.072.043.418-.101.823z"/></svg>
-            </button>
-
-            <!-- GDPR Banner -->
-            <aside id="gdpr-banner" class="gdpr-banner" role="complementary" aria-label="Aviso de cookies">
-                <div class="container mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-white text-xs sm:text-sm text-center sm:text-left">
-                        Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra
-                        <a href="#" onclick="showPrivacyPolicy(event)" class="text-ozni-gold hover:underline focus:outline-none focus:underline">Política de Privacidad</a>.
-                    </p>
-                    <div class="flex gap-3">
-                        <button
-                            onclick="acceptCookies()"
-                            class="bg-ozni-gold text-ozni-navy px-6 py-2 text-xs font-bold uppercase tracking-wider hover:bg-ozni-goldLight transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                            aria-label="Aceptar cookies">
-                            Aceptar
-                        </button>
-                        <button
-                            onclick="rejectCookies()"
-                            class="bg-white/10 text-white px-6 py-2 text-xs font-bold uppercase tracking-wider hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                            aria-label="Rechazar cookies">
-                            Rechazar
-                        </button>
-                    </div>
-                </div>
-            </aside>
+            <div style="text-align: center;">
+                <button class="btn-gold" onclick="handleWhatsApp('Quiero información sobre membresía Travorium'); trackEvent('membership_whatsapp')">Solicitar Membresía</button>
+            </div>
         </div>
     </div>
 
+    <!-- MODAL CREW ON SHORE -->
+    <div id="crewModal" class="modal" onclick="closeModalOnBgClick(event, 'crewModal')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="toggleModal('crewModal')">&times;</span>
+            <h2 class="section-title">Crew on Shore</h2>
+            <p class="section-subtitle">Experiencias exclusivas para tripulantes en Guayaquil</p>
+
+            <div class="video-placeholder">
+                🎬 Experiencias Crew on Shore - Tours, Shopping, Gastronomía
+            </div>
+
+            <h3 style="color: #0B1D3E; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 2rem 0 1rem;">¿Qué experiencia deseas?</h3>
+
+            <div class="grid-3">
+                <div class="card" onclick="handleWhatsApp('Me interesa tour por Malecón 2000'); trackEvent('crew_malecон')">
+                    <h3>🏛️ Malecón 2000</h3>
+                    <p>Paseo ribereño histórico con gastronomía premium y vistas al río.</p>
+                </div>
+                <div class="card" onclick="handleWhatsApp('Me interesa visitar Palacio de Cristal'); trackEvent('crew_palacio')">
+                    <h3>🏢 Palacio de Cristal</h3>
+                    <p>Centro comercial de ultra lujo con tiendas internacionales exclusivas.</p>
+                </div>
+                <div class="card" onclick="handleWhatsApp('Me interesa Cerro Santa Ana'); trackEvent('crew_cerro')">
+                    <h3>⛪ Cerro Santa Ana</h3>
+                    <p>Vista panorámica histórica con restaurantes gourmet.</p>
+                </div>
+                <div class="card" onclick="handleWhatsApp('Me interesa Parque de las Iguanas'); trackEvent('crew_iguanas')">
+                    <h3>🦎 Parque Iguanas</h3>
+                    <p>Experiencia única con la fauna local en zona segura.</p>
+                </div>
+                <div class="card" onclick="handleWhatsApp('Me interesa ecoturismo Cerro Blanco'); trackEvent('crew_ecoturismo')">
+                    <h3>🌿 Cerro Blanco</h3>
+                    <p>Ecoturismo premium con senderos privados y almuerzo artesanal.</p>
+                </div>
+                <div class="card" onclick="handleWhatsApp('Me interesa shopping en Guayaquil'); trackEvent('crew_shopping')">
+                    <h3>🛍️ Shopping VIP</h3>
+                    <p>Tours de compras con acceso a boutiques privadas y marcas exclusivas.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-gold" onclick="handleWhatsApp('Quiero reservar Crew on Shore'); trackEvent('crew_reserve')">Reservar Experiencia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONSERJE -->
+    <div id="conciergeModal" class="modal" onclick="closeModalOnBgClick(event, 'conciergeModal')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="toggleModal('conciergeModal')">&times;</span>
+            <h2 class="section-title">Servicio de Conserje</h2>
+            <p class="section-subtitle">Planificación personalizada de tu viaje de ensueño</p>
+
+            <form onsubmit="handleConciergeForm(event)">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" required placeholder="Juan Pérez">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" required placeholder="juan@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" required placeholder="+593 98 XXX XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Membresía</label>
+                        <select required>
+                            <option>Platinum</option>
+                            <option>Titanium</option>
+                            <option>Silver</option>
+                            <option>No tengo aún</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>¿Cuál es tu destino ideal?</label>
+                    <input type="text" required placeholder="Ej: Maldivas, Dubai, París...">
+                </div>
+
+                <div class="form-group">
+                    <label>Cuéntanos tus preferencias</label>
+                    <textarea required placeholder="Tipo de viaje, fechas, presupuesto, preferencias gastronómicas..." rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="btn-gold" style="width: 100%; padding: 1rem;">Enviar Consulta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SECTION: VENTANAS DE LIBERTAD / DESTINOS -->
+    <section class="section" style="background: #0B1D3E; color: white;">
+        <h2 class="section-title" style="color: white;">Experiencias Privadas Globales</h2>
+        <p class="section-subtitle">Los destinos más exclusivos de la red Travorium</p>
+
+        <div class="grid-3">
+            <div class="window-card" onclick="trackEvent('destination_dubai')">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80" alt="Dubai - Burj Al Arab">
+                <div class="window-overlay">
+                    <div class="window-title">Dubai</div>
+                    <div class="window-desc">Ahorro de $3,200+ vs Expedia con tarifa neta Travorium.</div>
+                    <div class="discount-label">AHORRO 70%</div>
+                </div>
+            </div>
+
+            <div class="window-card" onclick="trackEvent('destination_santorini')">
+                <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=500&q=80" alt="Santorini - Grecia">
+                <div class="window-overlay">
+                    <div class="window-title">Santorini</div>
+                    <div class="window-desc">5 estrellas pagada con puntos acumulados mensualmente.</div>
+                    <div class="discount-label">TITANIUM</div>
+                </div>
+            </div>
+
+            <div class="window-card" onclick="trackEvent('destination_maldivas')">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=500&q=80" alt="Maldivas - Overwater">
+                <div class="window-overlay">
+                    <div class="window-title">Maldivas</div>
+                    <div class="window-desc">Bungalows privados. Sin comisiones intermediarias.</div>
+                    <div class="discount-label">TARIFA NETA</div>
+                </div>
+            </div>
+
+            <div class="window-card" onclick="trackEvent('destination_paris')">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=500&q=80" alt="París - Francia">
+                <div class="window-overlay">
+                    <div class="window-title">París</div>
+                    <div class="window-desc">Hoteles boutique de Rive Gauche con desayuno incluido.</div>
+                    <div class="discount-label">PREMIUM</div>
+                </div>
+            </div>
+
+            <div class="window-card" onclick="trackEvent('destination_tokyo')">
+                <img src="https://images.unsplash.com/photo-1540959375944-7049f642e9a0?auto=format&fit=crop&w=500&q=80" alt="Tokio - Japón">
+                <div class="window-overlay">
+                    <div class="window-title">Tokio</div>
+                    <div class="window-desc">Ryokans de lujo en Hakone con experiencia onsen privada.</div>
+                    <div class="discount-label">PLATINUM</div>
+                </div>
+            </div>
+
+            <div class="window-card" onclick="trackEvent('destination_marrakech')">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" alt="Marrakech - Marruecos">
+                <div class="window-overlay">
+                    <div class="window-title">Marrakech</div>
+                    <div class="window-desc">Riads de lujo con experiencias gastronómicas auténticas.</div>
+                    <div class="discount-label">EXPERIENCIA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PASARELAS Y AFILIADOS -->
+    <section class="section">
+        <h2 class="section-title">Servicios Adicionales</h2>
+        <p class="section-subtitle">Acceso a las mejores plataformas de viajes y experiencias del mundo</p>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>✈️ Vuelos Internacionales</h3>
+                <p>Motor de búsqueda de vuelos en tiempo real con tarifas en red. Comparativa instantánea de cientos de aerolíneas.</p>
+                <button class="btn-gold" onclick="openAffiliate('https://www.kiwi.com'); trackEvent('affiliate_kiwi')" style="width: 100%; margin-top: 1rem;">Buscar Vuelos con Kiwi</button>
+            </div>
+
+            <div class="card">
+                <h3>🎫 Actividades y Tours</h3>
+                <p>Experiencias verificadas en destinos globales. Desde aventura extrema hasta gastronomía gourmet. Cancelación flexible.</p>
+                <button class="btn-gold" onclick="openAffiliate('https://klook.tpo.lv/Jn8BIcoZ'); trackEvent('affiliate_klook')" style="width: 100%; margin-top: 1rem;">Explorar en Klook</button>
+            </div>
+
+            <div class="card">
+                <h3>🎭 Entradas VIP</h3>
+                <p>Acceso prioritario a museos, teatros y atracciones en todo el mundo. Evita colas con pases express.</p>
+                <button class="btn-gold" onclick="openAffiliate('https://tiqets.tpo.lv/1hnzwtQk'); trackEvent('affiliate_tiqets')" style="width: 100%; margin-top: 1rem;">Ver Entradas</button>
+            </div>
+
+            <div class="card">
+                <h3>🚗 Autos de Alquiler</h3>
+                <p>Flota premium de vehículos con conductor. Desde Tesla hasta limusinas. Disponible en 150+ destinos.</p>
+                <button class="btn-gold" onclick="openAffiliate('https://localrent.tpo.lv/Jl2Sejb8'); trackEvent('affiliate_localrent')" style="width: 100%; margin-top: 1rem;">Reservar Auto</button>
+            </div>
+
+            <div class="card">
+                <h3>📡 SIM Internacional</h3>
+                <p>Conectividad global sin roaming. Datos 5G en +150 países. Activa al llegar, sin contrato.</p>
+                <button class="btn-gold" onclick="openAffiliate('https://yesim.tpo.lv/Zqz7mibK'); trackEvent('affiliate_yesim')" style="width: 100%; margin-top: 1rem;">Comprar SIM</button>
+            </div>
+
+            <div class="card">
+                <h3>🏨 Hoteles Premium</h3>
+                <p>Red de hoteles de 4-5 estrellas con tarifas net. Cancelación sin penalidad hasta 48h antes.</p>
+                <button class="btn-gold" onclick="openTravelpayouts(); trackEvent('affiliate_travelpayouts')" style="width: 100%; margin-top: 1rem;">Ver Hoteles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CRM MODULAR -->
+    <section class="section crm-section">
+        <h2 class="section-title" style="color: white;">Centro de Control CRM</h2>
+        <p class="section-subtitle">Gestión completa de tu experiencia Travorium</p>
+
+        <div class="crm-grid">
+            <div class="crm-box" onclick="openCRMModule('users'); trackEvent('crm_users')">
+                <h4>👥 Clientes</h4>
+                <p>Base de datos de usuarios, membresías activas e historial de transacciones.</p>
+            </div>
+
+            <div class="crm-box" onclick="openCRMModule('bookings'); trackEvent('crm_bookings')">
+                <h4>📅 Reservas</h4>
+                <p>Historial completo de reservas: pendiente, confirmada, completada, cancelada.</p>
+            </div>
+
+            <div class="crm-box" onclick="openCRMModule('concierge'); trackEvent('crm_concierge')">
+                <h4>🧑‍💼 Conserjería</h4>
+                <p>Solicitudes personalizadas, asignación de tareas, seguimiento en tiempo real.</p>
+            </div>
+
+            <div class="crm-box" onclick="openCRMModule('marketing'); trackEvent('crm_marketing')">
+                <h4>📧 Marketing</h4>
+                <p>Campañas segmentadas, métricas de conversión, automatizaciones por afiliado.</p>
+            </div>
+
+            <div class="crm-box" onclick="openCRMModule('analytics'); trackEvent('crm_analytics')">
+                <h4>📊 Analytics</h4>
+                <p>KPIs en tiempo real, ROI por afiliado, funnel de conversión premium.</p>
+            </div>
+
+            <div class="crm-box" onclick="openCRMModule('admin'); trackEvent('crm_admin')">
+                <h4>⚙️ Admin</h4>
+                <p>Configuración de roles, permisos, integraciones API y webhooks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CONTACTO -->
+    <section id="contact" class="section" style="background: #F8F6F3;">
+        <h2 class="section-title">Contacto Directo</h2>
+        <p class="section-subtitle">Estamos disponibles 24/7 para ti</p>
+
+        <div class="grid-2" style="max-width: 600px; margin: 2rem auto;">
+            <div class="card">
+                <h3>📧 Email</h3>
+                <p>Consultas Generales</p>
+                <p style="font-weight: 700; color: #D4AF37;">oznitravelinfo@gmail.com</p>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">Crew on Shore</p>
+                <p style="font-weight: 700; color: #D4AF37;">crewonshore@gmail.com</p>
+            </div>
+
+            <div class="card">
+                <h3>📱 WhatsApp</h3>
+                <p>Disponible 24/7 para reservas y consultas</p>
+                <p style="font-weight: 700; color: #D4AF37; font-size: 1.2rem;">+593 98 397 7320</p>
+                <button class="btn-gold" onclick="handleWhatsApp('Hola, quiero más información'); trackEvent('contact_whatsapp')" style="width: 100%; margin-top: 1rem;">Enviar Mensaje</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem;">OZNITRAVEL</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Conserjería de viajes de ultra lujo | Membresías Travorium | Experiencias VIP Crew on Shore</p>
+
+            <div class="footer-links">
+                <span class="footer-link" onclick="goToAbout(); trackEvent('footer_about')">Quiénes Somos</span>
+                <span class="footer-link" onclick="goToVision(); trackEvent('footer_vision')">Nuestra Visión</span>
+                <span class="footer-link" onclick="goToMission(); trackEvent('footer_mission')">Nuestra Misión</span>
+                <span class="footer-link" onclick="openPrivacyPolicy(); trackEvent('footer_privacy')">Política de Privacidad</span>
+                <span class="footer-link" onclick="openTerms(); trackEvent('footer_terms')">Términos de Servicio</span>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.85rem; color: #E5D5A8;">© 2026 OZNITRAVEL. Todos los derechos reservados.</p>
+            <p style="font-size: 0.75rem; color: #D4AF37; margin-top: 0.5rem;">Ecuador 🇪🇨 | Guayaquil</p>
+        </div>
+    </footer>
+
     <script>
-        const CONTACT_NUMBER = "983977320";
+        // ===== CONFIGURACIÓN GLOBAL =====
+        const WHATSAPP_NUMBER = '593983977320';
 
-        // Analytics Event Tracking (Placeholder for GA4/Mixpanel)
-        function trackEvent(eventName, eventParams) {
-            // Placeholder: Google Analytics 4
-            if (typeof gtag !== 'undefined') {
-                gtag('event', eventName, { event_category: eventParams });
+        // ===== FUNCIONES DE MODALES =====
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            } else {
+                modal.classList.add('active');
             }
-
-            // Placeholder: Mixpanel
-            if (typeof mixpanel !== 'undefined') {
-                mixpanel.track(eventName, { category: eventParams });
-            }
-
-            console.log('Event tracked:', eventName, eventParams);
         }
 
-        // Smooth Scroll Handler
-        const handleScroll = (id) => {
-            const element = document.getElementById(id);
-            if (element) {
-                const headerOffset = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
+        function closeModalOnBgClick(event, modalId) {
+            const modal = document.getElementById(modalId);
+            if (event.target === modal) {
+                modal.classList.remove('active');
             }
-        };
+        }
 
-        // WhatsApp Navigation Handler
-        const handleWhatsAppNav = (dest) => {
-            const cleanNumber = CONTACT_NUMBER.startsWith('0') ? CONTACT_NUMBER.substring(1) : CONTACT_NUMBER;
-            const phoneNumber = `593${cleanNumber}`;
-            const message = dest
-                ? `Hola OZNITRAVEL, estoy interesado/a en viajar a *${dest}* con sus beneficios de membresía Travorium.`
-                : "Hola OZNITRAVEL, quiero información sobre sus membresías de ahorro mayorista.";
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        };
+        // ===== NAVEGACIÓN =====
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        // Custom Inquiry Handler
-        const handleCustomInquiry = () => {
-            const input = document.getElementById('ai-input').value;
-            const cleanNumber = CONTACT_NUMBER.startsWith('0') ? CONTACT_NUMBER.substring(1) : CONTACT_NUMBER;
-            const phoneNumber = `593${cleanNumber}`;
-            const message = input
-                ? `Hola OZNITRAVEL, mi necesidad es la siguiente: *${input}*. ¿Cómo me ayuda el ecosistema Travorium en esto?`
-                : "Hola OZNITRAVEL, necesito asistencia personalizada para planificar mis ahorros de viaje.";
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        };
+        function scrollTo(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
 
-        // Form Submit Handler
-        const handleFormSubmit = (event) => {
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // ===== WHATSAPP HANDLING =====
+        function handleWhatsApp(message) {
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // ===== FORMULARIOS =====
+        function handleConciergeForm(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
-            const name = formData.get('fullname');
-            const email = formData.get('email');
+            const message = `Nueva solicitud de conserjería:\nNombre: ${formData.get('name')}\nDestino: ${formData.get('destination')}\nPreferencias: ${formData.get('preferences')}`;
+            handleWhatsApp(message);
+            toggleModal('conciergeModal');
+            trackEvent('concierge_form_submit');
+        }
 
-            trackEvent('form_submission', 'membership_request');
+        // ===== AFILIADOS =====
+        function openAffiliate(url) {
+            window.open(url, '_blank');
+        }
 
-            const cleanNumber = CONTACT_NUMBER.startsWith('0') ? CONTACT_NUMBER.substring(1) : CONTACT_NUMBER;
-            const phoneNumber = `593${cleanNumber}`;
-            const message = `Hola OZNITRAVEL, soy *${name}* (${email}). Quiero solicitar información sobre el registro de membresía Travorium.`;
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        };
+        function openTravelpayouts() {
+            window.open('https://app.travelpayouts.com/whitelabels/web/2947/code', '_blank');
+        }
 
-        // GDPR Cookie Banner
-        function showGDPRBanner() {
-            const banner = document.getElementById('gdpr-banner');
-            const cookieConsent = localStorage.getItem('cookieConsent');
+        // ===== CRM =====
+        function openCRMModule(moduleName) {
+            alert(`Módulo CRM: ${moduleName.toUpperCase()}\n\nEste es un placeholder del módulo completo.\nEn producción se integraría con base de datos Supabase.\n\nNota: Implementar autenticación y permisos según rol.`);
+        }
 
-            if (!cookieConsent) {
-                setTimeout(() => {
-                    banner.classList.add('show');
-                }, 2000);
+        // ===== INFORMACIÓN DE EMPRESA =====
+        function goToAbout() {
+            alert('QUIÉNES SOMOS\n\nOZNITRAVEL es una plataforma de conserjería de viajes de ultra lujo que conecta viajeros premium con experiencias exclusivas.\n\nNuestro foco: Membresías Travorium, servicios Crew on Shore en Guayaquil, y acceso a pasarelas de afiliados globales.');
+        }
+
+        function goToVision() {
+            alert('NUESTRA VISIÓN\n\nSer la plataforma número uno en Latinoamérica para viajeros que buscan experiencias premium, ahorro inteligente y servicios de conserjería personalizado.');
+        }
+
+        function goToMission() {
+            alert('NUESTRA MISIÓN\n\nFacilitar viajes extraordinarios mediante membresías Travorium, asesoría personalizada y acceso a experiencias VIP, eliminando intermediarios y maximizando ahorro.');
+        }
+
+        function openPrivacyPolicy() {
+            alert('POLÍTICA DE PRIVACIDAD\n\nTus datos están protegidos según GDPR. No compartimos información con terceros sin tu consentimiento.\n\nVer: [Enlace a página completa]');
+        }
+
+        function openTerms() {
+            alert('TÉRMINOS DE SERVICIO\n\nAl utilizar OZNITRAVEL aceptas nuestros términos. Todas las reservas están sujetas a disponibilidad y políticas de cada proveedor.\n\nVer: [Enlace a página completa]');
+        }
+
+        // ===== ANALÍTICA (PLACEHOLDERS GA4/MIXPANEL) =====
+        function trackEvent(eventName, eventParams = {}) {
+            // Placeholder para Google Analytics 4
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
             }
+
+            // Placeholder para Mixpanel
+            if (typeof mixpanel !== 'undefined') {
+                mixpanel.track(eventName, eventParams);
+            }
+
+            console.log(`📊 Event: ${eventName}`, eventParams);
         }
 
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('gdpr-banner').classList.remove('show');
-            trackEvent('cookie_consent', 'accepted');
-        }
+        // ===== INICIALIZACIÓN =====
+        document.addEventListener('DOMContentLoaded', function() {
+            trackEvent('page_view');
+            console.log('✅ OZNITRAVEL cargado correctamente');
+        });
 
-        function rejectCookies() {
-            localStorage.setItem('cookieConsent', 'rejected');
-            document.getElementById('gdpr-banner').classList.remove('show');
-            trackEvent('cookie_consent', 'rejected');
-        }
-
-        function showPrivacyPolicy(event) {
-            event.preventDefault();
-            alert('Política de Privacidad: OZNITRAVEL se compromete a proteger tu información personal. No compartimos tus datos con terceros sin tu consentimiento. Cumplimos con GDPR y normativas locales.');
-        }
-
-        function showTerms(event) {
-            event.preventDefault();
-            alert('Términos de Servicio: Al utilizar OZNITRAVEL, aceptas nuestros términos y condiciones. Los precios y ofertas están sujetos a disponibilidad.');
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            showGDPRBanner();
-            trackEvent('page_view', 'home');
+        // Cerrar modal al presionar ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
         });
     </script>
-
-    <!-- API Integration Placeholders -->
-    <!-- Travelpayouts API: https://www.travelpayouts.com/developers/api -->
-    <!-- Klook API: https://www.klook.com/tetris/ -->
-    <!-- Kiwi API: https://docs.kiwi.com/ -->
-    <!-- WhatsApp Business API: https://developers.facebook.com/docs/whatsapp -->
-    <!-- Mailchimp API: https://mailchimp.com/developer/ -->
-    <!-- SendGrid API: https://docs.sendgrid.com/ -->
 </body>
-</html>.
+</html>
