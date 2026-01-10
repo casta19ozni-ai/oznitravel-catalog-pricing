@@ -1,0 +1,13 @@
+{
+  "name": "oznitravel",
+  "version": "1.0.0",
+  "description": "Premium travel platform with luxury concierge services",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000 -c-1",
+    "build": "echo 'No build needed for static HTML'"
+  },
+  "keywords": ["travel", "luxury", "concierge", "travorium"],
+  "author": "OZNITRAVEL Team",
+  "license": "MIT"
+}

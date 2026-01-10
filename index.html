@@ -8,28 +8,6 @@
     <title>OZNITRAVEL - Diseñamos Tu Viaje de Lujo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        ozni: {
-                            navy: '#0B1D3E',
-                            gold: '#D4AF37',
-                            goldLight: '#E5D5A8',
-                            dark: '#1A1A1A',
-                            cream: '#F8F6F3'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap');
 
@@ -776,19 +754,19 @@
                 <div class="grid-2">
                     <div class="form-group">
                         <label>Nombre Completo</label>
-                        <input type="text" required placeholder="Juan Pérez">
+                        <input type="text" name="name" required placeholder="Juan Pérez">
                     </div>
                     <div class="form-group">
                         <label>Correo Electrónico</label>
-                        <input type="email" required placeholder="juan@example.com">
+                        <input type="email" name="email" required placeholder="juan@example.com">
                     </div>
                     <div class="form-group">
                         <label>Teléfono</label>
-                        <input type="tel" required placeholder="+593 98 XXX XXXX">
+                        <input type="tel" name="phone" required placeholder="+593 98 XXX XXXX">
                     </div>
                     <div class="form-group">
                         <label>Tipo de Membresía</label>
-                        <select required>
+                        <select name="membership" required>
                             <option>Platinum</option>
                             <option>Titanium</option>
                             <option>Silver</option>
@@ -799,12 +777,12 @@
 
                 <div class="form-group">
                     <label>¿Cuál es tu destino ideal?</label>
-                    <input type="text" required placeholder="Ej: Maldivas, Dubai, París...">
+                    <input type="text" name="destination" required placeholder="Ej: Maldivas, Dubai, París...">
                 </div>
 
                 <div class="form-group">
                     <label>Cuéntanos tus preferencias</label>
-                    <textarea required placeholder="Tipo de viaje, fechas, presupuesto, preferencias gastronómicas..." rows="5"></textarea>
+                    <textarea name="preferences" required placeholder="Tipo de viaje, fechas, presupuesto, preferencias gastronómicas..." rows="5"></textarea>
                 </div>
 
                 <button type="submit" class="btn-gold" style="width: 100%; padding: 1rem;">Enviar Consulta</button>
