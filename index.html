@@ -76,6 +76,47 @@
             display: flex;
         }
 
+        .nav-contact-wrapper {
+            position: relative;
+        }
+
+        .contact-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #0A192F;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            min-width: 220px;
+            display: none;
+            z-index: 1500;
+        }
+
+        .contact-dropdown.active {
+            display: block;
+        }
+
+        .contact-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin-bottom: 0.35rem;
+        }
+
+        .contact-dropdown a:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-dropdown-icon {
+            color: #C5A059;
+            font-weight: 700;
+        }
+
         @media (min-width: 1024px) {
             .nav-menu {
                 display: flex;
@@ -108,6 +149,7 @@
             letter-spacing: 0.05em;
             transition: all 0.3s;
             border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
         }
 
         .btn-gold:hover {
@@ -161,8 +203,8 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80') center/cover;
-            opacity: 0.3;
+            background: url('portadanueva2.jpg') center/cover;
+            opacity: 1;
             z-index: 1;
         }
 
@@ -172,7 +214,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(11, 29, 62, 0.6);
+            background: transparent;
             z-index: 2;
         }
 
@@ -214,11 +256,12 @@
 
         .hero-subtitle {
             font-size: 1.5rem;
-            font-weight: 300;
+            font-weight: 600;
             font-style: italic;
-            color: #E5D5A8;
+            color: white;
             margin-bottom: 3rem;
             letter-spacing: 0.02em;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
 
         .hero-buttons {
@@ -627,6 +670,82 @@
                 padding: 1.5rem;
             }
         }
+
+        /* Crew On Shore – card contenedor interactivo */
+        .crew-on-shore-card {
+            background: white;
+            border-left: 4px solid #D4AF37;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 100%;
+            transition: box-shadow 0.3s;
+        }
+
+        .crew-on-shore-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .crew-on-shore-card .crew-card-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0B1D3E;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .crew-on-shore-card .crew-card-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #D4AF37;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .crew-on-shore-card .crew-video-wrap {
+            width: 100%;
+            margin-bottom: 1rem;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .crew-on-shore-card .crew-video-wrap video {
+            width: 100%;
+            display: block;
+        }
+
+        .crew-unmute-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #D4AF37;
+            color: #0B1D3E;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .crew-unmute-btn:hover {
+            background: #E5D5A8;
+            transform: scale(1.03);
+            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
+        }
+
+        .crew-unmute-btn:disabled {
+            cursor: default;
+            opacity: 0.85;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -636,12 +755,23 @@
             <div class="nav-logo" onclick="scrollToTop()">OZNITRAVEL</div>
             <div class="nav-menu" id="navMenu">
                 <a class="nav-link" onclick="toggleModal('membershipModal')">Membresías</a>
-                <a class="nav-link" onclick="toggleModal('crewModal')">Crew on Shore</a>
+                <a class="nav-link" href="#crew-on-shore">Crew on Shore</a>
                 <a class="nav-link" onclick="toggleModal('conciergeModal')">Conserje</a>
-                <a class="nav-link" onclick="scrollTo('contact')">Contacto</a>
-                <a class="nav-link" onclick="goToAbout()">Quiénes Somos</a>
+                <div class="nav-contact-wrapper">
+                    <a class="nav-link" href="javascript:void(0)" onclick="toggleContactDropdown()">Contacto</a>
+                    <div id="contactDropdown" class="contact-dropdown">
+                        <a href="https://wa.me/593983977320" target="_blank" rel="noopener">
+                            <span class="contact-dropdown-icon">☎</span>
+                            <span>0983977320 (WhatsApp)</span>
+                        </a>
+                        <a href="mailto:crewonshore@gmail.com">
+                            <span class="contact-dropdown-icon">✉</span>
+                            <span>crewonshore@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+                <a class="nav-link" href="#about">Quiénes Somos</a>
             </div>
-            <button class="btn-gold" onclick="toggleModal('membershipModal')">Membresía Travorium</button>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -653,11 +783,27 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">OZNI<span style="color: #D4AF37;">TRAVEL</span></h1>
-            <p class="hero-subtitle">Diseñamos el viaje que te mereces</p>
+            <p class="hero-subtitle">Viajes de lujo con ahorros de <span style="color: #C5A059;">hasta el 60%</span>. Diseñamos el viaje que te mereces con membresías exclusivas.</p>
             <div class="hero-buttons">
-                <button class="btn-gold" onclick="toggleModal('membershipModal'); trackEvent('hero_membership_click')">Descubre Membresías</button>
-                <button class="btn-outline" onclick="toggleModal('crewModal'); trackEvent('hero_crew_click')">Crew on Shore</button>
+                <button class="btn-gold" onclick="toggleModal('membershipModal'); trackEvent('hero_membership_click')">Quiero ahorrar en viajes</button>
+                <a href="#crew-on-shore" class="btn-outline" onclick="trackEvent('hero_crew_click')" style="text-decoration: none; display: inline-block;">Crew on Shore</a>
             </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / QUIÉNES SOMOS -->
+    <section id="about" class="section" style="background: #0B1D3E; color: white;">
+        <div style="max-width: 850px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 1.5rem;">
+                OZNITRAVEL es el puente entre tus sueños y los destinos más exclusivos del mundo. Nos especializamos en brindar acceso a viajes de lujo a través de nuestro
+                <strong style="color: #C5A059;">Servicio de Membresía</strong>, permitiendo a nuestros clientes ahorrar
+                <strong style="color: #C5A059;">hasta un 60%</strong> en hoteles, resorts y experiencias alrededor del mundo.
+            </p>
+            <p>
+                Complementamos cada aventura con <strong style="color: #C5A059;">Crew On Shore</strong>, nuestro servicio de soporte en destino diseñado
+                <strong style="color: #C5A059;">exclusivamente para tripulantes</strong> y personal de cruceros. Nos encargamos de la logística, traslados y asistencia personalizada en cada puerto,
+                garantizando que el personal de a bordo disfrute de su tiempo en tierra con total comodidad y sin preocupaciones.
+            </p>
         </div>
     </section>
 
@@ -666,29 +812,29 @@
         <div class="modal-content">
             <span class="modal-close" onclick="toggleModal('membershipModal')">&times;</span>
             <h2 class="section-title">Membresías Travorium</h2>
-            <p class="section-subtitle">Acceso global a viajes de lujo con ahorro de hasta 70%</p>
-
-            <div class="carousel">
-                <div class="carousel-item">
-                    <h3>PLATINUM</h3>
-                    <p>Ahorros del 70% en hoteles de 5 estrellas. Getaways incluidos. Asistente VIP personal 24/7.</p>
-                    <div class="membership-badge">ELITE</div>
-                </div>
-                <div class="carousel-item">
-                    <h3>TITANIUM</h3>
-                    <p>Ahorros del 60% + World Tours. Acumulación de puntos doble. Acceso VIP a destinos exclusivos.</p>
-                    <div class="membership-badge">POPULAR</div>
-                </div>
-                <div class="carousel-item">
-                    <h3>SILVER</h3>
-                    <p>Ahorros del 40%. Tarifas mayoristas reales. Base perfecta para comenzar tu ecosistema de viaje.</p>
-                    <div class="membership-badge">INICIO</div>
-                </div>
-            </div>
+            <p class="section-subtitle">ACCESO GLOBAL A VIAJES DE LUJO CON AHORRO DIRECTO DE HASTA EL 60%</p>
 
             <h3 style="margin-top: 2rem; color: #0B1D3E; font-family: 'Playfair Display', serif; font-size: 1.5rem;">Video Promocional</h3>
             <div class="video-placeholder">
                 🎬 Video Travorium - 30 segundos de experiencias de lujo
+            </div>
+
+            <div class="carousel">
+                <div class="carousel-item">
+                    <h3>PLATINUM</h3>
+                    <p>Máximo nivel de ahorro y máxima acumulación de puntos mensuales. Acceso VIP prioritario a World Tours con las mejores tarifas del mercado.</p>
+                    <div class="membership-badge">ELITE</div>
+                </div>
+                <div class="carousel-item">
+                    <h3>TITANIUM</h3>
+                    <p>Ahorros de hasta el 60% más acumulación mensual de puntos de viaje. Incluye acceso a Getaways y World Tours con tarifas preferenciales.</p>
+                    <div class="membership-badge">POPULAR</div>
+                </div>
+                <div class="carousel-item">
+                    <h3>SILVER</h3>
+                    <p>Acceso a miles de hoteles y resorts exclusivos en todo el mundo. La base ideal para comenzar a viajar de forma inteligente.</p>
+                    <div class="membership-badge">INICIO</div>
+                </div>
             </div>
 
             <div style="text-align: center;">
@@ -697,51 +843,60 @@
         </div>
     </div>
 
-    <!-- MODAL CREW ON SHORE -->
-    <div id="crewModal" class="modal" onclick="closeModalOnBgClick(event, 'crewModal')">
-        <div class="modal-content">
-            <span class="modal-close" onclick="toggleModal('crewModal')">&times;</span>
-            <h2 class="section-title">Crew on Shore</h2>
-            <p class="section-subtitle">Experiencias exclusivas para tripulantes en Guayaquil</p>
+    <!-- SECTION CREW ON SHORE – card contenedor interactivo -->
+    <section id="crew-on-shore" class="section" style="background: #F8F6F3;">
+        <div class="crew-on-shore-card">
+            <h2 class="crew-card-header">CREW ON SHORE</h2>
+            <p class="crew-card-subtitle">EXCLUSIVE CREW EXPERIENCES IN KEY DESTINATIONS</p>
+            <p>Currently available in Guayaquil, with progressive expansion to other ports in Ecuador and Latin America.</p>
 
-            <div class="video-placeholder">
-                🎬 Experiencias Crew on Shore - Tours, Shopping, Gastronomía
+            <div class="crew-video-wrap">
+                <video
+                    id="crewVideo"
+                    src="crew-on-shore.mp4"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    controls
+                    style="border-radius: 0;">
+                </video>
             </div>
 
-            <h3 style="color: #0B1D3E; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 2rem 0 1rem;">¿Qué experiencia deseas?</h3>
+            <h3 style="color: #0B1D3E; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 2rem 0 1rem;">Select the type of experience you want at your next port</h3>
 
             <div class="grid-3">
-                <div class="card" onclick="handleWhatsApp('Me interesa tour por Malecón 2000'); trackEvent('crew_malecон')">
-                    <h3>🏛️ Malecón 2000</h3>
-                    <p>Paseo ribereño histórico con gastronomía premium y vistas al río.</p>
+                <div class="card" onclick="handleWhatsApp('Me interesa tour por Malecón 2000'); trackEvent('crew_malecon')" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('Riverfront City Walks.jpg'); background-size: cover; background-position: center;">
+                    <h3 style="color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">🏛️ Riverfront City Walks</h3>
+                    <p style="color: #f5f5f5; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">Scenic riverfront walks, gastronomy, leisure areas and optional river rides with music.</p>
                 </div>
-                <div class="card" onclick="handleWhatsApp('Me interesa visitar Palacio de Cristal'); trackEvent('crew_palacio')">
-                    <h3>🏢 Palacio de Cristal</h3>
-                    <p>Centro comercial de ultra lujo con tiendas internacionales exclusivas.</p>
+                <div class="card" onclick="handleWhatsApp('Me interesa visitar Palacio de Cristal'); trackEvent('crew_palacio')" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('Cultural & Event Venues.jpg'); background-size: cover; background-position: center;">
+                    <h3 style="color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">🏢 Cultural & Event Venues</h3>
+                    <p style="color: #f5f5f5; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">Exhibitions, fairs, cultural events and gastronomic experiences in iconic venues.</p>
                 </div>
-                <div class="card" onclick="handleWhatsApp('Me interesa Cerro Santa Ana'); trackEvent('crew_cerro')">
-                    <h3>⛪ Cerro Santa Ana</h3>
-                    <p>Vista panorámica histórica con restaurantes gourmet.</p>
+                <div class="card" onclick="handleWhatsApp('Me interesa Cerro Santa Ana'); trackEvent('crew_cerro')" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('Viewpoints & Historic Districts.jpg'); background-size: cover; background-position: center;">
+                    <h3 style="color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">⛪ Viewpoints & Historic Districts</h3>
+                    <p style="color: #f5f5f5; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">Panoramic viewpoints, heritage neighborhoods and cultural experiences.</p>
                 </div>
-                <div class="card" onclick="handleWhatsApp('Me interesa Parque de las Iguanas'); trackEvent('crew_iguanas')">
-                    <h3>🦎 Parque Iguanas</h3>
-                    <p>Experiencia única con la fauna local en zona segura.</p>
+                <div class="card" onclick="handleWhatsApp('Me interesa Parque de las Iguanas'); trackEvent('crew_iguanas')" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('Urban Wildlife & Nature Parks.jpg'); background-size: cover; background-position: center;">
+                    <h3 style="color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">🦎 Urban Wildlife & Nature Parks</h3>
+                    <p style="color: #f5f5f5; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">Safe interaction with local wildlife and emblematic city parks.</p>
                 </div>
-                <div class="card" onclick="handleWhatsApp('Me interesa ecoturismo Cerro Blanco'); trackEvent('crew_ecoturismo')">
-                    <h3>🌿 Cerro Blanco</h3>
-                    <p>Ecoturismo premium con senderos privados y almuerzo artesanal.</p>
+                <div class="card" onclick="handleWhatsApp('Me interesa ecoturismo Cerro Blanco'); trackEvent('crew_ecoturismo')" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('Ecotourism & Natural Reserves.jpg'); background-size: cover; background-position: center;">
+                    <h3 style="color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">🌿 Ecotourism & Natural Reserves</h3>
+                    <p style="color: #f5f5f5; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">Protected nature areas, trails and sustainable experiences.</p>
                 </div>
-                <div class="card" onclick="handleWhatsApp('Me interesa shopping en Guayaquil'); trackEvent('crew_shopping')">
-                    <h3>🛍️ Shopping VIP</h3>
-                    <p>Tours de compras con acceso a boutiques privadas y marcas exclusivas.</p>
+                <div class="card" onclick="handleWhatsApp('Me interesa shopping en Guayaquil'); trackEvent('crew_shopping')" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('VIP Shopping Experiences.jpg'); background-size: cover; background-position: center;">
+                    <h3 style="color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">🛍️ VIP Shopping Experiences</h3>
+                    <p style="color: #f5f5f5; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">Access to boutiques, international brands and selected outlets.</p>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 2rem;">
-                <button class="btn-gold" onclick="handleWhatsApp('Quiero reservar Crew on Shore'); trackEvent('crew_reserve')">Reservar Experiencia</button>
+                <button class="btn-gold" onclick="handleWhatsApp('Quiero reservar Crew on Shore'); trackEvent('crew_reserve')">BOOK EXPERIENCE VIA WHATSAPP</button>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- MODAL CONSERJE -->
     <div id="conciergeModal" class="modal" onclick="closeModalOnBgClick(event, 'conciergeModal')">
@@ -964,7 +1119,7 @@
             <p style="font-size: 0.9rem; margin-bottom: 1rem;">Conserjería de viajes de ultra lujo | Membresías Travorium | Experiencias VIP Crew on Shore</p>
 
             <div class="footer-links">
-                <span class="footer-link" onclick="goToAbout(); trackEvent('footer_about')">Quiénes Somos</span>
+                <span class="footer-link" onclick="scrollTo('about'); trackEvent('footer_about')">Quiénes Somos</span>
                 <span class="footer-link" onclick="goToVision(); trackEvent('footer_vision')">Nuestra Visión</span>
                 <span class="footer-link" onclick="goToMission(); trackEvent('footer_mission')">Nuestra Misión</span>
                 <span class="footer-link" onclick="openPrivacyPolicy(); trackEvent('footer_privacy')">Política de Privacidad</span>
@@ -1014,6 +1169,31 @@
             navMenu.classList.toggle('active');
         }
 
+        function toggleContactDropdown() {
+            const dropdown = document.getElementById('contactDropdown');
+            if (!dropdown) return;
+            dropdown.classList.toggle('active');
+        }
+
+        // ===== CREW ON SHORE VIDEO =====
+        function crewVideoUnmute() {
+            const video = document.getElementById('crewVideo');
+            const btn = document.getElementById('crewVideoUnmuteBtn');
+            if (!video || !btn) return;
+            video.muted = false;
+            btn.textContent = '\u2713 Sonido activado';
+            btn.disabled = true;
+        }
+
+        function initCrewVideoAutoplay() {
+            const video = document.getElementById('crewVideo');
+            if (!video) return;
+            var p = video.play();
+            if (p && typeof p.catch === 'function') {
+                p.catch(function () {});
+            }
+        }
+
         // ===== WHATSAPP HANDLING =====
         function handleWhatsApp(message) {
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -1045,10 +1225,6 @@
         }
 
         // ===== INFORMACIÓN DE EMPRESA =====
-        function goToAbout() {
-            alert('QUIÉNES SOMOS\n\nOZNITRAVEL es una plataforma de conserjería de viajes de ultra lujo que conecta viajeros premium con experiencias exclusivas.\n\nNuestro foco: Membresías Travorium, servicios Crew on Shore en Guayaquil, y acceso a pasarelas de afiliados globales.');
-        }
-
         function goToVision() {
             alert('NUESTRA VISIÓN\n\nSer la plataforma número uno en Latinoamérica para viajeros que buscan experiencias premium, ahorro inteligente y servicios de conserjería personalizado.');
         }
@@ -1083,6 +1259,11 @@
         // ===== INICIALIZACIÓN =====
         document.addEventListener('DOMContentLoaded', function() {
             trackEvent('page_view');
+            initCrewVideoAutoplay();
+            var v = document.getElementById('crewVideo');
+            if (v) {
+                v.addEventListener('loadeddata', initCrewVideoAutoplay);
+            }
             console.log('✅ OZNITRAVEL cargado correctamente');
         });
 
